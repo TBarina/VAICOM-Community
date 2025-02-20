@@ -140,8 +140,10 @@ namespace VAICOM
                 // tac turns
                 { "30 Left Go",                   "30leftgo"          },
                 { "Thirty Left Go",               "30leftgo"          },
+                { "Check Left",                   "30leftgo"          }, // USAF
                 { "30 Right Go",                  "30rightgo"         },
                 { "Thirty Right Go",              "30rightgo"         },
+                { "Check Right",                  "30rightgo"         }, // USAF
                 { "45 Left Go",                   "45leftgo"          },
                 { "Forty Five Left Go",           "45leftgo"          },
                 { "45 Right Go",                  "45rightgo"         },
@@ -152,11 +154,18 @@ namespace VAICOM
                 { "Sixty Right Go",               "60rightgo"         },
                 { "90 Left Go",                   "90leftgo"          },
                 { "Ninety Left Go",               "90leftgo"          },
+                { "Tac Left",                     "90leftgo"          }, // USAF
                 { "90 Right Go",                  "90rightgo"         },
                 { "Ninety Right Go",              "90rightgo"         },
+                { "Tac Right",                    "90rightgo"         }, // USAF
                 { "Turnabout Left Go",            "turnaboutleftgo"   },
+                { "Hook Left",                    "turnaboutleftgo"   }, // USAF
+                { "In Place Left",                "turnaboutleftgo"   }, // USN
                 { "Turnabout Right Go",           "turnaboutrightgo"  },
+                { "Hook Right",                   "turnaboutrightgo"  }, // USAF
+                { "In Place Right",               "turnaboutrightgo"  }, // USN
                 { "Rotate Go",                    "rotatego"          },
+                { "Cross Turn",                   "rotatego"          }, //USAF/USN
                 { "Shackle Go",                   "shacklego"         },
                 { "Heading North Go",             "HeadingN"          },
                 { "Flow North",                   "HeadingN"          },
@@ -175,6 +184,8 @@ namespace VAICOM
                 { "Heading North West Go",        "HeadingNW"         },
                 { "Flow North West",              "HeadingNW"         },
                 { "Widen Out Go",                 "Widen"             },
+                { "Kick Out",                     "Widen"             }, //USAF/USN
+                { "Float",                        "Widen"             }, //USN
                 { "Close Up Go",                  "CloseUp"           },
 
                 // ATC
