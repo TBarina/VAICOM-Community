@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250221,
-      "version": 3002,
-      "versionstring": "3.0.0.2",
+      "releasedate": 20250304,
+      "version": 3004,
+      "versionstring": "3.0.0.4",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOMPRO-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " , Adds USAF and USN terms for Tac Turns for Ai flight recipients ***May REQUIRE Reset of Keywords database in UI and finish steps*** "
+      "releasenotes": " Fixes message clipping in F10 map, Adds USAF and USN terms for Tac Turns for Ai flight recipients ***May REQUIRE Reset of Keywords database in UI and finish steps*** "
     }
   ]
 }

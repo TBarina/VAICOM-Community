@@ -1257,7 +1257,10 @@ AWACSTargetDir = {
 			Direction		= Direction,
 			Altitude		= Altitude,
 			cold			= Phrase:new({_('cold'),		'cold'}),
-			hot				= Phrase:new({_('hot'),			'hot'}),
+			hot				= PhraseRandom:new({{_('hot'),		'hot'},
+												{_('hot'),		'hot 2'},
+												{_('hot'),		'hot 3'},												
+												{_('hot'),		'hot 4'}}),
 			flanking		= Phrase:new({_('flanking'),	'flanking'}) }
 }
 
@@ -3273,4 +3276,4 @@ function make(self, message)
 	
 end	
 
---base.print('Speech.common modules loaded')S
+--base.print('Speech.common modules loaded')
