@@ -350,10 +350,10 @@ function ProcessRemoteCommand()
 	end
 	if clientmessage.type == base.vaicom.messagetype.aicomms			then -- Rearming Menu call testing
 		local unitcomm, tgtunit = SetTargetComm(clientmessage.command)
-		--if clientmessage.command == base.Message.wMsgLeaderRequestRearming then			
-			--base.MissionResourcesDialog.show(true)
-			--return
-		--end
+		if clientmessage.command == base.Message.wMsgLeaderRequestRearming then			
+			base.MissionResourcesDialog.show(true)
+			return
+		end
 		data.curCommunicatorId = clientmessage.tgtdevid or data.curCommunicatorId
 		selectAndTuneCommunicator(unitcomm)
 		local messagesendcommand	= clientmessage.command
@@ -1493,7 +1493,7 @@ base.vaicom.state = {
 								  }								  
 				chunk[9] 		= {
 									menuaux		= (base.vaicom.state.activemessage.importmenus and base.vaicom.state.menuaux) 	or nil,
-									menumoose	= base.vaicom.state.menumoose or nil, -- Add Moose
+									menumoose	= (base.vaicom.state.activemessage.importmenus and base.vaicom.state.menumoose) or nil, -- Add Moose
 									menucargo	= (base.vaicom.state.activemessage.importmenus and base.vaicom.state.menucargo) or nil,		
 								  }						
 				chunk[10] 		= {

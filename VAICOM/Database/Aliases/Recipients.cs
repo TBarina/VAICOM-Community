@@ -575,6 +575,7 @@ namespace VAICOM
                 { "Server",                 "aux"                    },
                 { "Mystery",                "aux"                    },
                 { "Mission",                "aux"                    },
+                //{ "Nellis Ground",          "AI_ATC"                 },
 
                 { "Cargo",                  "cargo"                  },
                 { "Descent",                "descent"                },

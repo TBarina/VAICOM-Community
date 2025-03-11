@@ -473,11 +473,76 @@ namespace VAICOM
 
                 { "Page",                  "wMsgShowKneeboardTab"         },
 
-                // Moose Airboss
-                { "Airboss Marshal Check",         "Radio Check Marshal"  },
-                { "Airboss LSO Check",             "Radio Check LSO"      },
-                { "Request Commence",      "Request Commence"             },
-                { "Emergency Landing",     "Emergency Landing"            },
+                // Moose
+                    // Airboss
+                { "Airboss Marshal Check",          "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
+                { "Airboss LSO Check",              "Radio Check LSO"                                 }, //These aliases must be unique and different from the standard DCS aliases!!
+                { "Request Commence",               "Request Commence"                                },
+                { "Emergency Landing",              "Emergency Landing"                               },
+
+                    // Range
+                { "Illuminate the Range",           "Action Illuminate Range"                         },
+                { "Smoke the strafe pits",          "Action Smoke Strafe Pits"                        },
+                { "Smoke the gunnery targets",      "Action Smoke Strafe Tgts"                        },
+                { "Smoke the Bomb targets",         "Action Smoke Bomb Tgts"                          },
+                { "I'll be marking blue",           "Action Blue Smoke"                               },
+                { "I'll be marking green",          "Action Green Smoke"                              },
+                { "I'll be marking orange",         "Action Orange Smoke"                             },
+                { "I'll be marking red",            "Action Red Smoke"                                },
+                { "I'll be marking white",          "Action White Smoke"                              },
+
+                // Hound TODO
+                //{ "Airboss Marshal Check",          "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for the Hound Script
+                //{ "Airboss LSO Check",              "Radio Check LSO"                                 }, //These aliases must be unique and different from the standard DCS aliases!!
+                //{ "Request Commence",               "Request Commence"                                },
+                //{ "Emergency Landing",              "Emergency Landing"                               },
+
+                // AI_ATC
+                    //Ground
+                { "Request To Start",               "Action Request Engine Start"                     }, //used in Imported script Dynamic F10 menu Commands for the AI_ATC project
+                { "Engine Start",                   "Action Request Engine Start"                     }, //These aliases must be unique and different from the standard DCS aliases!!
+                { "Requesting Start",               "Action Request Engine Start"                     },
+                { "Request Taxi Clearance",         "Action Request Taxi Clearance"                   } ,
+                { "Request Taxi",                   "Action Request Taxi Clearance"                   },
+                { "Request a FLEX NORTH",           "Action FLEX NORTH"                               },
+                { "Request FLEX NORTH Transition",  "Action FLEX NORTH"                               },
+                { "Request a FLEX WEST",            "Action FLEX WEST"                                },
+                { "Request FLEX WEST Transition",   "Action FLEX WEST"                                },
+                { "Request a three MIKE",           "Action FLEX MMM TRANSITION"                      },
+                { "Request a three M Transition",   "Action FLEX MMM TRANSITION"                      },
+                { "Request a Dream Seven",          "Action DREAM 7"                                  },
+                { "Request IFR Dream Seven",        "Action DREAM 7"                                  },
+                { "Request a FYTTR Seven",          "Action FYTTR 7"                                  },
+                { "Request IFR FYTTR Seven",        "Action FYTTR 7"                                  },
+                { "Request a fighter Seven",        "Action FYTTR 7"                                  },
+                { "Request IFR fighter Seven",      "Action FYTTR 7"                                  },
+                { "Request a Mesa Eight",           "Action MORMON MESA 8"                            },
+                { "Request IFR Mesa Eight",         "Action MORMON MESA 8"                            },
+                { "Say Again last",                 "Action Repeat last transmission"                 },
+                    //Tower
+                { "Clearance to Cross three Right", "Action Request clearance to cross 03R"           },
+                { "Requesting Takeoff",             "Action Request Takeoff"                          },
+                { "Ready in turn",                  "Action Request Takeoff"                          },
+                    //Departure
+                { "Departure with you",             "Action Check in"                                 },
+                { "Flash",                          "Action Flash"                                    },
+                { "Passing FYTTR",                  "Action Report FYTTR"                             },
+                { "Passing JUNNO",                  "Action Report JUNNO"                             },
+                    //Blackjack
+                { "Blackjack entry gate one",       "Action Gate 1"                                   },
+                { "Blackjack entry gate two",       "Action Gate 2"                                   },
+                { "Blackjack entry gate three",     "Action Gate 3"                                   },
+                { "Blackjack entry gate four",      "Action Gate 4"                                   },
+                { "Blackjack over NIXON",           "Action NIXON"                                    },
+                { "Blackjack over SARAH",           "Action SARAH"                                    },
+                { "Blackjack Over Beatty",          "Action Beatty"                                   },
+                { "Blackjack egress gate one",      "Action Request Egress at gate 1"                 },
+                { "Blackjack egress gate two",      "Action Request Egress at gate 2"                 },
+                { "Blackjack egress gate three",    "Action Request Egress at gate 3"                 },
+                { "Blackjack egress gate four",     "Action Request Egress at gate 4"                 },
+                { "Blackjack egress at NIXON",      "Action Request Egress at NIXON"                  },
+                { "Blackjack egress at SARAH",      "Action Request Egress at SARAH"                  },
+
             };
 
         }

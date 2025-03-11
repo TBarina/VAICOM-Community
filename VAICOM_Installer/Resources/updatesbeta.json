@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250304,
-      "version": 3004,
-      "versionstring": "3.0.0.4",
+      "releasedate": 20250311,
+      "version": 3008,
+      "versionstring": "3.0.0.8",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOMPRO-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Fixes message clipping in F10 map, Adds USAF and USN terms for Tac Turns for Ai flight recipients ***May REQUIRE Reset of Keywords database in UI and finish steps*** "
+      "releasenotes": " Adds new F10 Menu Import Known Aliases for community Scripts, Moose, Hound, AI_ATC etc. **You will need to do the finish step to add them to your profile** Import F10 menus must be selected on for them to work."
     }
   ]
 }

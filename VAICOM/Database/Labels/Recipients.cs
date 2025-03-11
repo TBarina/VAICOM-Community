@@ -442,6 +442,7 @@ namespace VAICOM
                 { "aocs",                   "AOCS"                  },
 
                 { "aux",                    "F10 Menu"              },
+                //{ "AI_ATC",                 "AI_ATC"                },
 
                 { "cargo",                  "Cargo"                 },
                 { "descent",                "Descent"               },

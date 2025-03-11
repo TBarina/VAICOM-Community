@@ -281,10 +281,14 @@ namespace VAICOM
                 { "wMsgShowKneeboardTab", "Show kneeboard tab"       },
 
                 // Moose Airboss
-                { "Radio Check Marshal", "Radio Check Marshal" },
-                { "Radio Check LSO",     "Radio Check LSO"     },
-                { "Request Commence",    "Request Commence"    },
-                { "Emergency Landing",   "Emergency Landing"   },
+                //{ "Radio Check Marshal", "Radio Check Marshal" },
+                //{ "Radio Check LSO",     "Radio Check LSO"     },
+                //{ "Request Commence",    "Request Commence"    },
+                //{ "Emergency Landing",   "Emergency Landing"   },
+
+                // AI_ATC
+                //{ "Request Engine Start",    "AI_ATC Request Engine Start"      },
+                //{ "Request Taxi Clearance",  "AI_ATC Request Taxi Clearance"    },
             };
 
         }
