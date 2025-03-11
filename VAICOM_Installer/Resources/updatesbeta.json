@@ -8,10 +8,10 @@
       "isdev": false,
       "productid": 1,
       "releasedate": 20250311,
-      "version": 3008,
-      "versionstring": "3.0.0.8",
+      "version": 3009,
+      "versionstring": "3.0.0.9",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOMPRO-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Adds new F10 Menu Import Known Aliases for community Scripts, Moose, Hound, AI_ATC etc. **You will need to do the finish step to add them to your profile** Import F10 menus must be selected on for them to work."
+      "releasenotes": " Expands AI_ATC keywords to cover all phases of flight, Adds new F10 Menu Import Known Aliases for community Scripts, Moose, Hound, AI_ATC etc. **You will need to do the finish step to add them to your profile** Import F10 menus must be selected on for them to work."
     }
   ]
 }
