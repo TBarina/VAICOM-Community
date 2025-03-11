@@ -475,21 +475,21 @@ namespace VAICOM
 
                 // Moose
                     // Airboss
-                { "Airboss Marshal Check",          "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
-                { "Airboss LSO Check",              "Radio Check LSO"                                 }, //These aliases must be unique and different from the standard DCS aliases!!
-                { "Request Commence",               "Request Commence"                                },
-                { "Emergency Landing",              "Emergency Landing"                               },
+                { "Airboss Marshal Check",           "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
+                { "Airboss LSO Check",               "Radio Check LSO"                                 }, //These aliases must be unique and different from the standard DCS aliases!!
+                { "Request Commence",                "Request Commence"                                },
+                { "Emergency Landing",               "Emergency Landing"                               },
 
                     // Range
-                { "Illuminate the Range",           "Action Illuminate Range"                         },
-                { "Smoke the strafe pits",          "Action Smoke Strafe Pits"                        },
-                { "Smoke the gunnery targets",      "Action Smoke Strafe Tgts"                        },
-                { "Smoke the Bomb targets",         "Action Smoke Bomb Tgts"                          },
-                { "I'll be marking blue",           "Action Blue Smoke"                               },
-                { "I'll be marking green",          "Action Green Smoke"                              },
-                { "I'll be marking orange",         "Action Orange Smoke"                             },
-                { "I'll be marking red",            "Action Red Smoke"                                },
-                { "I'll be marking white",          "Action White Smoke"                              },
+                { "Illuminate the Range",            "Action Illuminate Range"                         },
+                { "Smoke the strafe pits",           "Action Smoke Strafe Pits"                        },
+                { "Smoke the gunnery targets",       "Action Smoke Strafe Tgts"                        },
+                { "Smoke the Bomb targets",          "Action Smoke Bomb Tgts"                          },
+                { "I'll be marking blue",            "Action Blue Smoke"                               },
+                { "I'll be marking green",           "Action Green Smoke"                              },
+                { "I'll be marking orange",          "Action Orange Smoke"                             },
+                { "I'll be marking red",             "Action Red Smoke"                                },
+                { "I'll be marking white",           "Action White Smoke"                              },
 
                 // Hound TODO
                 //{ "Airboss Marshal Check",          "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for the Hound Script
@@ -505,6 +505,7 @@ namespace VAICOM
                 { "Request Taxi Clearance",         "Action Request Taxi Clearance"                   } ,
                 { "Request Taxi",                   "Action Request Taxi Clearance"                   },
                 { "Taxi to Active",                 "Action Request Taxi Clearance"                   },
+
                     //Clearance Delivery
                 { "Request a FLEX NORTH",           "Action FLEX NORTH"                               },
                 { "Request FLEX NORTH Transition",  "Action FLEX NORTH"                               },
@@ -522,31 +523,39 @@ namespace VAICOM
                 { "Request a Mesa Eight",           "Action MORMON MESA 8"                            },
                 { "Request IFR Mesa Eight",         "Action MORMON MESA 8"                            },
                 { "Say Again last",                 "Action Repeat last transmission"                 },
+
                     //Tower
                 { "Clearance to Cross three Right", "Action Request clearance to cross 03R"           },
                 { "Clearance to Cross three Left",  "Action Request clearance to cross 03L"           },
                 { "Requesting Takeoff",             "Action Request Takeoff"                          },
                 { "Ready in turn",                  "Action Request Takeoff"                          },
                 { "Ready number one",               "Action Request Takeoff"                          },
-                { "Five Miles",                     "Action Report 5 mile"                            },
                 { "Request Straight In",            "Action Straight In"                              },
                 { "Request Overhead",               "Action Overhead"                                 },
                 { "Request back to departure",      "Action Request Departure"                        },
                 { "Request Instrument Final",       "Action Instrument Straight In"                   },
-                { "Request back to radar",          "Action Request Back to Radar"                    },
-                { "Full Stop",                      "Action Full Stop"                                },
-                { "Touch and Go",                   "Action Touch and Go"                             },
-                { "Request low approach",           "Action Low Approach"                             },
+                { "Five Miles Full Stop",           "Action Full Stop"                                },
+                { "Five Miles Touch and Go",        "Action Touch and Go"                             },
+                { "Five Miles Request low approach","Action Low Approach"                             },
+                { "Base Full Stop",                 "Action Full Stop"                                },
+                { "Base Touch and Go",              "Action Touch and Go"                             },
+                { "Base Request low approach",      "Action Low Approach"                             },
                 { "Request Closed traffic",         "Action Request closed traffic"                   },
-                { "Making missed Appraoch",         "Action Missed Approach"                          },
+                { "Making Missed Appraoch",         "Action Missed Approach"                          },
+                { "Request Back to Radar",          "Action Request Back to Radar"                    },
+                { "Request DUCK",                   "Action Request DUCK"                             },
+                { "Request FLEX",                   "Action Request FLEX"                             },
+
                     //Departure
                 { "Departure with you",             "Action Check in"                                 },
                 { "Flash",                          "Action Flash"                                    },
                 { "Passing FYTTR",                  "Action Report FYTTR"                             },
                 { "Passing JUNNO",                  "Action Report JUNNO"                             },
-                    //Arrival
-                { "Checking In V F R",              "Action VFR"                                      },
-                { "Checking In I F R",              "Action IFR"                                      },
+
+                    //Approach
+                { "Check In V F R",                 "Action VFR"                                      },
+                { "Check In I F R",                 "Action IFR"                                      },
+                { "Passing DUDBE",                  "Action Report DUDBE"                             },
                 { "Request Hi TACAN Zulu",          "Action HI-TAC Z"                                 },
                 { "Request TACAN two one left",     "Action TAC21L"                                   },
                 { "Request I L S",                  "Action ILS\\LOC"                                 },
@@ -555,27 +564,57 @@ namespace VAICOM
                 { "Request I F R Pickup",           "Action Request IFR Pickup"                       },
                 { "Cancel I F R",                   "Action Cancel IFR"                               },
 
+                    //Vectors to navpioints Departure and Approach
+                { "Request Vectors for NIXON",      "Action Vectors for NIXON"                        },
+                { "Request Vectors for SARAH",      "Action Vectors for SARAH"                        },
+                { "Request Vectors for PHINN",      "Action Vectors for PHINN"                        },
+                { "Request Vectors for APEX",       "Action Vectors for APEX"                         },
+                { "Request Vectors for STRYK",      "Action Vectors for STRYK"                        },
+                { "Request Vectors for GAS PEAK",   "Action Vectors for GASS_PEAK"                    },
+                { "Request Vectors for DUDBE",      "Action Vectors for DUDBE"                        },
+                { "Request Vectors for SECRT",      "Action Vectors for SECRT"                        },
+                { "Request Vectors for HOKUM",      "Action Vectors for HOKUM"                        },
+                { "Request Vectors for HULPU",      "Action Vectors for HULPU"                        },
+                { "Request Vectors for JENAR",      "Action Vectors for JENAR"                        },
+                { "Request Vectors for WILIE",      "Action Vectors for WILIE"                        },
+                { "Request Vectors for KITCH",      "Action Vectors for KITCH"                        },
+                { "Request Vectors for KRYSS",      "Action Vectors for KRYSS"                        },
+                { "Request Vectors for SHEET",      "Action Vectors for SHEET"                        },
+                { "Request Vectors for JELIR",      "Action Vectors for JELIR"                        },
+                { "Request Vectors for CADOS",      "Action Vectors for CADOS"                        },
+                { "Request Vectors for SESDE",      "Action Vectors for SESDE"                        },
+                { "Request Vectors for JOGEV",      "Action Vectors for JOGEV"                        },
+
                     //Blackjack
-                { "Blackjack entry gate one",       "Action Gate 1"                                   },
+                { "Blackjack entry gate one",       "Action Gate 1"                                   }, //TODO entry, exit and vecors have the same endpoint names.
                 { "Blackjack entry gate two",       "Action Gate 2"                                   },
                 { "Blackjack entry gate three",     "Action Gate 3"                                   },
                 { "Blackjack entry gate four",      "Action Gate 4"                                   },
                 { "Blackjack over NIXON",           "Action NIXON"                                    },
                 { "Blackjack over SARAH",           "Action SARAH"                                    },
                 { "Blackjack Over Beatty",          "Action Beatty"                                   },
+
                     //NATCF
-                { "Sally egress gate one",      "Action Request Egress at gate 1"                 },
-                { "Sally egress gate two",      "Action Request Egress at gate 2"                 },
-                { "Sally egress gate three",    "Action Request Egress at gate 3"                 },
-                { "Sally egress gate four",     "Action Request Egress at gate 4"                 },
-                { "Sally egress at NIXON",      "Action Request Egress at NIXON"                  },
-                { "Sally egress at SARAH",      "Action Request Egress at SARAH"                  },
-                { "Lee egress gate one",      "Action Request Egress at gate 1"                 },
-                { "Lee egress gate two",      "Action Request Egress at gate 2"                 },
-                { "Lee egress gate three",    "Action Request Egress at gate 3"                 },
-                { "Lee egress gate four",     "Action Request Egress at gate 4"                 },
-                { "Lee egress at NIXON",      "Action Request Egress at NIXON"                  },
-                { "Lee egress at SARAH",      "Action Request Egress at SARAH"                  },
+                    // Report egressing
+                { "Sally egress gate one",          "Action Request Egress at gate 1"                 },
+                { "Sally egress gate two",          "Action Request Egress at gate 2"                 },
+                { "Sally egress gate three",        "Action Request Egress at gate 3"                 },
+                { "Sally egress gate four",         "Action Request Egress at gate 4"                 },
+                { "Sally egress at NIXON",          "Action Request Egress at NIXON"                  },
+                { "Sally egress at SARAH",          "Action Request Egress at SARAH"                  },
+                { "Lee egress gate one",            "Action Request Egress at gate 1"                 },
+                { "Lee egress gate two",            "Action Request Egress at gate 2"                 },
+                { "Lee egress gate three",          "Action Request Egress at gate 3"                 },
+                { "Lee egress gate four",           "Action Request Egress at gate 4"                 },
+                { "Lee egress at NIXON",            "Action Request Egress at NIXON"                  },
+                { "Lee egress at SARAH",            "Action Request Egress at SARAH"                  },
+                    // Request vectors from NATCF
+                { "Lee vector to gate one",         "Action Gate 1"                                   },
+                { "Lee vector to gate two",         "Action Gate 2"                                   },
+                { "Lee vector to NIXON",            "Action NIXON"                                    },
+                { "Lee vector to SARAH",            "Action SARAH"                                    },
+                { "Sally vector to gate three",     "Action Gate 3"                                   },
+                { "Sally vector to gate four",      "Action Gate 4"                                   },
 
             };
 
