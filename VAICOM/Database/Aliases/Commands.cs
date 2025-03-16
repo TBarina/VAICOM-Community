@@ -474,13 +474,40 @@ namespace VAICOM
                 { "Page",                  "wMsgShowKneeboardTab"         },
 
                 // Moose
-                    // Airboss
-                { "Airboss Marshal Check",           "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
-                { "Airboss LSO Check",               "Radio Check LSO"                                 }, //These aliases must be unique and different from the standard DCS aliases!!
-                { "Request Commence",                "Request Commence"                                },
-                { "Emergency Landing",               "Emergency Landing"                               },
+                    // Moose Airboss
+                { "Airboss Marshal Check",           "Action Radio Check Marshal"                      }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
+                { "Airboss LSO Check",               "Action Radio Check LSO"                          }, //These aliases must be unique and different from the standard DCS aliases!!
+                { "Airboss set Student",             "Action Flight Student"                           }, //Only one istance of a CVN LHA or a Range can be present in the mission.
+                { "Airboss Set Naval Aviator",       "Action Naval Aviator"                            },
+                { "Airboss Set Topgun Graduate",     "Action TOPGUN Graduate"                          },
+                { "Airboss Hints Toggle",            "Action Hints On/Off"                             },
+                { "Airboss subtitles Toggle",        "Action Subtitles On/Off"                         },
+                { "Airboss Trap Sheet Toggle",       "Action Trapsheet On/Off"                         },
+                { "Airboss Show Greenie Board",      "Action Greenie Board"                            },
+                { "Airboss Show my Grades",          "Action My LSO Grades"                            },
+                { "Airboss show last debrief",       "Action Last Debrief"                             },
+                { "Skipper Start Case One",          "Action Start CASE I"                             },
+                { "Skipper Start Case Two",          "Action Start CASE II"                            },
+                { "Skipper Start Case Three",        "Action Start CASE III"                           },
+                { "Skipper Stop Recovery",           "Action Stop Recovery"                            },
+                { "Airboss Carrier Info ",           "Action Carrier Info"                             },
+                { "Airboss Carrier Weather",         "Action Weather Report"                           },
+                { "Airboss Set our Section ",        "Action Set Section"                              },
+                { "Airboss Display Marshal Queue",   "Action Marshal Queue"                            },
+                { "Airboss Display Pattern Queue",   "Action Pattern Queue"                            },
+                { "Airboss Display Waiting Queue",   "Action Waiting Queue"                            },
+                { "Airboss Request Marshal",         "Action Request Marshal"                          },
+                { "Inbound Mother Request Marshal",  "Action Request Marshal"                          },
+                { "Airboss Request Commence",        "Action Request Commence"                         },
+                { "Request Commence",                "Action Request Commence"                         },
+                { "Airboss Request the tanker",      "Action Request Refueling"                        },
+                { "Request To Hit the tanker",       "Action Request Refueling"                        },
+                { "Airboss Spinning",                "Action Spinning"                                 },
+                { "Spinning",                        "Action Spinning"                                 },
+                { "Airboss Emergency Landing",       "Action Emergency Landing"                        },
+                { "Declaring an Emergency",          "Action Emergency Landing"                        },
 
-                    // Range
+                    // Moose Range
                 { "Illuminate the Range",            "Action Illuminate Range"                         },
                 { "Smoke the strafe pits",           "Action Smoke Strafe Pits"                        },
                 { "Smoke the gunnery targets",       "Action Smoke Strafe Tgts"                        },
@@ -490,12 +517,24 @@ namespace VAICOM
                 { "I'll be marking orange",          "Action Orange Smoke"                             },
                 { "I'll be marking red",             "Action Red Smoke"                                },
                 { "I'll be marking white",           "Action White Smoke"                              },
+                    
+                    // Moose AWACS TODO
+                //{ "Place Holder",                    "Action Check In"                                  }, 
+                //{ "Place Holder",                    "Action Bogey Dope"                                  }, 
+                //{ "Place Holder",                    "Action Picture"                                  }, 
+                //{ "Place Holder",                    "Action Declare"                                  },
+                //{ "Place Holder",                    "Action Showtask"                                  }, 
+                //{ "Place Holder",                    "Action Commit"                                  }, 
+                //{ "Place Holder",                    "Action Unable"                                  }, 
+                //{ "Place Holder",                    "Action Abort"                                  },
+                //{ "Place Holder",                    "Action Awacs Info"                                  }, 
+                //{ "Place Holder",                    "Action Check Out"                                  },
 
                 // Hound TODO
-                //{ "Airboss Marshal Check",          "Radio Check Marshal"                             }, //used in Imported script Dynamic F10 menu Commands for the Hound Script
-                //{ "Airboss LSO Check",              "Radio Check LSO"                                 }, //These aliases must be unique and different from the standard DCS aliases!!
-                //{ "Request Commence",               "Request Commence"                                },
-                //{ "Emergency Landing",              "Emergency Landing"                               },
+                //{ "Place Holder",                    "Place Holder"                                  }, //used in Imported script Dynamic F10 menu Commands for the Hound Script
+                //{ "Place Holder",                    "Place Holder"                                  }, //These aliases must be unique and different from the standard DCS aliases!!
+                //{ "Place Holder",                    "Place Holder"                                  }, //Hound is tricky due to the number of dynamic commands what is important?
+                //{ "Place Holder",                    "Place Holder"                                  },
 
                 // AI_ATC
                     //Ground
@@ -505,6 +544,8 @@ namespace VAICOM
                 { "Request Taxi Clearance",         "Action Request Taxi Clearance"                   } ,
                 { "Request Taxi",                   "Action Request Taxi Clearance"                   },
                 { "Taxi to Active",                 "Action Request Taxi Clearance"                   },
+                { "Clear of Runway",                "Action Taxi to Parking"                          },
+                { "Ground with you",                "Action Taxi to Parking"                          },
 
                     //Clearance Delivery
                 { "Request a FLEX NORTH",           "Action FLEX NORTH"                               },
