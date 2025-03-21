@@ -474,10 +474,28 @@ namespace VAICOM
                 { "Page",                  "wMsgShowKneeboardTab"         },
 
                 // Moose
-                    // Moose Airboss
-                { "Airboss Marshal Check",           "Action Radio Check Marshal"                      }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
-                { "Airboss LSO Check",               "Action Radio Check LSO"                          }, //These aliases must be unique and different from the standard DCS aliases!!
-                { "Airboss set Student",             "Action Flight Student"                           }, //Only one istance of a CVN LHA or a Range can be present in the mission.
+                    // Moose Airboss In flight commands
+                { "Airboss Mother Comms Check",      "Action Radio Check Marshal"                      }, //Only one istance of a CVN LHA or a Range can be present in the mission.
+                { "Mother Comms Check",              "Action Radio Check Marshal"                      }, //used in Imported script Dynamic F10 menu Commands for Moose Airboss Script
+                { "Airboss LSO Comms Check",         "Action Radio Check LSO"                          }, //These aliases must be unique and different from the standard DCS aliases!!
+                { "LSO Comms Check",                 "Action Radio Check LSO"                          },
+                { "Airboss Request Marshal",         "Action Request Marshal"                          },
+                { "Inbound Mother Request Marshal",  "Action Request Marshal"                          },
+                { "Airboss Commencing",              "Action Request Commence"                         },
+                { "Proceeding Initial",              "Action Request Commence"                         },
+                { "Airboss Request the tanker",      "Action Request Refueling"                        },
+                { "Request To Hit the tanker",       "Action Request Refueling"                        },
+                { "Airboss Spinning",                "Action Spinning"                                 },
+                { "Spinning",                        "Action Spinning"                                 },
+                { "Airboss Emergency Landing",       "Action Emergency Landing"                        },
+                { "Declaring an Emergency",          "Action Emergency Landing"                        },
+                        //Ship commands used while in flight
+                { "Skipper Start Case One",          "Action Start CASE I"                             },
+                { "Skipper Start Case Two",          "Action Start CASE II"                            },
+                { "Skipper Start Case Three",        "Action Start CASE III"                           },
+                { "Skipper Stop Recovery",           "Action Stop Recovery"                            },
+                        //Airboss Config Commands ---Do we actually want these included??
+                { "Airboss set Flight Student",      "Action Flight Student"                           }, 
                 { "Airboss Set Naval Aviator",       "Action Naval Aviator"                            },
                 { "Airboss Set Topgun Graduate",     "Action TOPGUN Graduate"                          },
                 { "Airboss Hints Toggle",            "Action Hints On/Off"                             },
@@ -486,26 +504,12 @@ namespace VAICOM
                 { "Airboss Show Greenie Board",      "Action Greenie Board"                            },
                 { "Airboss Show my Grades",          "Action My LSO Grades"                            },
                 { "Airboss show last debrief",       "Action Last Debrief"                             },
-                { "Skipper Start Case One",          "Action Start CASE I"                             },
-                { "Skipper Start Case Two",          "Action Start CASE II"                            },
-                { "Skipper Start Case Three",        "Action Start CASE III"                           },
-                { "Skipper Stop Recovery",           "Action Stop Recovery"                            },
-                { "Airboss Carrier Info ",           "Action Carrier Info"                             },
-                { "Airboss Carrier Weather",         "Action Weather Report"                           },
-                { "Airboss Set our Section ",        "Action Set Section"                              },
+                { "Airboss Briefing ",               "Action Carrier Info"                             },
+                { "Airboss Weather",                 "Action Weather Report"                           },
+                { "Airboss Set our Group ",          "Action Set Section"                              },
                 { "Airboss Display Marshal Queue",   "Action Marshal Queue"                            },
                 { "Airboss Display Pattern Queue",   "Action Pattern Queue"                            },
                 { "Airboss Display Waiting Queue",   "Action Waiting Queue"                            },
-                { "Airboss Request Marshal",         "Action Request Marshal"                          },
-                { "Inbound Mother Request Marshal",  "Action Request Marshal"                          },
-                { "Airboss Request Commence",        "Action Request Commence"                         },
-                { "Request Commence",                "Action Request Commence"                         },
-                { "Airboss Request the tanker",      "Action Request Refueling"                        },
-                { "Request To Hit the tanker",       "Action Request Refueling"                        },
-                { "Airboss Spinning",                "Action Spinning"                                 },
-                { "Spinning",                        "Action Spinning"                                 },
-                { "Airboss Emergency Landing",       "Action Emergency Landing"                        },
-                { "Declaring an Emergency",          "Action Emergency Landing"                        },
 
                     // Moose Range
                 { "Illuminate the Range",            "Action Illuminate Range"                         },
@@ -519,16 +523,16 @@ namespace VAICOM
                 { "I'll be marking white",           "Action White Smoke"                              },
                     
                     // Moose AWACS TODO
-                //{ "Place Holder",                    "Action Check In"                                  }, 
-                //{ "Place Holder",                    "Action Bogey Dope"                                  }, 
-                //{ "Place Holder",                    "Action Picture"                                  }, 
-                //{ "Place Holder",                    "Action Declare"                                  },
-                //{ "Place Holder",                    "Action Showtask"                                  }, 
-                //{ "Place Holder",                    "Action Commit"                                  }, 
-                //{ "Place Holder",                    "Action Unable"                                  }, 
-                //{ "Place Holder",                    "Action Abort"                                  },
-                //{ "Place Holder",                    "Action Awacs Info"                                  }, 
-                //{ "Place Holder",                    "Action Check Out"                                  },
+                { "Chalice Checking In",             "Action Check In"                                 }, // difficult due to conflicts with DCS aliases.
+                { "Chalice Say Bogey Dope",          "Action Bogey Dope"                               }, 
+                { "Chalice Say Picture",             "Action Picture"                                  }, 
+                { "Chalice Declare",                 "Action Declare"                                  },
+                { "Chalice request tasking",         "Action Showtask"                                 }, 
+                { "Chalice Committing",              "Action Commit"                                   }, 
+                { "Chalice Unable",                  "Action Unable"                                   }, 
+                { "Chalice off task",                "Action Abort"                                    },
+                { "Chalice say status",              "Action Awacs Info"                               }, 
+                { "Chalice Checking Out",            "Action Check Out"                                },
 
                 // Hound TODO
                 //{ "Place Holder",                    "Place Holder"                                  }, //used in Imported script Dynamic F10 menu Commands for the Hound Script

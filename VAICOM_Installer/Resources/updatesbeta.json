@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250312,
-      "version": 3012,
-      "versionstring": "3.0.1.2",
+      "releasedate": 20250321,
+      "version": 3013,
+      "versionstring": "3.0.1.3",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOMPRO-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Adds Moose Airboss and Range keywords, And More Keyword fixes and changes, Expands AI_ATC keywords to include Vector endpoints and corrects previous errors with tower endpoints, Adds new F10 Menu Import Known Aliases for community Scripts, Moose, Hound, AI_ATC etc. **You will need to do the finish step to add them to your profile** Import F10 menus must be selected on for them to work."
+      "releasenotes": " , Adds Moose AWACS keywords, Adds Moose Airboss and Range keywords, And More Keyword fixes and changes, Expands AI_ATC keywords to include Vector endpoints and corrects previous errors with tower endpoints, Adds new F10 Menu Import Known Aliases for community Scripts, Moose, Hound, AI_ATC etc. **You will need to do the finish step to add them to your profile** Import F10 menus must be selected on for them to work."
     }
   ]
 }
