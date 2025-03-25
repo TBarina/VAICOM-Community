@@ -571,9 +571,9 @@ namespace VAICOM
                     //Tower
                 { "Clearance to Cross three Right", "Action Request clearance to cross 03R"           },
                 { "Clearance to Cross three Left",  "Action Request clearance to cross 03L"           },
-                { "Requesting Takeoff",             "Action Request Takeoff"                          },
+                { "Requesting Takeoff Clearance",   "Action Request Takeoff"                          },
                 { "Ready in turn",                  "Action Request Takeoff"                          },
-                { "Ready number one",               "Action Request Takeoff"                          },
+                { "Ready at the Hold",              "Action Request Takeoff"                          },
                 { "Request Straight In",            "Action Straight In"                              },
                 { "Request Overhead",               "Action Overhead"                                 },
                 { "Request back to departure",      "Action Request Departure"                        },
@@ -602,7 +602,7 @@ namespace VAICOM
                 { "Check In I F R",                 "Action IFR"                                      },
                 { "Passing DUDBE",                  "Action Report DUDBE"                             },
                 { "Request Hi TACAN Zulu",          "Action HI-TAC Z"                                 },
-                { "Request TACAN two one left",     "Action TAC21L"                                   },
+                { "Request TACAN Two One left",     "Action TAC21L"                                   },
                 { "Request I L S",                  "Action ILS\\LOC"                                 },
                 { "Request Localizer",              "Action ILS\\LOC"                                 },
                 { "Request Hi TACAN Yankee",        "Action HI-TAC Y"                                 },
@@ -629,15 +629,37 @@ namespace VAICOM
                 { "Request Vectors for CADOS",      "Action Vectors for CADOS"                        },
                 { "Request Vectors for SESDE",      "Action Vectors for SESDE"                        },
                 { "Request Vectors for JOGEV",      "Action Vectors for JOGEV"                        },
+                    //Vectors to Airports
+                { "Request Vectors for Beatty",          "Action Beatty"                              },
+                { "Request Vectors for Pahute Mesa",     "Action Pahute Mesa"                         },
+                { "Request Vectors for Nellis",          "Action Nellis"                              },
+                { "Request Vectors for North Vegas",     "Action North Las Vegas"                     },
+                { "Request Vectors for McCarran",        "Action McCarran International"              },
+                { "Request Vectors for Hendersen",       "Action Henderson Executive"                 },
+                { "Request Vectors for Boulder",         "Action Boulder City"                        },
+                { "Request Vectors for Echo Bay",        "Action Echo Bay"                            },
+                { "Request Vectors for Jean",            "Action Jean"                                },
+                { "Request Vectors for Creech",          "Action Creech"                              },
+                { "Request Vectors for Mesquite",        "Action Mesquite"                            },
+                { "Request Vectors for Groom Lake",      "Action Groom Lake"                          },
+                { "Request Vectors for Dreamland",       "Action Groom Lake"                          },
+
 
                     //Blackjack
-                { "Blackjack entry gate one",       "Action Gate 1"                                   }, //TODO entry, exit and vecors have the same endpoint names.
-                { "Blackjack entry gate two",       "Action Gate 2"                                   },
-                { "Blackjack entry gate three",     "Action Gate 3"                                   },
-                { "Blackjack entry gate four",      "Action Gate 4"                                   },
-                { "Blackjack over NIXON",           "Action NIXON"                                    },
-                { "Blackjack over SARAH",           "Action SARAH"                                    },
-                { "Blackjack Over Beatty",          "Action Beatty"                                   },
+                { "Blackjack entry gate one",       "Action Check in Gate 1"                          },
+                { "Blackjack entry gate two",       "Action Check in Gate 2"                          },
+                { "Blackjack entry gate three",     "Action Check in Gate 3"                          },
+                { "Blackjack entry gate four",      "Action Check in Gate 4"                          },
+                { "Blackjack entry NIXON",          "Action Check in NIXON"                           },
+                { "Blackjack entry SARAH",          "Action Check in SARAH"                           },
+                { "Blackjack exit gate one",        "Action Check Out Gate 1"                         }, 
+                { "Blackjack exit gate two",        "Action Check Out Gate 2"                         },
+                { "Blackjack exit gate three",      "Action Check Out Gate 3"                         },
+                { "Blackjack exit gate four",       "Action Check Out Gate 4"                         },
+                { "Blackjack exit NIXON",           "Action Check Out NIXON"                          },
+                { "Blackjack exit SARAH",           "Action Check Out SARAH"                          },
+                
+
 
                     //NATCF
                     // Report egressing
