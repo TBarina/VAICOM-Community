@@ -585,11 +585,11 @@ namespace VAICOM
                 { "Base Touch and Go",              "Action Touch and Go"                             },
                 { "Base Request low approach",      "Action Low Approach"                             },
                 { "Request Closed traffic",         "Action Request closed traffic"                   },
-                { "Making Missed Appraoch",         "Action Missed Approach"                          },
+                { "Making Missed Approach",         "Action Missed Approach"                          },
                 { "Request Back to Radar",          "Action Request Back to Radar"                    },
                 { "Request DUCK",                   "Action Request DUCK"                             },
                 { "Request FLEX",                   "Action Request FLEX"                             },
-                { "Passing DUCK",                   "Action Report DUCK"                             },
+                { "Passing DUCK",                   "Action Report DUCK"                              },
 
                     //Departure
                 { "Departure with you",             "Action Check in"                                 },
