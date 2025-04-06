@@ -159,7 +159,7 @@ namespace VAICOM_App
 
                         if (forceprofile)
                         {
-                            string vaicomprofilename = "\"VAICOM PRO for DCS World\"";
+                            string vaicomprofilename = "\"VAICOM for DCS World\"";
                             VA_arguments += " " + "-profile" + " " + vaicomprofilename;
                         }
 
@@ -335,12 +335,12 @@ namespace VAICOM_App
                     if (timesincelastheartbeat > heartbeattreshold)
                     {
                         this.trayIcon.Icon = Properties.Resources.vaicompro_icon_32;
-                        this.trayIcon.Text = "VAICOM PRO: check VA status";
+                        this.trayIcon.Text = "VAICOM: check VA status";
                     }
                     else
                     {
                         this.trayIcon.Icon = Properties.Resources.Tray_icon_64;
-                        this.trayIcon.Text = "VAICOM PRO is active";
+                        this.trayIcon.Text = "VAICOM is active";
                     }
                 }
             }

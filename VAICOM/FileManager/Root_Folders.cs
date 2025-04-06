@@ -45,9 +45,9 @@ namespace VAICOM
                         string rootpath = State.Proxy.SessionState["VA_APPS"] + "\\" + Products.Products.Families.Vaicom.VaicomProPlugin.rootfoldername;
                         string writefile;
 
-                        byte[] source = Properties.Resources.VAICOMPRO;
+                        byte[] source = Properties.Resources.VAICOM;
 
-                        writefile = rootpath + "\\" + "VAICOMPRO.exe";
+                        writefile = rootpath + "\\" + "VAICOM.exe";
 
                         if (File.Exists(writefile))
                         {

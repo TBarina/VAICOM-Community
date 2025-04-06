@@ -91,23 +91,27 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- common.lua (append)
         ///-- www.vaicompro.com
         ///
         ///function make(self, message)
-        ///	
+        ///
         ///	local role = self:findRole(message.event)
         ///	base.assert(role ~= nil)
+        ///	
         ///	local roleData = role
+        ///	
+        ///	--Country
         ///	local country = getCountry(message)
+        ///	base.print(&apos;make: country: &apos;, country)
+        ///
+        ///	--Module &amp; language
         ///	local messageModuleName = nil
         ///	local messageLanguage = nil
         ///	local module = getModuleName(message)
-        ///	local desiredLanguage = languageByCountry[country]
-        ///	if 	module ~= nil and
-        ///		roleData.modules ~= nil then
-        ///		local messageModuleAndLanguage = 	getMessageModuleA [rest of string was truncated]&quot;;.
+        ///	--base.print(&apos;make: module name: &apos;, module)
+        ///	local desiredLanguage = languageByCou [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_common {
             get {
@@ -125,7 +129,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- gameMessages.lua (append)
         ///-- www.vaicompro.com
         ///
@@ -144,7 +148,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- RadioCommandDialogsPanel.lua (append)
         ///-- www.vaicompro.com
         ///
@@ -158,7 +162,7 @@ namespace VAICOM.Properties {
         ///
         ///local colorByRecepientState = {
         ///		[RecepientState.VOID] 				= utils.COLOR.LIGHT_GRAY,	 
-        ///		[Recepi [rest of string was truncated]&quot;;.
+        ///		[RecepientS [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_RadioCommandDialogsPanel {
             get {
@@ -167,7 +171,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- speech.lua (append)
         ///-- www.vaicompro.com
         ///
@@ -184,7 +188,7 @@ namespace VAICOM.Properties {
         ///			stateProtocol = &apos;common&apos;
         ///		end	
         ///		local protocol = protocols[stateProtocol]
-        ///		ba [rest of string was truncated]&quot;;.
+        ///		base.a [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_speech {
             get {
@@ -193,7 +197,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- TabSheetBar.lua (append)
         ///-- www.vaicompro.com
         ///
@@ -212,7 +216,7 @@ namespace VAICOM.Properties {
         ///    
         ///	self.container = Panel.new()
         ///	self.container:setSkin(self.skin.container)
-        ///	local x, y, width, height = self.conta [rest of string was truncated]&quot;;.
+        ///	local x, y, width, height = self.container [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_TabSheetBar {
             get {
@@ -221,7 +225,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- VAICOMPRO.export.lua
         ///-- www.vaicompro.com
         ///
@@ -245,7 +249,7 @@ namespace VAICOM.Properties {
         ///		receivefromclient =	{ -- do not edit
         ///							address	= &quot;*&quot;,
         ///							port	= 33491,
-        ///							timeout  [rest of string was truncated]&quot;;.
+        ///							timeout = 0, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_VAICOMPRO_export {
             get {
@@ -254,7 +258,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- JesterAI_Page.lua
         ///-- www.vaicompro.com
         ///
@@ -273,7 +277,7 @@ namespace VAICOM.Properties {
         ///		viewJester = {
         ///		x = 0;
         ///		y = 0;
-        ///		width = LockOn_Options [rest of string was truncated]&quot;;.
+        ///		width = LockOn_Options.scr [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_F14_JesterAI_Page {
             get {
@@ -312,7 +316,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- 1.lua
         ///-- www.vaicompro.com
         ///
@@ -328,7 +332,7 @@ namespace VAICOM.Properties {
         ///local default_char_width   = 0.3 * default_char_height
         ///local txt 	    					= CreateElement &quot;ceStringPoly&quot;
         ///	  txt.value 					= text
-        ///	  txt.ma [rest of string was truncated]&quot;;.
+        ///	  txt.materi [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Kneeboard_1 {
             get {
@@ -416,7 +420,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- VAICOMPRO_Common.lua
         ///-- www.vaicompro.com
         ///
@@ -436,7 +440,7 @@ namespace VAICOM.Properties {
         ///
         ///headers = {}
         ///init_headers = function()
-        ///	headers[1] = { &quot;TopLeft&quot;, &quot;L&quot;, 0, &quot;T&quot;, [rest of string was truncated]&quot;;.
+        ///	headers[1] = { &quot;TopLeft&quot;, &quot;L&quot;, 0, &quot;T&quot;, &quot;Le [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Kneeboard_VAICOMPRO_Common {
             get {
@@ -445,7 +449,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO server-side script
+        ///   Looks up a localized string similar to -- VAICOM server-side script
         ///-- VAICOM_Device.lua
         ///-- www.vaicompro.com
         ///
@@ -465,7 +469,7 @@ namespace VAICOM.Properties {
         ///need_to_be_closed = false
         ///
         ///local sender
-        ///loca [rest of string was truncated]&quot;;.
+        ///local re [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Kneeboard_VAICOMPRO_Device {
             get {
@@ -855,23 +859,27 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to local self_ID = &quot;VAICOM PRO&quot;
+        ///   Looks up a localized string similar to local self_ID = &quot;VAICOM&quot;
         ///
         ///declare_plugin(self_ID,
         ///{
         ///	installed	 = true,
         ///	dirName		 = current_mod_path,
-        ///	binaries	 = {&apos;VAICOMPRO.dll&apos;},
+        ///	binaries	 = {&apos;VAICOM.dll&apos;},
         ///
-        ///	displayName	 = &quot;VAICOM PRO&quot;,
-        ///	shortName	 = &quot;VAICOM PRO&quot;,
-        ///	fileMenuName = &quot;VAICOM PRO&quot;,
+        ///	displayName	 = &quot;VAICOM&quot;,
+        ///	shortName	 = &quot;VAICOM &quot;,
+        ///	fileMenuName = &quot;VAICOM &quot;,
         ///
-        ///	version		 = &quot;2.9.4&quot;,
+        ///	version		 = &quot;3.0.0&quot;,
         ///	state		 = &quot;installed&quot;, 	
         ///	developerName= &quot;VAICOM Community&quot;,
-        ///	info		 = _(&quot;VAICOM PRO Community Edition is a voice communications interface plugin for VoiceAttack, enabling true-to-life radio communications with all AI units in the mission.&quot;),
-        ///        /// [rest of string was truncated]&quot;;.
+        ///	info		 = _(&quot;VAICOM Community Edition is a voice communications interface plugin for VoiceAttack, enabling true-to-life radio communications with all AI units in the mission.&quot;),
+        ///
+        ///	Skins	=
+        ///	{
+        ///		{
+        ///	 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string entry {
             get {
@@ -883,14 +891,14 @@ namespace VAICOM.Properties {
         ///   Looks up a localized string similar to ---------------------------
         ///MIT License
         ///
-        ///Copyright (c) 2022 VAICOM PRO Community Edition
+        ///Copyright (c) 2022 VAICOM Community Edition
         ///
         ///Permission is hereby granted, free of charge, to any person obtaining a copy
         ///of this software and associated documentation files (the &quot;Software&quot;), to deal
         ///in the Software without restriction, including without limitation the rights
         ///to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
         ///copies of the Software, and to permit persons to whom the Software is
-        ///furnished to do so, subject to the f [rest of string was truncated]&quot;;.
+        ///furnished to do so, subject to the follo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string EULA {
             get {
@@ -1097,7 +1105,7 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- VAICOM PRO Theme
+        ///   Looks up a localized string similar to -- VAICOM Theme
         ///
         ///local LeftMargin = 56
         ///
@@ -1129,7 +1137,8 @@ namespace VAICOM.Properties {
         ///				[&quot;text&quot;] = {
         ///					[&quot;fontSize&quot;] = 10,
         ///					[&quot;horzAlign&quot;] = {
-        ///						[&quot;type&quot;] = &quot;min&quot;        /// [rest of string was truncated]&quot;;.
+        ///						[&quot;type&quot;] = &quot;min&quot;
+        ///			 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string options {
             get {
@@ -2107,7 +2116,7 @@ namespace VAICOM.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @ECHO OFF
-        ///ECHO VAICOM PRO Commnity Edition 2.9
+        ///ECHO VAICOM Commnity Edition 2.9
         ///ECHO Extension Updater running...
         ///ECHO Closing VoiceAttack...
         ///TASKKILL /F /IM VoiceAttack.exe
@@ -2129,19 +2138,19 @@ namespace VAICOM.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @ECHO OFF
-        ///ECHO VAICOM PRO 2.9
+        ///ECHO VAICOM 2.9
         ///ECHO Plugin Updater running...
         ///ECHO Closing VoiceAttack...
         ///TASKKILL /F /IM VoiceAttack.exe
         ///TIMEOUT /T 2
         ///ECHO Updating files...
-        ///COPY /Y &quot;Updates\Package\VAICOMPRO\Documentation\VAICOM PRO Community User Manual.pdf&quot; &quot;Documentation\VAICOM PRO Community User Manual.pdf&quot; 
+        ///COPY /Y &quot;Updates\Package\VAICOMPRO\Documentation\VAICOM Community User Manual.pdf&quot; &quot;Documentation\VAICOM Community User Manual.pdf&quot; 
         ///COPY /Y &quot;Updates\Package\VAICOMPRO\EULA.txt&quot; &quot;EULA.txt&quot; 
-        ///COPY /Y &quot;Updates\Package\VAICOMPRO\VAICOMPRO.dll&quot; &quot;VAICOMPRO.dll&quot; 
+        ///COPY /Y &quot;Updates\Package\VAICOMPRO\VAICOM.dll&quot; &quot;VAICOM.dll&quot; 
         ///RMDIR /S /Q &quot;Updates&quot;
-        ///DEL /Q VAICOMPRO.exe
+        ///DEL /Q VAICOM.exe
         ///ECHO Restarting VoiceAttack...
-        ///STA [rest of string was truncated]&quot;;.
+        ///START &quot;VoiceAttack&quot; /MIN [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Updater_Plugin {
             get {
@@ -2151,7 +2160,7 @@ namespace VAICOM.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to @ECHO OFF
-        ///ECHO VAICOM PRO Community Edition 2.9
+        ///ECHO VAICOM Community Edition 2.9
         ///ECHO Extension Updater running...
         ///ECHO Closing VoiceAttack...
         ///TASKKILL /F /IM VoiceAttack.exe
@@ -2172,6 +2181,16 @@ namespace VAICOM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] VAICOM {
+            get {
+                object obj = ResourceManager.GetObject("VAICOM", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///&lt;Profile xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
         ///  &lt;HasMB&gt;false&lt;/HasMB&gt;
@@ -2186,19 +2205,9 @@ namespace VAICOM.Properties {
         ///      &lt;IsDynamicallyCreated&gt;false&lt;/IsDynamicallyCreated&gt;
         ///      &lt;TargetProcessSet&gt;false&lt;/ [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string VAICOM_PRO_for_DCS_World {
+        public static string VAICOM_for_DCS_World {
             get {
-                return ResourceManager.GetString("VAICOM_PRO_for_DCS_World", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] VAICOMPRO {
-            get {
-                object obj = ResourceManager.GetObject("VAICOMPRO", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("VAICOM_for_DCS_World", resourceCulture);
             }
         }
         

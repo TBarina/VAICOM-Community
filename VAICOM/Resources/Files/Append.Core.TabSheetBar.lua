@@ -1,4 +1,4 @@
--- VAICOM PRO server-side script
+-- VAICOM server-side script
 -- TabSheetBar.lua (append)
 -- www.vaicompro.com
 

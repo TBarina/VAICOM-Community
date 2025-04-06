@@ -83,7 +83,7 @@ namespace VAICOM
                     {
                         if (!silent)
                         {
-                            Log.Write("DCS module " + State.currentmodule.Name + " is available with PRO license only.", Colors.Warning);
+                            Log.Write("DCS module " + State.currentmodule.Name + " is available with Community Edition.", Colors.Warning);
 
                         }
                         State.blockedmodule = false;

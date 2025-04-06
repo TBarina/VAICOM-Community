@@ -26,7 +26,7 @@ namespace VAICOM
                     {
                     }
 
-                    using (StreamWriter writer = new StreamWriter(State.logfile, true)) { writer.Write("VAICOM PRO logfile" + "\n"); };
+                    using (StreamWriter writer = new StreamWriter(State.logfile, true)) { writer.Write("VAICOM logfile" + "\n"); };
                 }
             }
             catch

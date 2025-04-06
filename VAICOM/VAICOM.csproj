@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>VAICOMPRO</AssemblyName>
+    <AssemblyName>VAICOM</AssemblyName>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyTitle>VAICOM PRO Community Edition for DCS World</AssemblyTitle>
-    <Product>VAICOM PRO Community Edition</Product>
-    <Description>Interactive Voice Communications for DCS World</Description>
+    <AssemblyTitle>VAICOM Community Edition for DCS World</AssemblyTitle>
+    <Product>VAICOM Community Edition</Product>
+    <Description>Interactive Voice Control for DCS World</Description>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
     <FileVersion>0.0.0.0</FileVersion>
     <PreBuildEvent>TASKKILL /FI "STATUS eq RUNNING" /F /IM VoiceAttack.exe
@@ -217,7 +217,7 @@ TASKKILL /FI "STATUS eq RUNNING" /F /IM XDesProc.exe</PreBuildEvent>
     <EmbeddedResource Include="Resources\Files\options.dlg" />
     <EmbeddedResource Include="Resources\Files\optionsData.lua" />
     <EmbeddedResource Include="Resources\Files\optionsDb.lua" />
-    <EmbeddedResource Include="Resources\Files\VAICOM PRO for DCS World.vap" />
+    <EmbeddedResource Include="Resources\Files\VAICOM for DCS World.vap" />
     <EmbeddedResource Include="Resources\Fonts\FRADM.TTF" />
     <EmbeddedResource Include="Resources\Fonts\FRADMCN.TTF" />
     <EmbeddedResource Include="Resources\Fonts\FRADMIT.TTF" />

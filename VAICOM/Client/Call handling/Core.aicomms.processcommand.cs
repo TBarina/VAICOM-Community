@@ -499,7 +499,7 @@ namespace VAICOM
                             }
                             else
                             {
-                                Log.Write("Interactive Kneeboard is disabled.Please enable in the Vaicom Pro UI extension tab", Colors.Warning);
+                                Log.Write("Interactive Kneeboard is disabled.Please enable in the Vaicom UI extension tab", Colors.Warning);
                                 UI.Playsound.Error();
                             }
                         }

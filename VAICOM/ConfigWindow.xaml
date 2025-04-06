@@ -7,7 +7,7 @@
         xmlns:Properties="clr-namespace:VAICOM.Properties" 
         x:Class="VAICOM.UI.ConfigWindow"
         mc:Ignorable="d"
-        Title="VAICOM PRO for DCS World - Community Edition " Height = "335" Width = "495" 
+        Title="VAICOM for DCS World - Community Edition " Height = "335" Width = "495" 
         Closing="Window_Closing" Closed="Window_Closed"
     >
 
@@ -511,7 +511,7 @@
                         <ColumnDefinition Width="121*"/>
                         <ColumnDefinition Width="29*"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="labelabout" Content="VAICOM PRO" HorizontalContentAlignment="Center" Foreground="#808080" FontStyle ="Normal" FontSize="26"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="62" Width="479" Margin="0,66,0,0" Grid.ColumnSpan="5" Visibility="Hidden"/>
+                    <Label x:Name="labelabout" Content="VAICOM" HorizontalContentAlignment="Center" Foreground="#808080" FontStyle ="Normal" FontSize="26"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="62" Width="479" Margin="0,66,0,0" Grid.ColumnSpan="5" Visibility="Hidden"/>
                     <Label x:Name="labelsub1" Content=""  HorizontalContentAlignment="Center" Foreground="#FF686868" FontStyle ="Normal" FontSize="10"  HorizontalAlignment="Left" Margin="0,229,0,0" VerticalAlignment="Top" Height="37" Width="479" Grid.ColumnSpan="5" Initialized="setversionnumber1"/>
                     <Label x:Name="tagline" Content="INTERACTIVE VOICE COMMUNICATIONS PLUGIN FOR DCS WORLD" HorizontalContentAlignment="Center" Foreground="#808080" FontStyle ="Normal" FontWeight="ExtraLight" FontSize="9"  HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" Height="37" Width="479" Grid.ColumnSpan="5" Visibility="Hidden"/>
                     <TextBox x:Name="licensekey" FontSize="12" Foreground="#888" Background="#FF272C2D" HorizontalAlignment="Left" Height="23" Margin="51,172,0,0" TextWrapping="Wrap" Text="(enter license key here)" VerticalAlignment="Top" Width="189" TextAlignment="Center" FontFamily="Segoe UI" BorderThickness="2" Grid.Column="2" BorderBrush="#FF434344" Visibility="Hidden" Grid.ColumnSpan="2" />

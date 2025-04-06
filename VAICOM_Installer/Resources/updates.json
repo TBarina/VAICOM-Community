@@ -2,7 +2,7 @@
   "updates":
   [
     {
-      "title": "VAICOM PRO Community Edition for DCS World",
+      "title": "VAICOM Community Edition for DCS World",
       "isrelease": true,
       "isbeta": false,
       "isdev": false,
@@ -11,7 +11,7 @@
       "version": 3014,
       "versionstring": "3.0.1.4",
       "downloadurl": "https://github.com/Penecruz/VAICOMPRO-Community/releases/download/v3.0.1.4/VAICOMPRO.zip",
-      "releasenotes": "Release 3.0.1.4 - Add new Community F10 Other menu handlig support for Moose and AI_ATC see vaicom pro manual page 90, Fix minor core lua script errors. "
+      "releasenotes": "Release 3.0.1.4 - Add new Community F10 Other menu handlig support for Moose and AI_ATC see vaicom manual page 90, Fix minor core lua script errors. "
     }
   ]
 }
