@@ -2,16 +2,16 @@
   "updates":
   [
     {
-      "title": "VAICOM PRO Community Edition for DCS World",
+      "title": "VAICOM Community Edition for DCS World",
       "isrelease": true,
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250325,
-      "version": 3014,
-      "versionstring": "3.0.1.4",
+      "releasedate": 20250408,
+      "version": 3017,
+      "versionstring": "3.0.1.7",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOMPRO-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Fixes for AI_ATC keywords, Adds Moose AWACS keywords, Adds Moose Airboss and Range keywords, Adds new F10 Menu Import Known Aliases for community Scripts, Moose, Hound, AI_ATC etc. **You will need to do the finish step to add them to your profile** Import F10 menus must be selected on for them to work."
+      "releasenotes": " Branding Change from Vaicom Pro to Vaicom - exe and dll retain old name of Vaicompro."
     }
   ]
 }
