@@ -54,7 +54,7 @@ namespace VAICOM
                     try
                     {
                         int returndeviceid = 255;
-                        State.currentradiodevicename = "VAICOM";
+                        State.currentradiodevicename = "VAICOM PRO";
 
                         // single hotkey (native or forced)
                         if ((State.currentmodule.Singlehotkey & !State.activeconfig.ForceMultiHotkey) || (!State.currentmodule.Singlehotkey & State.activeconfig.ForceSingleHotkey))
@@ -139,7 +139,7 @@ namespace VAICOM
                         {
                             if (!State.activeconfig.RIO_Hints_Only)
                             {
-                                State.currentmessage.dspmsg = "VAICOM: RIO | " + Database.Labels.aicommands[State.currentkey["command"]];
+                                State.currentmessage.dspmsg = "VAICOM PRO: RIO | " + Database.Labels.aicommands[State.currentkey["command"]];
                             }
 
                             if (Extensions.RIO.menuhelper.optionhints.ContainsKey(State.currentkey["command"]))

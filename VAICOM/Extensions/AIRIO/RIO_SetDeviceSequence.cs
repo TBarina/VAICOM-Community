@@ -169,7 +169,7 @@ namespace VAICOM
                         if (CheckLANTIRN())
                         {
                             State.currentmessage.extsequence.AddRange(DeviceActionsLibrary.Sequences.Macro.Seq_J_WPN_AG_UTIL_LANTIRN);
-                            State.currentmessage.dspmsg = "VAICOM : RIO | Switch LANTIRN";
+                            State.currentmessage.dspmsg = "VAICOM PRO : RIO | Switch LANTIRN";
                             State.currentmessage.msgdur = 5;
                             riospeech.riospeakrandom(1); //OK
                         }

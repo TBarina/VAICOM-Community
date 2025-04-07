@@ -1,4 +1,4 @@
--- VAICOM server-side script
+-- VAICOM PRO server-side script
 -- JesterAI_Page.lua
 -- www.vaicompro.com
 

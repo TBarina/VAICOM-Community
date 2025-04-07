@@ -21,8 +21,8 @@ namespace VAICOM
                     {
                         string rootpath = State.Proxy.SessionState["VA_APPS"] + "\\" + Products.Products.Families.Vaicom.VaicomProPlugin.rootfoldername;
                         string path;
-                        string filename = "VAICOM for DCS World.vap";
-                        string sourcefile = Properties.Resources.VAICOM_for_DCS_World;
+                        string filename = "VAICOM PRO for DCS World.vap";
+                        string sourcefile = Properties.Resources.VAICOM_PRO_for_DCS_World;
 
                         path = rootpath + "\\" + AppData.SubFolders["profiles"] + "\\" + filename;
 

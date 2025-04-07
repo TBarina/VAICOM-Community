@@ -10,7 +10,7 @@ namespace VAICOM
             {
                 if (!State.PRO & State.currentstate.multiplayer)
                 {
-                    Log.Write("Multiplayer is available with Community Edition.", Colors.Warning);
+                    Log.Write("Multiplayer is available only with PRO license.", Colors.Warning);
                     State.tempblockedcommands = true;
                     UI.Playsound.Error();
                 }

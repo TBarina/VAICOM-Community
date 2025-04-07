@@ -130,7 +130,7 @@ namespace VAICOM
                         trainer.LoadGrammar(grammar);
                         PushToTalk.PTT.PTT_Manage_Listen_VA(false);
 
-                        Log.Write("VAICOM command phrases loaded", Colors.System);
+                        Log.Write("VAICOM PRO command phrases loaded", Colors.System);
                         trainer.Enabled = true;
 
                         trainer.EmulateRecognize("Start listening");

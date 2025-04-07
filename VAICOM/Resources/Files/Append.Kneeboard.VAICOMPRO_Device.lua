@@ -1,4 +1,4 @@
--- VAICOM server-side script
+-- VAICOM PRO server-side script
 -- VAICOM_Device.lua
 -- www.vaicompro.com
 
@@ -240,7 +240,7 @@ function update_Header_TopMid()
 end
 function update_Header_TopRight()
 	local headerstr = ""
-	headerstr = "| VAICOM".." | "..getmodeltime()
+	headerstr = "| VAICOM PRO".." | "..getmodeltime()
     Header_TopRight:set(headerstr)
 end
 function update_Header_BottomLeft()

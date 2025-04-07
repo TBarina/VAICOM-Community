@@ -1,4 +1,4 @@
--- VAICOM server-side script
+-- VAICOM PRO server-side script
 -- speech.lua (append)
 -- www.vaicompro.com
 

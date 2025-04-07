@@ -1,4 +1,4 @@
--- VAICOM server-side script
+-- VAICOM PRO server-side script
 -- VAICOMPRO.export.lua
 -- www.vaicompro.com
 
