@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250325,
-      "version": 3014,
-      "versionstring": "3.0.1.4",
-      "downloadurl": "https://github.com/Penecruz/VAICOMPRO-Community/releases/download/v3.0.1.4/VAICOMPRO.zip",
-      "releasenotes": "Release 3.0.1.4 - Add new Community F10 Other menu handlig support for Moose and AI_ATC see vaicom pro manual page 90, Fix minor core lua script errors. "
+      "releasedate": 20250413,
+      "version": 3018,
+      "versionstring": "3.0.1.8",
+      "downloadurl": "https://github.com/Penecruz/VAICOMPRO-Community/releases/download/v3.0.1.8/VAICOMPRO.zip",
+      "releasenotes": "Release 3.0.1.8 - Hotfix Alias conflicts with 'Request Taxi....', Add new S3 Tanker callsigns Bloodhound, Mauler and Navy One,Add Aditional AI_ATC return to Approach keywords, New Vaicom branding dropping the Pro suffix, Vaicom Manual updated. "
     }
   ]
 }
