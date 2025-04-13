@@ -509,7 +509,10 @@ namespace VAICOM
                 { "texaco",                 new Recipient { uniqueid = 16002, category = RecipientCategories.aitanker, name = "wAIUnitTankerTexaco",     displayname = Labels.airecipients["texaco"] } },
                 { "shell",                  new Recipient { uniqueid = 16003, category = RecipientCategories.aitanker, name = "wAIUnitTankerShell",      displayname = Labels.airecipients["shell"] } },
                 { "arco",                   new Recipient { uniqueid = 16004, category = RecipientCategories.aitanker, name = "wAIUnitTankerArco",       displayname = Labels.airecipients["arco"] } },
-                { "nearesttanker",          new Recipient { uniqueid = 16005, category = RecipientCategories.aitanker, name = "wAIUnitTankerNearest",    displayname = Labels.airecipients["nearesttanker"] } },
+                { "Bloodhound",             new Recipient { uniqueid = 16005, category = RecipientCategories.aitanker, name = "wAIUnitTankerBloodhound",    displayname = Labels.airecipients["Bloodhound"] } },
+                { "Mauler",                 new Recipient { uniqueid = 16006, category = RecipientCategories.aitanker, name = "wAIUnitTankerMauler",    displayname = Labels.airecipients["Mauler"] } },
+                { "Navy One",               new Recipient { uniqueid = 16007, category = RecipientCategories.aitanker, name = "wAIUnitTankerNavyone",    displayname = Labels.airecipients["Navy One"] } },
+                { "nearesttanker",          new Recipient { uniqueid = 16008, category = RecipientCategories.aitanker, name = "wAIUnitTankerNearest",    displayname = Labels.airecipients["nearesttanker"] } },
 
                 { "wAIUnitTankerMaximum",   new Recipient { uniqueid = 16999, category = RecipientCategories.aitanker, name = "wAIUnitTankerMaximum",    } },
 

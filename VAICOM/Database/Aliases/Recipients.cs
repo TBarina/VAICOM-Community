@@ -557,6 +557,9 @@ namespace VAICOM
                 { "Shell",                  "shell"                 },
                 { "Arco",                   "arco"                  },
                 { "Ark oh",                 "arco"                  },
+                { "Bloodhound",             "Bloodhound"            },
+                { "Mauler",                 "Mauler"                },
+                { "Navy One",               "Navy One"              },
                 { "Nearest Tanker",         "nearesttanker"         },
 
                    // crew

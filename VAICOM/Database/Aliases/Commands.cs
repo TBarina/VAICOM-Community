@@ -489,6 +489,7 @@ namespace VAICOM
                 { "Spinning",                        "Action Spinning"                                 },
                 { "Airboss Emergency Landing",       "Action Emergency Landing"                        },
                 { "Declaring an Emergency",          "Action Emergency Landing"                        },
+                { "Airboss Training Pattern",        "Action Emergency Landing"                        },
                         //Ship commands used while in flight
                 { "Skipper Start Case One",          "Action Start CASE I"                             },
                 { "Skipper Start Case Two",          "Action Start CASE II"                            },
@@ -542,11 +543,11 @@ namespace VAICOM
 
                 // AI_ATC
                     //Ground
-                { "Request To Start",               "Action Request Engine Start"                     }, //used in Imported script Dynamic F10 menu Commands for the AI_ATC project
+                { "Request To Start Engines",       "Action Request Engine Start"                     }, //used in Imported script Dynamic F10 menu Commands for the AI_ATC project
                 { "Engine Start",                   "Action Request Engine Start"                     }, //These aliases must be unique and different from the standard DCS aliases!!
                 { "Requesting Start",               "Action Request Engine Start"                     },
-                { "Request Taxi Clearance",         "Action Request Taxi Clearance"                   } ,
-                { "Request Taxi",                   "Action Request Taxi Clearance"                   },
+                { "Requesting Taxi Clearance",      "Action Request Taxi Clearance"                   } ,
+                { "Requesting Taxi to Active",      "Action Request Taxi Clearance"                   },
                 { "Taxi to Active",                 "Action Request Taxi Clearance"                   },
                 { "Clear of Runway",                "Action Taxi to Parking"                          },
                 { "Ground with you",                "Action Taxi to Parking"                          },
@@ -596,6 +597,7 @@ namespace VAICOM
                 { "Flash",                          "Action Flash"                                    },
                 { "Passing FYTTR",                  "Action Report FYTTR"                             },
                 { "Passing JUNNO",                  "Action Report JUNNO"                             },
+                { "Request back to Approach",       "Action Request Approach"                         },
 
                     //Approach
                 { "Check In V F R",                 "Action VFR"                                      },
@@ -609,7 +611,7 @@ namespace VAICOM
                 { "Request I F R Pickup",           "Action Request IFR Pickup"                       },
                 { "Cancel I F R",                   "Action Cancel IFR"                               },
 
-                    //Vectors to navpioints Departure and Approach
+                    //Vectors to navpioints Departure and Approach Nevada
                 { "Request Vectors for NIXON",      "Action Vectors for NIXON"                        },
                 { "Request Vectors for SARAH",      "Action Vectors for SARAH"                        },
                 { "Request Vectors for PHINN",      "Action Vectors for PHINN"                        },
@@ -629,7 +631,7 @@ namespace VAICOM
                 { "Request Vectors for CADOS",      "Action Vectors for CADOS"                        },
                 { "Request Vectors for SESDE",      "Action Vectors for SESDE"                        },
                 { "Request Vectors for JOGEV",      "Action Vectors for JOGEV"                        },
-                    //Vectors to Airports
+                    //Vectors to Airports Nevada
                 { "Request Vectors for Beatty",          "Action Beatty"                              },
                 { "Request Vectors for Pahute Mesa",     "Action Pahute Mesa"                         },
                 { "Request Vectors for Nellis",          "Action Nellis"                              },

@@ -435,6 +435,9 @@ namespace VAICOM
                 { "texaco",                 "Texaco"                },
                 { "shell",                  "Shell"                 },
                 { "arco",                   "Arco"                  },
+                { "Bloodhound",             "Bloodhound"            },
+                { "Mauler",                 "Mauler"                },
+                { "Navy One",               "Navy One"              },
                 { "nearesttanker",          "Nearest Tanker"        },
 
                 { "crew",                   "Ground Crew"           },
