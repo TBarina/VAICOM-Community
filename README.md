@@ -62,6 +62,15 @@ Flashing Comms Menu after DCS World update is a known issue and can be resolved 
 
 8. Join our Discord at https://discord.gg/7c22BHNSCS if you have any questions or issues with the install.
 
+## Installation Tutorial Videos
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-bbQf6cU2EM/0.jpg)](https://www.youtube.com/watch?v=-bbQf6cU2EM)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NiP42guoKW0/0.jpg)](https://www.youtube.com/watch?v=NiP42guoKW0)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/TJjd0Pvccmk/0.jpg)](https://www.youtube.com/watch?v=TJjd0Pvccmk)
+
+
 ## Patch Notes
 
 
