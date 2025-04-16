@@ -505,7 +505,7 @@ namespace VAICOM
                 { "Airboss Show Greenie Board",      "Action Greenie Board"                            },
                 { "Airboss Show my Grades",          "Action My LSO Grades"                            },
                 { "Airboss show last debrief",       "Action Last Debrief"                             },
-                { "Airboss Briefing ",               "Action Carrier Info"                             },
+                { "Airboss Information",             "Action Carrier Info"                             },
                 { "Airboss Weather",                 "Action Weather Report"                           },
                 { "Airboss Set our Group ",          "Action Set Section"                              },
                 { "Airboss Display Marshal Queue",   "Action Marshal Queue"                            },
@@ -570,8 +570,14 @@ namespace VAICOM
                 { "Say Again last",                 "Action Repeat last transmission"                 },
 
                     //Tower
-                { "Clearance to Cross three Right", "Action Request clearance to cross 03R"           },
-                { "Clearance to Cross three Left",  "Action Request clearance to cross 03L"           },
+                { "Clearance to Cross three Right", "Action Request clearance to cross 03R"           }, //Nellis
+                { "Clearance to Cross three Left",  "Action Request clearance to cross 03L"           }, //Nellis
+                { "Clearance to Cross Two One Left","Action Request clearance to cross 21L"           }, //Nellis
+                { "Clearance to Cross Two One Right","Action Request clearance to cross 21R"          }, //Nellis
+                { "Clearance to Cross Six Left",    "Action Request clearance to cross 06L"           }, //Andersen
+                { "Clearance to Cross Six Right",   "Action Request clearance to cross 06R"           }, //Andersen
+                { "Clearance to Cross Two Four Left", "Action Request clearance to cross 24L"         }, //Andersen
+                { "Clearance to Cross Two Four Right","Action Request clearance to cross 24R"         }, //Andersen
                 { "Requesting Takeoff Clearance",   "Action Request Takeoff"                          },
                 { "Ready in turn",                  "Action Request Takeoff"                          },
                 { "Ready at the Hold",              "Action Request Takeoff"                          },

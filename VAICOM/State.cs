@@ -43,7 +43,7 @@ namespace VAICOM
         public static bool installkneeboard = true;
 
         public static bool deepdebugmode = true; //set to deepdebug mode
-        public static bool databaseencrypted = true;
+        public static bool databaseencrypted = false;
         public static bool luahardreset = true;
         public static bool exitapp = false;
         public static bool datawasreset = false;
