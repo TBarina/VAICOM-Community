@@ -444,17 +444,6 @@ namespace VAICOM
             { "wMsgKneeboardShowLog" ,               new Command { uniqueid = 24006, category = CommandCategories.kneeboard,    eventnumber = 4000,  dcsid = "wMsgKneeboardShowLog",blockedforFree = true   } },
             { "wMsgKneeboardCmndsMaximum" ,          new Command { uniqueid = 24100, category = CommandCategories.kneeboard,    eventnumber = 4000,  dcsid = "wMsgKneeboardCmndsMaximum" } },
 
-
-            // Moose Ops 
-            { "wMsgLeaderToMooseCmndsNull" ,       new Command { uniqueid = 25000, category = CommandCategories.Moose,  eventnumber = 4000, dcsid = "wMsgLeaderToMooseCmndsNull" } },
-            //{ "Radio Check Marshal" ,              new Command { uniqueid = 25001, category = CommandCategories.Moose,  eventnumber = 4000, dcsid = "wMsgLeaderToMooseRadioChkMarshal",displayname = Labels.aicommands["Radio Check Marshal"],blockedforFree = true   } },
-            //{ "Radio Check LSO" ,                  new Command { uniqueid = 25002, category = CommandCategories.Moose,  eventnumber = 4000, dcsid = "wMsgLeaderToMooseRadioChkLSO",displayname = Labels.aicommands["Radio Check LSO"],blockedforFree = true   } },
-            //{ "Request Commence" ,                 new Command { uniqueid = 25003, category = CommandCategories.Moose,  eventnumber = 4000, dcsid = "wMsgLeaderToMooseRqstCommence",displayname = Labels.aicommands["Request Commence"],blockedforFree = true   } },
-            //{ "Emergency Landing" ,                new Command { uniqueid = 25003, category = CommandCategories.Moose,  eventnumber = 4000, dcsid = "wMsgLeaderToMooseEmerLanding",displayname = Labels.aicommands["Emergency Landing"],blockedforFree = true   } },
-            { "wMsgLeaderToMooseCmndsMaximum" ,    new Command { uniqueid = 25100, category = CommandCategories.Moose,  eventnumber = 4000, dcsid = "wMsgLeaderToMooseCmndsMaximum" } },
-            
-            // ----------------------------------------------------------------------
-
             };
 
         }

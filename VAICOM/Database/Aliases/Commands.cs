@@ -522,6 +522,7 @@ namespace VAICOM
                 { "I'll be marking orange",          "Action Orange Smoke"                             },
                 { "I'll be marking red",             "Action Red Smoke"                                },
                 { "I'll be marking white",           "Action White Smoke"                              },
+                { "Range Weather",                   "Action Weather Report"                           },
                     
                     // Moose AWACS TODO
                 { "Chalice Checking In",             "Action Check In"                                 }, // difficult due to conflicts with DCS aliases.

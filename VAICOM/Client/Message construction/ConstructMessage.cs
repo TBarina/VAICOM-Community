@@ -391,12 +391,7 @@ namespace VAICOM
                             State.currentmessage.type = Messagetypes.ActionIndexSequence;
                             Message.SetMenuItemAction();
                         }
-                        // For Moose Pene testing
-                        if (State.currentrecipientclass.Equals(Recipientclasses.Moose))
-                        {
-                            State.currentmessage.type = Messagetypes.iCommandSequence;
-                            Message.SetMenuCmdSequence();
-                        }
+
                         // ------------------------------------------------------------------------
 
                         Log.Write("Done. ", Colors.Text);

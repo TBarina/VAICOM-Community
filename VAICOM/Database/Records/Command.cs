@@ -178,9 +178,6 @@ namespace VAICOM
                 // Kneeboard
                 if ((this.uniqueid >= Commands.Table["wMsgKneeboardCmndsNull"].uniqueid) & (this.uniqueid <= Commands.Table["wMsgKneeboardCmndsMaximum"].uniqueid)) { value = Recipientclasses.Kneeboard; }
 
-                // Moose
-                if ((this.uniqueid >= Commands.Table["wMsgLeaderToMooseCmndsNull"].uniqueid) & (this.uniqueid <= Commands.Table["wMsgLeaderToMooseCmndsMaximum"].uniqueid)) { value = Recipientclasses.Moose; } //Leader??
-
                 return value;
             }
 
