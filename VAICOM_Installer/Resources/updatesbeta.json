@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250417,
-      "version": 30112,
-      "versionstring": "3.0.1.12",
+      "releasedate": 20250419,
+      "version": 30120,
+      "versionstring": "3.0.2.0",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOMPRO-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Adds Germany Cold War ATC recipients to database, AOCS TTS volume increase, AOCS now says Altitude not elevation, Removes legacy Moose recipients and Commands from previous trials (new implementation remains), Fix some Moose and AI_ATC commands and expand to allow Andersen AFB (WIP)"
+      "releasenotes": " Changes to Rearm command function (WIP), Adds Germany Cold War ATC recipients to database, AOCS TTS volume increase, AOCS now says Altitude not elevation, Removes legacy Moose recipients and Commands from previous trials (new implementation remains), Fix some Moose and AI_ATC commands and expand to allow Andersen AFB (WIP)"
     }
   ]
 }

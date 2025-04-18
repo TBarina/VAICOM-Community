@@ -348,55 +348,66 @@ function ProcessRemoteCommand()
 		socket.try(base.vaicom.sender:send(base.vaicom.flags.raw))
 		return
 	end
-	if clientmessage.type == base.vaicom.messagetype.aicomms			then -- Rearming Menu call testing
-		local unitcomm, tgtunit = SetTargetComm(clientmessage.command)
-		if clientmessage.command == base.Message.wMsgLeaderRequestRearming then			
-			base.MissionResourcesDialog.show(true)
-			return
+	if clientmessage.type == base.vaicom.messagetype.aicomms then  -- call rearming menu this is doing my head in!
+	local unitcomm, tgtunit = SetTargetComm(clientmessage.command)
+	local showMissionResourcesDialog = {
+		perform = function(self)
+			MissionResourcesDialog.onRadioMenuRearm()
 		end
-		data.curCommunicatorId = clientmessage.tgtdevid or data.curCommunicatorId
-		selectAndTuneCommunicator(unitcomm)
-		local messagesendcommand	= clientmessage.command
-		local messagesendparams     = SetParameters(unitcomm)
-		if messagesendcommand == base.Message.wMsgLeaderSpecialCommand then
-			purgeMessage =	{
-							type = base.Message.type.TYPE_CONSTRUCTABLE,
-							playMode = base.Message.playMode.PLAY_MODE_LIMITED_DURATION,						
-							event = base.Message[clientmessage.dcsid] or messagesendcommand,
-							params = clientmessage.parameters or {},
-							perform = function(self,parameters)
-								data.pComm:sendMessage({	type		= self.type,
-															playMode	= self.playMode,
-															event		= self.event,
-															parameters	= self.params,
-															})											
-							end	
-							}			
-		end
-		if messagesendcommand ~= base.Message.wMsgLeaderSpecialCommand then					
-			purgeMessage =	{	
-							type = base.Message.type.TYPE_CONSTRUCTABLE,
-							playMode = base.Message.playMode.PLAY_MODE_LIMITED_DURATION,	
-							event = base.Message[clientmessage.dcsid] or messagesendcommand,
-							parameters = messagesendparams,
-							perform = function(self, parameters)
-								local messageParameters = {}
-								local command = self.event
-								if self.parameters then
-									for i, p in base.pairs(self.parameters) do
-										base.table.insert(messageParameters, p)
-									end
-								elseif self.getParameter then
-									base.table.insert(messageParameters, self.getParameter())	
-								end
-								data.pComm:sendRawMessage(command, messageParameters)
-							end
-							}	
-		end
-		socket.try(base.vaicom.sender:send(base.vaicom.flags.raw))		
-		base.setmetatable(purgeMessage, sendMessage)
-		purgeMessage:perform()
-	end			
+	}
+
+	if clientmessage.command == base.Message.wMsgLeaderRequestRearming then
+		showMissionResourcesDialog:perform()  -- Correctly call the perform function
+		return
+	end
+
+	data.curCommunicatorId = clientmessage.tgtdevid or data.curCommunicatorId
+	selectAndTuneCommunicator(unitcomm)
+	local messagesendcommand = clientmessage.command
+	local messagesendparams = SetParameters(unitcomm)
+
+	if messagesendcommand == base.Message.wMsgLeaderSpecialCommand then
+		purgeMessage = {
+			type = base.Message.type.TYPE_CONSTRUCTABLE,
+			playMode = base.Message.playMode.PLAY_MODE_LIMITED_DURATION,
+			event = base.Message[clientmessage.dcsid] or messagesendcommand,
+			params = clientmessage.parameters or {},
+			perform = function(self, parameters)
+				data.pComm:sendMessage({
+					type = self.type,
+					playMode = self.playMode,
+					event = self.event,
+					parameters = self.params,
+				})
+			end
+		}
+	end
+
+	if messagesendcommand ~= base.Message.wMsgLeaderSpecialCommand then
+		purgeMessage = {
+			type = base.Message.type.TYPE_CONSTRUCTABLE,
+			playMode = base.Message.playMode.PLAY_MODE_LIMITED_DURATION,
+			event = base.Message[clientmessage.dcsid] or messagesendcommand,
+			parameters = messagesendparams,
+			perform = function(self, parameters)
+				local messageParameters = {}
+				local command = self.event
+				if self.parameters then
+					for i, p in base.pairs(self.parameters) do
+						base.table.insert(messageParameters, p)
+					end
+				elseif self.getParameter then
+					base.table.insert(messageParameters, self.getParameter())
+				end
+				data.pComm:sendRawMessage(command, messageParameters)
+			end
+		}
+	end
+
+	socket.try(base.vaicom.sender:send(base.vaicom.flags.raw))
+	base.setmetatable(purgeMessage, sendMessage)
+	purgeMessage:perform()
+end			
 
 end
 function ApplySettings(message)
