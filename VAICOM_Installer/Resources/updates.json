@@ -8,10 +8,10 @@
       "isdev": false,
       "productid": 1,
       "releasedate": 20250413,
-      "version": 3018,
-      "versionstring": "3.0.1.8",
-      "downloadurl": "https://github.com/Penecruz/VAICOMPRO-Community/releases/download/v3.0.1.8/VAICOMPRO.zip",
-      "releasenotes": "Release 3.0.1.8 - Hotfix Alias conflicts with 'Request Taxi....', Add new S3 Tanker callsigns Bloodhound, Mauler and Navy One,Add Aditional AI_ATC return to Approach keywords, New Vaicom branding dropping the Pro suffix, Vaicom Manual updated. "
+      "version": 3020,
+      "versionstring": "3.0.2.0",
+      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.2.0/VAICOMPRO.zip",
+      "releasenotes": "Release 3.0.2.0 - Adds Germany Cold War ATC recipients to database, AOCS TTS volume increase, AOCS now says altitude not elevation, removes legacy Moose recipients and commands from previous trials (new implementation remains), fix some Moose and AI_ATC commands and expand to allow Andersen AFB (WIP), Vaicom Manual updated. "
     }
   ]
 }
