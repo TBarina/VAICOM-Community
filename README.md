@@ -94,7 +94,7 @@ Known Issues
 There have been changes since DCS Version 2.9.6.X that adds new rearm routine to support
 Dynamic Spawn Client Slots, Some Users have reported issues when jumping between Dynamic slots and Vaicom Pro not recognizing the module.
 
-**Note the MSI version below is for Voice Attack 2.0 or greater only. V1.X uses must install via the Zip.**
+**Note the MSI version below is for Voice Attack 1.16 and Voice Attack 2.0 or greater only. If you have both installed, you must manually select the path to the version you would like to install Vaicom.**
 
 ## Community Team
 
