@@ -279,12 +279,16 @@ namespace VAICOM
                 { "wMsgKneeboardShowNotes", "Flip to Notes tab"      },
                 { "wMsgKneeboardShowLog", "Flip to LOG/ATO tab"      },
                 { "wMsgShowKneeboardTab", "Show kneeboard tab"       },
+            //};
 
-                // Moose Airboss
-                //{ "Radio Check Marshal", "Radio Check Marshal" },
-                //{ "Radio Check LSO",     "Radio Check LSO"     },
-                //{ "Request Commence",    "Request Commence"    },
-                //{ "Emergency Landing",   "Emergency Landing"   },
+            //public static Dictionary<string, string> cockpitcontrol = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            //{
+
+                // Direct Cockpit Commnads
+                { "gearup",           "gearup"             },
+                { "geardown",         "geardown"           },
+                { "loadout",          "loadout"           },
+                //{ "Emergency Landing",   "Emergency Landing"       },
 
                 // AI_ATC
                 //{ "Request Engine Start",    "AI_ATC Request Engine Start"      },

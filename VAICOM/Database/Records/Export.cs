@@ -331,12 +331,28 @@ namespace VAICOM
                 }
 
 
-                // pragmatic add of F10 Menu for vspx 
-                foreach (KeyValuePair<string, string> alias in Aliases.airecipients)
+                // pragmatic add of Dynamic matched F10 Menu commands for vspx 
+                foreach (KeyValuePair<string, string> alias in Aliases.aicommands)
                 {
                     try
                     {
-                        if (alias.Value.Equals("aux"))
+                        if (alias.Value.Contains("Action"))
+                        {
+                            outputstring += alias.Key + "; ";
+                            counter = counter + 1;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                // pragmatic add of imported F10 Menu commands for vspx 
+                foreach (KeyValuePair<string, string> alias in Aliases.importedmenus)
+                {
+                    try
+                    {
+                        if (alias.Value.Contains("Action"))
                         {
                             outputstring += alias.Key + "; ";
                             counter = counter + 1;

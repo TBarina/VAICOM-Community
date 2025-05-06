@@ -691,6 +691,16 @@ namespace VAICOM
                 { "Lee vector to SARAH",            "Action SARAH"                                    },
                 { "Sally vector to gate three",     "Action Gate 3"                                   },
                 { "Sally vector to gate four",      "Action Gate 4"                                   },
+            //};
+
+            //public static Dictionary<string, string> cockpitcontrol = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            //{
+
+                /// Direct Cockpit Commnads
+                { "Gear Up",                          "gearup"                                          },
+                { "Gear Down",                        "geardown"                                        },
+                { "View Loadout",                     "loadout"                                         },
+                //{ "Emergency Landing",               "Emergency Landing"                                  },
 
             };
 

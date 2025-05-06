@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static VAICOM.Extensions.WorldAudio.Processor;
 
 namespace VAICOM
 {
@@ -12,10 +13,11 @@ namespace VAICOM
             public static Dictionary<string, Command> Table = new Dictionary<string, Command>(StringComparer.OrdinalIgnoreCase)
             {
 
-            // device control section 00000 //was this removed to limit scope creep???
+            // device control section 00000 // Pene testing direct control inputs 5.25
             { "iCommandNull" ,          new Command { uniqueid = 00000, category = CommandCategories.cockpit, dcsid = "iCommandNull" } },
-            //{ "gearup" ,                new Command { uniqueid = 00000, category = cmdcat.cockpit, eventnumber = 0068, name = "iCommandGearUp" ,   displayname=Labels.cockpitcontrol["gearup"],   hasparameter =  true, on = true} },
-            //{ "geardown" ,              new Command { uniqueid = 00000, category = cmdcat.cockpit, eventnumber = 0068, name = "iCommandGearDown" , displayname=Labels.cockpitcontrol["geardown"], hasparameter =  true, on = false} },
+            { "gearup" ,                new Command { uniqueid = 00001, category = CommandCategories.cockpit, eventnumber = 0068, dcsid = "iCommandGearUp" ,   displayname=Labels.aicommands["gearup"],   hasparameter =  true, on = true} },
+            { "geardown" ,              new Command { uniqueid = 00002, category = CommandCategories.cockpit, eventnumber = 0068, dcsid = "iCommandGearDown" , displayname=Labels.aicommands["geardown"], hasparameter =  true, on = false} },
+            { "loadout" ,               new Command { uniqueid = 00003, category = CommandCategories.cockpit, eventnumber = 1754, dcsid = "iCommandViewRearm" , displayname=Labels.aicommands["loadout"], hasparameter =  false} },
             { "iCommandMaximum" ,       new Command { uniqueid = 09999, category = CommandCategories.cockpit, dcsid = "iCommandMaximum" } },
 
 
