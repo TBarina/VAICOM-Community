@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250508,
-      "version": 30124,
-      "versionstring": "3.0.2.4",
+      "releasedate": 20250509,
+      "version": 30125,
+      "versionstring": "3.0.2.5",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": "Add back logic for Aux commands that are recipients to be included in VSPX export, Major change to VSPX keyword export and editor finish operations. VSPX uses check functionality for any changes after you update yor Voice Attack profile with the new keywords. Adds Dynamic F10 commands for VSPX users. Adds imported F10 menu commands for VSPX users"
+      "releasenotes": "Updates DCSMessage Table to reflect the latest DCS build, Add back logic for Aux commands that are recipients to be included in VSPX export, Major change to VSPX keyword export and editor finish operations. VSPX uses check functionality for any changes after you update yor Voice Attack profile with the new keywords. Adds Dynamic F10 commands for VSPX users. Adds imported F10 menu commands for VSPX users"
     }
   ]
 }
