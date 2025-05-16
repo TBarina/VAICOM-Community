@@ -211,9 +211,9 @@ namespace VAICOM
             { "approachinstrument" ,    new Command { uniqueid = 15016, category = CommandCategories.aicommsatc, dcsid = "wMsgLeaderApproachInstrument",    displayname = Labels.aicommands["approachinstrument"], blockedforFree = true, requiresrealatc = true  } },
 
             // insert carrier ATC commands
-            // { "seeyouat10" ,    new Command { uniqueid = 15017, category = CommandCategories.aicommsatc, eventnumber = 4091, name = "wMsgLeaderApproachInstrument",    displayname = Labels.aicommands["approachinstrument"], blockedforFree = true, requirescarrier = true } },
+            //{ "seeyouat10" ,            new Command { uniqueid = 15017, category = CommandCategories.aicommsatc, eventnumber = 4091, name = "wMsgLeaderApproachInstrument",    displayname = Labels.aicommands["approachinstrument"], blockedforFree = true, requirescarrier = true } },
 
-            { "wMsgLeaderToATCMaximum", new Command { uniqueid = 15017, category = CommandCategories.aicommsatc, dcsid = "wMsgLeaderToATCMaximum",          } },
+            { "wMsgLeaderToATCMaximum", new Command { uniqueid = 15018, category = CommandCategories.aicommsatc, dcsid = "wMsgLeaderToATCMaximum",          } },
 
             // to AWACS 16000
             { "wMsgLeaderToAWACSNull" , new Command { uniqueid = 16000, category = CommandCategories.aicommsawacs, dcsid = "wMsgLeaderToAWACSNull",           } },
@@ -369,10 +369,6 @@ namespace VAICOM
 
             // to Aux (F10 menu) 20000
             { "wMsgLeaderToAuxNull" ,           new Command { uniqueid = 20000, category = CommandCategories.auxmenu, eventnumber = 4000, dcsid = "wMsgLeaderToAuxNull",             } },
-            // AI_ATC endpoints start
-            //{ "Action Request Engine Start" ,   new Command { uniqueid = 20001, category = CommandCategories.auxmenu, eventnumber = 4000, dcsid = "ActionRequestEngineStart", displayname = Labels.aicommands["Request Engine Start"] } },
-            //{ "Action Request Taxi Clearance" , new Command { uniqueid = 20002, category = CommandCategories.auxmenu, eventnumber = 4000, dcsid = "ActionRequestTaxiClearance", displayname = Labels.aicommands["Request Taxi Clearance"] } },
-            // AI_ATC endpoints finish
             { "wMsgLeaderToAuxMaximum" ,        new Command { uniqueid = 20999, category = CommandCategories.auxmenu, eventnumber = 4000, dcsid = "wMsgLeaderToAuxMaximum",          } },
 
             // to Cargo 21000

@@ -130,7 +130,6 @@ namespace VAICOM
                 {CommandCategories.RIO_misc,               "F-14 AI RIO | Misc"            },
                 {CommandCategories.AI_pilot,               "F-14 AI Pilot"                 },
                 {CommandCategories.kneeboard,              "Interactive Kneeboard extension"},
-                {CommandCategories.Moose,                  "Moose Script | Ops"},
             };
         }
 

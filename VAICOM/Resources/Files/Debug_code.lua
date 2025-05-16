@@ -1,3 +1,4 @@
+-- Get Argument name and data
 base = _G
 
 local dev = 38
@@ -11,7 +12,7 @@ base.trigger.action.outText("arg "..arg.." = "..base.tostring(value),5)
 
 
 
-
+-- Get iCommands dumpfile
 base = _G
 local lfs = require("lfs")
 local io = require("io")
