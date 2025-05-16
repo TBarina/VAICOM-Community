@@ -348,33 +348,17 @@ function ProcessRemoteCommand()
 		return
 	end
 	if clientmessage.type == base.vaicom.messagetype.aicomms then  -- call rearming menu this is doing my head in!
-	--local unitcomm, tgtunit = SetTargetComm(clientmessage.command)
-	--local showMissionResourcesDialog = {
-		--perform = function(self)
-			--MissionResourcesDialog.onRadioMenuRearm()
-		--end
-	--}
-    -- Pseudocode plan:
-    -- 1. The current code calls MissionResourcesDialog.onRadioMenuRearm(), which triggers rearming but does not open the actual menu UI.
-    -- 2. To open the rearming/refuel menu reliably, you need to call the function that shows the Mission Resources Dialog window.
-    -- 3. In DCS, this is typically MissionResourcesDialog.show(), which opens the UI dialog for the player.
-    -- 4. Replace the perform function to call MissionResourcesDialog.show() instead of onRadioMenuRearm().
-    -- 5. Optionally, you can check if the dialog is already open to avoid duplicate calls.
+	local unitcomm, tgtunit = SetTargetComm(clientmessage.command)
+	local showMissionResourcesDialog = {
+		perform = function(self)
+			MissionResourcesDialog.onRadioMenuRearm()
+		end
+	}
 
-    -- Replace this block in your ProcessRemoteCommand function:
-    local showMissionResourcesDialog = {
-        perform = function(self)
-            -- Open the Mission Resources Dialog (Rearm & Refuel menu)
-            if MissionResourcesDialog and MissionResourcesDialog.show then
-                MissionResourcesDialog.show()
-            else
-                -- fallback: call the old function if show() is not available
-                if MissionResourcesDialog.onRadioMenuRearm then
-                    MissionResourcesDialog.onRadioMenuRearm()
-                end
-            end
-        end
-    }
+	if clientmessage.command == base.Message.wMsgLeaderRequestRearming then
+		showMissionResourcesDialog:perform()  -- Correctly call the perform function
+		return
+	end
 
 	data.curCommunicatorId = clientmessage.tgtdevid or data.curCommunicatorId
 	selectAndTuneCommunicator(unitcomm)

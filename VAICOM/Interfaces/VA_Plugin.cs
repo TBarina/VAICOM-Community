@@ -132,7 +132,7 @@ namespace VAICOM
                     // Config window 
 
                     case "config":
-                        UI.Initialize.OpenConfiguration(vaProxy, false);
+                        UI.Initialize.OpenConfiguration(vaProxy, false); //Pene Broken in VA 1.7.55 WIP
                         break;
 
                     case "config.resetwindow":
