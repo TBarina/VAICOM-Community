@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250413,
-      "version": 3020,
-      "versionstring": "3.0.2.0",
-      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.2.0/VAICOMPRO.zip",
-      "releasenotes": "Release 3.0.2.0 - Adds Germany Cold War ATC recipients to database, AOCS TTS volume increase, AOCS now says altitude not elevation, removes legacy Moose recipients and commands from previous trials (new implementation remains), fix some Moose and AI_ATC commands and expand to allow Andersen AFB (WIP), Vaicom Manual updated. "
+      "releasedate": 20250517,
+      "version": 3030,
+      "versionstring": "3.0.3.0",
+      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.3.0/VAICOMPRO.zip",
+      "releasenotes": "Release 3.0.3.0 - Adds F10 menu handling for VSPX and Whisper Attack users, Updates core backend files, Ensures compatablity with latest DCS version, Removes code notes for fixes already implemented, Reorder DCS Modules database to be more logical. "
     }
   ]
 }
