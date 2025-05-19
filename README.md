@@ -100,5 +100,11 @@ Dynamic Spawn Client Slots, Some Users have reported issues when jumping between
 
 Pene, Special K, D3adCy11nd3r, Folgers, Hornblower793, Liam8, MAXsenna, MisterOutofTime, Raskit and stag1975
 
+## Patreon Donations
+
+If you want to donate a beer, visit the Official Vaicom Patreon.
+[Vaicom Patreon Site](https://patreon.com/PeneCruz?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)
+
+
 #### Beta Team
 104th_Aeons, GSG-3|Turbine|202, DrChainsaw, Jaeger, Nicola, Padinn, SPAZ-505, tomeye, Virus, Bonz RexExGSR, LawnBoy and Scotia
