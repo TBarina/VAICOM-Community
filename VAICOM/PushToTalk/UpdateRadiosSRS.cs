@@ -85,6 +85,7 @@ namespace VAICOM
                     {"F15-ESE" ,            new radioslotdevicelist() { Slot_map_INT = {7,8,0}, Slot_map_SRS = {7,8,0}, Slot_map_CUS = {7,8,0} } },
                     {"A-29B" ,              new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
                     {"UH-60L" ,             new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
+                    {"OH-6A" ,              new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
                     {"Hercules" ,           new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
                     {"T-45" ,               new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
                     {"F-4E-45MC" ,          new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
@@ -153,6 +154,7 @@ namespace VAICOM
                     {"F-15ESE" ,    new radioslotlist() { Slot_map = { "UHF1", "UHF2", ""} } }, //Pene
                     {"A-29B" ,      new radioslotlist() { Slot_map = { "V/UHF XT-6013", "V/UHF XT-6013", "V/UHF XT-6013" } } }, //Pene
                     {"UH-60L" ,     new radioslotlist() { Slot_map = { "VHF-FM Radio AN/ARC-201 (1)", "Direction Finder Set AN/ARN-149", "VHF Radio AN/ARC-186" } } }, //Pene
+                    {"OH-6A" ,      new radioslotlist() { Slot_map = { "VHF Radio KX 155", "FM Radio", "" } } },
                     {"Hercules" ,   new radioslotlist() { Slot_map = { "", "CB UHF", ""} } }, //Pene
                     {"T-45" ,       new radioslotlist() { Slot_map = { "RADIO2", "RADIO1", ""} } }, //Pene
                     {"F-4E-45MC" ,  new radioslotlist() { Slot_map = { "UHF ARC-164", "", ""} } }, //Pene
@@ -232,6 +234,7 @@ namespace VAICOM
                     {"F-15ESE" ,    new radioslotlist() { Slot_map = { "AN/ARC-164", "AN/ARC-210 G5", ""} } },
                     {"A-29B" ,      new radioslotlist() { Slot_map = { "AN/ARC-150V", "SRT-651/N", ""} } },
                     {"UH-60L" ,     new radioslotlist() { Slot_map = { "[AN/ARC-201]", "AN/ARN-149 DF", "AN/ARC-186" } } },
+                    {"OH-6A" ,      new radioslotlist() { Slot_map = { "AN/ARC-51", "AN/ARC-54", "" } } },
                     {"Hercules" ,   new radioslotlist() { Slot_map = { "", "AN/ARC-164", ""} } },
                     {"T-45" ,       new radioslotlist() { Slot_map = { "AN/ARC-182 1", "AN/ARC-182 2", ""} } }, //Pene WIP
                     {"F-4E-45MC" ,  new radioslotlist() { Slot_map = { "UHF ARC-164", "", ""} } }, //Pene

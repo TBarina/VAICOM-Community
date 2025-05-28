@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250522,
-      "version": 30131,
-      "versionstring": "3.0.3.1",
+      "releasedate": 20250529,
+      "version": 30132,
+      "versionstring": "3.0.3.2",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": "Fix erroneous SecurityControl error in DCS log,New Vaicom Theme for DCS (try in differnet resolutions if Poss)"
+      "releasenotes": " Adds OH-6A Cayuse Mod to supported modules, Fix erroneous SecurityControl error in DCS log,New Vaicom Theme for DCS (try in differnet resolutions if Poss)"
     }
   ]
 }
