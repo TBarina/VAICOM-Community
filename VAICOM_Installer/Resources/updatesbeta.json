@@ -8,8 +8,8 @@
       "isdev": false,
       "productid": 1,
       "releasedate": 20250604,
-      "version": 30133,
-      "versionstring": "3.0.3.3",
+      "version": 30134,
+      "versionstring": "3.0.3.4",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
       "releasenotes": " Adds Marianas WWII terrain to ATC recipients database, Adds F4U-1D to supported modules, Changes to F-22A Mod radios to support latest version, Adds OH-6A Cayuse Mod to supported modules, Fix erroneous SecurityControl error in DCS log,New Vaicom Theme for DCS (try in differnet resolutions if Poss)"
     }
