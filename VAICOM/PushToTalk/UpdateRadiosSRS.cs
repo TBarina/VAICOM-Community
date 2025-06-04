@@ -91,6 +91,8 @@ namespace VAICOM
                     {"F-4E-45MC" ,          new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
                     {"OH58D" ,              new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
                     {"CH-47F" ,             new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
+                    {"F4U-1D" ,             new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
+                    {"F-22A" ,              new radioslotdevicelist() { Slot_map_INT = {0,0,0}, Slot_map_SRS = {0,0,0}, Slot_map_CUS = {0,0,0} } },
 
                 };
 
@@ -170,7 +172,8 @@ namespace VAICOM
                     {"FA-18E",      new radioslotlist() { Slot_map = { "COMM1: ARC-210", "COMM2: ARC-210", ""} } },
                     {"FA-18F",      new radioslotlist() { Slot_map = { "COMM1: ARC-210", "COMM2: ARC-210", ""} } },
                     {"EA-18G",      new radioslotlist() { Slot_map = { "COMM1: ARC-210", "COMM2: ARC-210", ""} } },
-                    //{"F-22" ,       new radioslotlist() { Slot_map = { "VHF/UHF AN/ARC-182", "VHF/UHF AN/ARC-182", ""} } }, //Pene WIP
+                    {"F4U-1D" ,     new radioslotlist() { Slot_map = { "R-ARC5", "", ""} } },
+                    {"F-22A" ,      new radioslotlist() { Slot_map = { "VHF AM", "UHF", "VHF FM" } } }, //Pene WIP
 
                 };
 
@@ -250,6 +253,8 @@ namespace VAICOM
                     {"FA-18E",      new radioslotlist() { Slot_map = { "AN/ARC-210 G5 V/UHF", "AN/ARC-210 V/UHF G5", "" } } },
                     {"FA-18F",      new radioslotlist() { Slot_map = { "AN/ARC-210 G5 V/UHF", "AN/ARC-210 V/UHF G5", "" } } },
                     {"EA-18G",      new radioslotlist() { Slot_map = { "AN/ARC-210 G5 V/UHF", "AN/ARC-210 V/UHF G5", "" } } },
+                    {"F4U-1D" ,     new radioslotlist() { Slot_map = { "ARC-5", "", ""} } },
+                    {"F-22A" ,      new radioslotlist() { Slot_map = { "AN/ARC-210 G5 V/UHF", "AN/ARC-210 V/UHF G5", "VHF FM" } } }, //Pene WIP
                 };
             }
 

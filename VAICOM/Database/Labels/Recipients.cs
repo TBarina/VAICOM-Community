@@ -100,6 +100,20 @@ namespace VAICOM
                 { "Rota Intl",                  "Rota Intl"                },
                 { "Tinian Intl",                "Tinian Intl"              },
                 { "Saipan Intl",                "Saipan Intl"              },
+
+                // Marianas WWII map
+
+                { "Pagan",                     "Pagan"                  },
+                { "Marpi Point",               "Marpi Point"            },
+                { "Kagman Point",              "Kagman Point"           },
+                { "Charon Kanoa",              "Charon Kanoa"           },
+                { "Isley",                     "Isley"                  },
+                { "Ushi Point",                "Ushi Point"             },
+                { "Airfield 3",                "Airfield 3"             },
+                { "Gurguam Point",             "Gurguam Point"          },
+                { "Rota",                      "Rota"                   },
+                { "Agana",                     "Agana"                  },
+                { "Orote",                     "Orote"                  },
                 
                 // Nevanda map
 

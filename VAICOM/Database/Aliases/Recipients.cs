@@ -121,6 +121,20 @@ namespace VAICOM
                 { "Tinian",                 "Tinian Intl"              },
                 { "Saipan",                 "Saipan Intl"              },
 
+                // Marianas WWII
+
+                { "Pagan",                  "Pagan"                 },
+                { "Marpi Point",            "Marpi Point"           },
+                { "Kagman Point",           "Kagman Point"          },
+                { "Charon Kanoa",           "Charon Kanoa"          },
+                { "Isley",                  "Isley"                 },
+                { "Ushi Point",             "Ushi Point"            },
+                { "Airfield three",         "Airfield 3"            },
+                { "Gurguam Point",          "Gurguam Point"         },
+                { "Rota Field",             "Rota"                  },
+                { "Agana",                  "Agana"                 },
+                { "Orote",                  "Orote"                 },
+
                 // Nevada
 
                 { "Creech",                 "Creech"                },

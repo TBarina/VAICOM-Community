@@ -107,7 +107,7 @@ namespace VAICOM
 
                 // Marianas Map
 
-                { "wAIUnitATCMarianasNull",           new Recipient { uniqueid = 15100, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasNull",        } },
+                { "wAIUnitATCMarianasNull",         new Recipient { uniqueid = 15100, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasNull",        } },
 
                 { "Andersen AFB",                   new Recipient { uniqueid = 15101, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasAndersen",    displayname = Labels.airecipients["Andersen AFB"] } },
                 { "Antonio B. Won Pat Intl",        new Recipient { uniqueid = 15102, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasAntonioB",    displayname = Labels.airecipients["Antonio B. Won Pat Intl"] } },
@@ -116,6 +116,25 @@ namespace VAICOM
                 { "Saipan Intl",                    new Recipient { uniqueid = 15105, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasSaipanIntl",  displayname = Labels.airecipients["Saipan Intl"] } },
 
                 { "wAIUnitATCMarianasMaximum",      new Recipient { uniqueid = 15110, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasMaximum",     } },
+
+                // Marianas WWII Map
+
+                { "wAIUnitATCMarianasWWIINull",     new Recipient { uniqueid = 15111, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIINull",        } },
+
+                { "Pagan",                          new Recipient { uniqueid = 15113, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIPagan",          displayname = Labels.airecipients["Pagan"] } },
+                { "Marpi Point",                    new Recipient { uniqueid = 15114, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIMarpiPoint",     displayname = Labels.airecipients["Marpi Point"] } },
+                { "Kagman Point",                   new Recipient { uniqueid = 15115, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIKagmanPoint",    displayname = Labels.airecipients["Kagman Point"] } },
+                { "Charon Kanoa",                   new Recipient { uniqueid = 15116, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIICharonKanoa",    displayname = Labels.airecipients["Charon Kanoa"] } },
+                { "Isley",                          new Recipient { uniqueid = 15117, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIIsley",          displayname = Labels.airecipients["Isley"] } },
+                { "Ushi Point",                     new Recipient { uniqueid = 15118, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIUshiPoint",      displayname = Labels.airecipients["Ushi Point"] } },
+                { "Airfield 3",                     new Recipient { uniqueid = 15119, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIAirfield3",      displayname = Labels.airecipients["Airfield 3"] } },
+                { "Gurguam Point",                  new Recipient { uniqueid = 15120, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIGurguamPoint",   displayname = Labels.airecipients["Gurguam Point"] } },
+                { "Rota",                           new Recipient { uniqueid = 15121, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIRota",           displayname = Labels.airecipients["Rota"] } },
+                { "Agana",                          new Recipient { uniqueid = 15122, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIAgana",          displayname = Labels.airecipients["Agana"] } },
+                { "Orote",                          new Recipient { uniqueid = 15123, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIOrote",          displayname = Labels.airecipients["Orote"] } },
+                
+
+                { "wAIUnitATCMarianasWWIIMaximum",  new Recipient { uniqueid = 15130, category = RecipientCategories.aiatc, name = "wAIUnitATCMarianasWWIIMaximum",     } },
 
                 // Nevada NTTR Map
 
