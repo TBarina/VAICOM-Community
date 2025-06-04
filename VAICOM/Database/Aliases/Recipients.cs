@@ -130,7 +130,7 @@ namespace VAICOM
                 { "Isley",                  "Isley"                 },
                 { "Ushi Point",             "Ushi Point"            },
                 { "Airfield three",         "Airfield 3"            },
-                { "Gurguam Point",          "Gurguam Point"         },
+                { "Gurguan Point",          "Gurguan Point"         },
                 { "Rota Field",             "Rota"                  },
                 { "Agana",                  "Agana"                 },
                 { "Orote",                  "Orote"                 },
