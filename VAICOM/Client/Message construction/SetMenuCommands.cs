@@ -109,6 +109,9 @@ namespace VAICOM
                 public static int iCommandPushToTalkEnableVoice = 1695;
                 public static int iCommandPushToTalkDisableVoice = 1696;
 
+                // Add more command IDs as needed
+                public static int iCommandViewRearm = 1754; // View rearm menu command testing
+
 
             }
         }

@@ -170,7 +170,7 @@ namespace VAICOM
                     }
                 }
 
-                // comd sequence as in iCommands 0000-4000 (e.g. for Options menu)
+                // comd sequence as in iCommands 0000-4000 (e.g. for Options menu) -- can we expand this for icommands?
                 public class iCommandSequence
                 {
                     public bool debug;

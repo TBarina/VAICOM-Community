@@ -534,7 +534,7 @@ namespace VAICOM
                 TXNodes.TX2.enabled = false;
                 TXNodes.TX3.enabled = false;
                 TXNodes.TX4.enabled = false;
-                TXNodes.TX5.enabled = true;//false
+                TXNodes.TX5.enabled = true;//use true to have singkle hotkey and TX5 for intercom in addition
                 TXNodes.TX6.enabled = false;
 
                 switch (State.activeconfig.SingleHotkey)

@@ -51,3 +51,7 @@ end
 listtables(0,6,base.speech)
 dumpfile:close()
 end
+
+for k, v in pairs(_G) do -- Print all global variables to see what tables exist in the lua environment has the table name changed?
+       print(k, type(v))
+end
