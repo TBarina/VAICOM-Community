@@ -124,16 +124,23 @@ namespace VAICOM
                 // Marianas WWII
 
                 { "Pagan",                  "Pagan"                 },
-                { "Marpi Point",            "Marpi Point"           },
-                { "Kagman Point",           "Kagman Point"          },
+                { "Marpi",                  "Marpi"                 },
+                { "Marpi Point",            "Marpi"                 },
+                { "Kagman",                 "Kagman"                },
+                { "East Field",             "Kagman"                },
                 { "Charon Kanoa",           "Charon Kanoa"          },
                 { "Isley",                  "Isley"                 },
-                { "Ushi Point",             "Ushi Point"            },
+                { "Isley Field",            "Isley"                 },
+                { "Ushi",                   "Ushi"                  },
+                { "Ushi Point",             "Ushi"                  },
+                { "North Field",            "Ushi"                  },
                 { "Airfield three",         "Airfield 3"            },
                 { "Gurguan Point",          "Gurguan Point"         },
                 { "Rota Field",             "Rota"                  },
                 { "Agana",                  "Agana"                 },
+                { "Agana Field",            "Agana"                 },
                 { "Orote",                  "Orote"                 },
+                { "Orote Field",            "Orote"                 },
 
                 // Nevada
 

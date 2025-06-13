@@ -104,11 +104,11 @@ namespace VAICOM
                 // Marianas WWII map
 
                 { "Pagan",                     "Pagan"                  },
-                { "Marpi Point",               "Marpi Point"            },
-                { "Kagman Point",              "Kagman Point"           },
+                { "Marpi",                     "Marpi"                  },
+                { "Kagman",                    "Kagman"                 },
                 { "Charon Kanoa",              "Charon Kanoa"           },
                 { "Isley",                     "Isley"                  },
-                { "Ushi Point",                "Ushi Point"             },
+                { "Ushi",                      "Ushi"                   },
                 { "Airfield 3",                "Airfield 3"             },
                 { "Gurguan Point",             "Gurguan Point"          },
                 { "Rota",                      "Rota"                   },
