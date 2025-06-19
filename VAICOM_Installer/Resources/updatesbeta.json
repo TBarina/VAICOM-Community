@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250614,
-      "version": 30139,
-      "versionstring": "3.0.3.9",
+      "releasedate": 20250620,
+      "version": 3040,
+      "versionstring": "3.0.4.0",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Update Kola terrain ATC recipients and add additional airfields, Updates Vaicom manual, Fix Marianas WWII airfield names, Changes for F4U-1D move to Single PTT, New radio.lua swap files, Deep debug changes, Adds Marianas WWII terrain to ATC recipients database, Adds F4U-1D to supported modules, Changes to F-22A Mod radios to support latest version, Adds OH-6A Cayuse Mod to supported modules, Fix erroneous SecurityControl error in DCS log,New Vaicom Theme for DCS (try in differnet resolutions if Poss)"
+      "releasenotes": " Version update only for Beta"
     }
   ]
 }
