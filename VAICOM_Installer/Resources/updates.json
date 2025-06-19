@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250517,
-      "version": 3030,
-      "versionstring": "3.0.3.0",
-      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.3.0/VAICOMPRO.zip",
-      "releasenotes": "Release 3.0.3.0 - Adds F10 menu handling for VSPX and Whisper Attack users, Updates core backend files, Ensures compatablity with latest DCS version, Removes code notes for fixes already implemented, Reorder DCS Modules database to be more logical. "
+      "releasedate": 20250620,
+      "version": 3040,
+      "versionstring": "3.0.4.0",
+      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.4.0/VAICOMPRO.zip",
+      "releasenotes": "Release 3.0.4.0 - Adds F4U-1D as supported module, adds OH-6A mod as supported module, adds Marianas WWII terrain ATC recipients to database, adds airfields and additional ATC recipients for Kola terrain and corrects some changed ones, update radio.lua swap files, fix erroneous SecurityControl error in DCS log,a new Vaicom Theme for DCS, an updated Vaicom manual. "
     }
   ]
 }
