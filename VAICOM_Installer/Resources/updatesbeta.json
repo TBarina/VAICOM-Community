@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250620,
-      "version": 3040,
-      "versionstring": "3.0.4.0",
+      "releasedate": 20250705,
+      "version": 3041,
+      "versionstring": "3.0.4.1",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Version update only for Beta"
+      "releasenotes": " Fix Supercarrier verification, database clean up"
     }
   ]
 }
