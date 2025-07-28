@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250705,
-      "version": 3041,
-      "versionstring": "3.0.4.1",
+      "releasedate": 20250728,
+      "version": 3043,
+      "versionstring": "3.0.4.3",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Fix Supercarrier verification, database clean up"
+      "releasenotes": " Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
     }
   ]
 }
