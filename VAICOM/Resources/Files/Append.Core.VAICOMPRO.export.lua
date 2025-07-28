@@ -1,132 +1,133 @@
 -- VAICOM PRO server-side script
--- VAICOMPRO.export.lua
+-- Optimized by community review
 -- www.vaicompro.com
 
-package.path  = package.path..";.\\LuaSocket\\?.lua;"
-package.cpath = package.cpath..";.\\LuaSocket\\?.dll;"
+package.path  = package.path .. ";.\\LuaSocket\\?.lua;"
+package.cpath = package.cpath .. ";.\\LuaSocket\\?.dll;"
 
 local socket = require("socket")
 
-local purge
-
 vaicom = {}
 
+vaicom.debug = false -- set to true for debug logs
+
+local function log(msg)
+    if vaicom.debug then
+        env.info("[VAICOM] " .. msg)
+    end
+end
+
+-- Utility to create and configure a UDP socket
+local function create_udp_socket(address, port, timeout, is_server)
+    local sock = socket.try(socket.udp())
+    if is_server then
+        socket.try(sock:setsockname(address, port))
+    else
+        socket.try(sock:setpeername(address, port))
+    end
+    socket.try(sock:settimeout(timeout))
+    return sock
+end
+
+-- Configuration
 vaicom.config = {
-
-		sendtoradio =		{ -- do not edit
-							address	= "127.0.0.1",
-							port	= 33334,
-							timeout = 0,
-							},
-							
-		receivefromclient =	{ -- do not edit
-							address	= "*",
-							port	= 33491,
-							timeout = 0,
-							},
-							
-		sendtoclient =		{ -- if VA runs on a different PC change address to the IP address of VA host
-							address	= "127.0.0.1", 
-							port	= 33492,
-							timeout = 0,
-							},
-		
-		beaconclose	=		"missiondata.update.beacon.unlock",
-							
-}
-vaicom.insert = {
-
-	Start = function(self) 
-	
-		vaicom.sendtoradio = socket.try(socket.udp()) 
-		socket.try(vaicom.sendtoradio:setpeername(vaicom.config.sendtoradio.address,vaicom.config.sendtoradio.port))
-		socket.try(vaicom.sendtoradio:settimeout(vaicom.config.sendtoradio.timeout))
-		
-		vaicom.receivefromclient = socket.try(socket.udp()) 
-		socket.try(vaicom.receivefromclient:setsockname(vaicom.config.receivefromclient.address,vaicom.config.receivefromclient.port))
-		socket.try(vaicom.receivefromclient:settimeout(vaicom.config.receivefromclient.timeout))
-		
-		vaicom.sendtoclient = socket.try(socket.udp()) 
-		socket.try(vaicom.sendtoclient:setpeername(vaicom.config.sendtoclient.address,vaicom.config.sendtoclient.port))
-		socket.try(vaicom.sendtoclient:settimeout(vaicom.config.sendtoclient.timeout))
-
-	end,
-
-	BeforeNextFrame = function(self)		
-		local newdata = false
-		newdata = vaicom.receivefromclient:receive()
-		if newdata then
-			vaicom.sendtoradio:send(newdata)
-			--if not vaicom.insert:Alt() then -- Pene debug Alt
-				--LoSetCommand(179)
-			--end
-			purge = true
-		else
-			purge = false
-		end
-	end,
-	
-	AfterNextFrame = function(self)
-		--if purge then
-			--vaicom.insert:Flush()	-- Pene debug flush
-		--end
-		purge = false
-	end,
-
-	Stop = function(self)
-
-		vaicom.sendtoclient:send(vaicom.config.beaconclose)
-
-		if vaicom.sendtoradio then
-			socket.try(vaicom.sendtoradio:close())
-			vaicom.sendtoradio = nil
-		end	
-		if vaicom.receivefromclient then
-			socket.try(vaicom.receivefromclient:close())
-			vaicom.receivefromclient = nil
-		end	
-		if vaicom.sendtoclient then
-			socket.try(vaicom.sendtoclient:close())
-			vaicom.sendtoclient = nil
-		end
-		
-	end,
-
+    sendtoradio = {
+        address = "127.0.0.1",
+        port    = 33334,
+        timeout = 0,
+    },
+    receivefromclient = {
+        address = "*",
+        port    = 33491,
+        timeout = 0,
+    },
+    sendtoclient = {
+        address = "127.0.0.1",
+        port    = 33492,
+        timeout = 0,
+    },
+    beaconclose = "missiondata.update.beacon.unlock",
 }
 
-do
-	local OtherLuaExportStart=LuaExportStart
-	LuaExportStart=function()
-		vaicom.insert:Start()	
-		if OtherLuaExportStart then
-			OtherLuaExportStart()
-		end		
-	end
+-- Core insert handlers
+vaicom.insert = {}
+
+function vaicom.insert:Start()
+    log("Initializing sockets...")
+    vaicom.sendtoradio       = create_udp_socket(
+        vaicom.config.sendtoradio.address,
+        vaicom.config.sendtoradio.port,
+        vaicom.config.sendtoradio.timeout,
+        false
+    )
+    vaicom.receivefromclient = create_udp_socket(
+        vaicom.config.receivefromclient.address,
+        vaicom.config.receivefromclient.port,
+        vaicom.config.receivefromclient.timeout,
+        true
+    )
+    vaicom.sendtoclient      = create_udp_socket(
+        vaicom.config.sendtoclient.address,
+        vaicom.config.sendtoclient.port,
+        vaicom.config.sendtoclient.timeout,
+        false
+    )
 end
-do
-	local OtherLuaExportBeforeNextFrame=LuaExportBeforeNextFrame
-	LuaExportBeforeNextFrame=function()		
-		vaicom.insert:BeforeNextFrame()
-		if OtherLuaExportBeforeNextFrame then
-			OtherLuaExportBeforeNextFrame()
-		end						
-	end
+
+function vaicom.insert:BeforeNextFrame()
+    local data = vaicom.receivefromclient:receive()
+    if data then
+        local ok, err = vaicom.sendtoradio:send(data)
+        if not ok then
+            log("Failed to send data to radio: " .. tostring(err))
+        end
+    end
 end
-do
-	local OtherLuaExportAfterNextFrame=LuaExportAfterNextFrame
-	LuaExportAfterNextFrame=function()		
-		vaicom.insert:AfterNextFrame()
-		if OtherLuaExportAfterNextFrame then
-			OtherLuaExportAfterNextFrame()
-		end								
-	end
+
+function vaicom.insert:AfterNextFrame()
+    -- Reserved for future use or flushing logic
 end
-do
-	local OtherLuaExportStop=LuaExportStop
-	LuaExportStop=function()				
-		vaicom.insert:Stop()					
-		if OtherLuaExportStop then
-			OtherLuaExportStop()
-		end						
-	end
+
+function vaicom.insert:Stop()
+    log("Stopping VAICOM sockets...")
+
+    if vaicom.sendtoclient then
+        vaicom.sendtoclient:send(vaicom.config.beaconclose)
+    end
+
+    for _, sock in pairs({
+        "sendtoradio",
+        "receivefromclient",
+        "sendtoclient"
+    }) do
+        if vaicom[sock] then
+            socket.try(vaicom[sock]:close())
+            vaicom[sock] = nil
+        end
+    end
+end
+
+-- DCS Export Hooks (chained)
+local OldLuaExportStart                = LuaExportStart
+LuaExportStart = function()
+    vaicom.insert:Start()
+    if OldLuaExportStart then OldLuaExportStart() end
+end
+
+local OldLuaExportBeforeNextFrame     = LuaExportBeforeNextFrame
+LuaExportBeforeNextFrame = function()
+    vaicom.insert:BeforeNextFrame()
+    if OldLuaExportBeforeNextFrame then OldLuaExportBeforeNextFrame() end
+end
+
+local OldLuaExportAfterNextFrame      = LuaExportAfterNextFrame
+LuaExportAfterNextFrame = function()
+    vaicom.insert:AfterNextFrame()
+    if OldLuaExportAfterNextFrame then OldLuaExportAfterNextFrame() end
+end
+
+local OldLuaExportStop                = LuaExportStop
+LuaExportStop = function()
+    vaicom.insert:Stop()
+    if OldLuaExportStop then OldLuaExportStop() end
 end
