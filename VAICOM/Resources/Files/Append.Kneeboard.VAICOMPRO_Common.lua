@@ -1,232 +1,259 @@
--- VAICOM PRO server-side script
+-- VAICOM PRO server-side script (Optimized)
 -- VAICOMPRO_Common.lua
--- www.vaicompro.com
+
+-- === Category Definitions ===
 
 logcats = {}
+
+local predefined_logcats = {
+    "ALL", "LOG", "AOCS", "JTAC", "TANKER",
+    "AWACS", "ATC", "FLIGHT", "REF", "NOTES"
+}
+
 init_logcats = function()
-	logcats["ALL"]   	= "ALL"
-	logcats["LOG"]   	= "LOG"
-	logcats["AOCS"]   	= "AOCS"
-	logcats["JTAC"]   	= "JTAC"
-	logcats["TANKER"]   = "TANKER"
-	logcats["AWACS"]   	= "AWACS"
-	logcats["ATC"]   	= "ATC"
-	logcats["FLIGHT"]   = "FLIGHT"
-	logcats["REF"]	 	= "REF"
-	logcats["NOTES"]   	= "NOTES"
+    for _, name in ipairs(predefined_logcats) do
+        logcats[name] = name
+    end
 end
 
-headers = {}
-init_headers = function()
-	headers[1] = { "TopLeft", "L", 0, "T", "LeftCenter"	    }
-	headers[2] = { "TopMid", "R", 4, "T", "RightCenter"	    }
-	headers[3] = { "TopRight", "R", 0, "T", "RightCenter"	} 
-	headers[4] = { "BottomLeft", "L", 0, "B", "LeftCenter"  }
-	headers[5] = { "BottomRight", "R", 0, "B", "RightCenter"}
+-- === Generalized Table Initializer ===
+
+local function init_table_keys(target, keys, default)
+    for k in pairs(keys) do
+        target[k] = default
+    end
 end
 
-messagelog = {} 
+-- === Message Log ===
+
+messagelog = {}
+
 init_messagelog_all = function()
-	for a,b in pairs(logcats) do
-		messagelog[a] = ""
-	end
+    init_table_keys(messagelog, logcats, "")
 end
+
 init_messagelog = function(str)
-	messagelog[str] = ""
+    messagelog[str] = ""
 end
+
 set_messagelog = function(cat, content)
-	messagelog[cat] = content or ""
+    messagelog[cat] = content or ""
 end
+
 get_messagelog = function(cat)
-	return messagelog[cat] or ""
+    return messagelog[cat] or ""
 end
+
+-- === Alias Data ===
 
 aliasdata = {}
-for i= 1,4 do 
-	aliasdata[i] = {}
-end
+
 init_aliasdata_all = function()
-	for a,b in pairs(logcats) do	
-		for i= 1,4 do 
-			aliasdata[i][a] = ""
-		end
-	end
-end
-init_aliasdata = function(str)
-	for i= 1,4 do 
-		aliasdata[i][str] = ""
-	end	
-end
-set_aliasdata = function(cat, content, chunk)		
-	if chunk == 0 then
-		init_aliasdata(cat)
-	end
-	local n = 2 * 12 * chunk 
-	for i,j in pairs(content) do
-		n = n + 1	
-		dostart = chunk == 1 and 3 or 1
-		doend = chunk == 1 and #aliasdata or 2
-		for p = dostart,doend do
-			if (n > (p-1)*12 and n <= p*12 and n <= 46) then
-				aliasdata[p][cat] = aliasdata[p][cat]..i
-				if #j >= 1 and j[1] ~= "" then
-					aliasdata[p][cat] = aliasdata[p][cat].." "
-				end			
-				for k = 1, #j do
-					if string.len(aliasdata[p][cat]) + string.len(j[k]) < 500 then
-						if k == 1 then 
-							aliasdata[p][cat] = aliasdata[p][cat]..j[k]
-						else
-							aliasdata[p][cat] = aliasdata[p][cat].." / "..j[k]
-						end
-					end	
-				end
-				aliasdata[p][cat] = aliasdata[p][cat].." |".."\n"	
-			end	
-		end		
-	end
-end
-get_aliasdata = function(cat)
-	append = ""
-		for i= 1,4 do 
-			append = append..aliasdata[i][cat] 
-		end
-	return append
-end
-
-unitsdata = {} 
-init_unitsdata_all = function()
-	for a,b in pairs(logcats) do
-		unitsdata[a] = "N/A"
-	end	
-end
-init_unitsdata = function(str)
-	unitsdata[str] = "N/A"		
-end
-set_unitsdata = function(cat, content)
-	unitsdata[cat] = "ATO DCS"..serverdata["ato"].." / "..cat.."\n"
-	if #content == 0 then
-		unitsdata[cat] = unitsdata[cat].."N/A"
-	else
-		for i= 1, #content do
-			if i <= 4 then
-				unitsdata[cat] = unitsdata[cat].."#"..i.."/"..tostring(#content).." "..content[i].."\n"
-			end
-		end
-	end
-end
-get_unitsdata = function(cat)
-	return unitsdata[cat] or ""
-end
-
-getlines = function(txt)
-	local array = {}
-	local count = 0
-	for s in txt:gmatch("[^\r\n]+") do
-		count = count + 1
-		array[count] = s
-	end
-	return array, count
-end
-
-mergearrays = function(t1,t2)
-	local l = #t1
-	for i = 1, #t2 do 
-		t1[l+i] = t2[i] 
-	end
-    return t1
-end
-
-mergelog = function(log1,log2)
-	local lines1 = getlines(log1)
-	local lines2 = getlines(log2)
-	local merged = {}
-	merged = mergearrays(lines1,lines2)
-	local mlog = ""
-	local lim = #merged<27 and #merged or 27
-	local offset = #merged - lim > 0 and #merged - lim or 0
-	for i = offset + 1,offset + lim do
-        mlog = mlog..merged[i].."\n"
+    for i = 1, 4 do
+        aliasdata[i] = {}
+        init_table_keys(aliasdata[i], logcats, "")
     end
-	return mlog
 end
 
-unitsdetails = {} 
+init_aliasdata = function(str)
+    for i = 1, 4 do
+        if not aliasdata[i] then aliasdata[i] = {} end
+        aliasdata[i][str] = ""
+    end
+end
+
+local function should_include(n, p)
+    return (n > (p - 1) * 12 and n <= p * 12 and n <= 46)
+end
+
+local function format_alias(i, j)
+    if not j or #j == 0 then return i end
+    i = i .. " "
+    for k = 1, #j do
+        local word = j[k]
+        if #i + #word < 500 then
+            i = i .. (k == 1 and word or " / " .. word)
+        end
+    end
+    return i .. " |
+"
+end
+
+set_aliasdata = function(cat, content, chunk)
+    if chunk == 0 then
+        init_aliasdata(cat)
+    end
+
+    local n = 2 * 12 * chunk
+    local start_p = (chunk == 1 and 3) or 1
+    local end_p = (chunk == 1 and 4) or 2
+
+    for i, j in pairs(content) do
+        n = n + 1
+        for p = start_p, end_p do
+            if should_include(n, p) then
+                local line = aliasdata[p][cat] or ""
+                aliasdata[p][cat] = format_alias(line .. i, j)
+            end
+        end
+    end
+end
+
+get_aliasdata = function(cat)
+    local append = ""
+    for i = 1, 4 do
+        append = append .. (aliasdata[i][cat] or "")
+    end
+    return append
+end
+
+-- === Units Data ===
+
+unitsdata = {}
+
+init_unitsdata_all = function()
+    init_table_keys(unitsdata, logcats, "N/A")
+end
+
+init_unitsdata = function(str)
+    unitsdata[str] = "N/A"
+end
+
+set_unitsdata = function(cat, content)
+    unitsdata[cat] = "ATO DCS" .. serverdata["ato"] .. " / " .. cat .. "\n"
+    if #content == 0 then
+        unitsdata[cat] = unitsdata[cat] .. "N/A"
+    else
+        for i = 1, math.min(4, #content) do
+            unitsdata[cat] = unitsdata[cat] .. "#" .. i .. "/" .. tostring(#content) .. " " .. content[i] .. "\n"
+        end
+    end
+end
+
+get_unitsdata = function(cat)
+    return unitsdata[cat] or ""
+end
+
+-- === Units Details ===
+
+unitsdetails = {}
+
 init_unitsdetails_all = function()
-	for a,b in pairs(logcats) do
-		unitsdetails[a] = ""
-	end
+    init_table_keys(unitsdetails, logcats, "")
 end
+
 init_unitsdetails = function(str)
-	unitsdetails[str] = ""	
+    unitsdetails[str] = ""
 end
+
 set_unitsdetails = function(cat, content)
-	unitsdetails[cat] = ""
-	for i= 1, #content do
-		if i<= 4 then
-			unitsdetails[cat] = content[i]
-			messagelog[cat] = mergelog(messagelog[cat],content[i])	
-		end
-	end
+    unitsdetails[cat] = ""
+    for i = 1, math.min(4, #content) do
+        unitsdetails[cat] = content[i]
+        messagelog[cat] = mergelog(messagelog[cat], content[i])
+    end
 end
+
 get_unitsdetails = function(cat)
-	return unitsdetails[cat] or ""
+    return unitsdetails[cat] or ""
 end
+
+-- === Log Categories + Keywords ===
 
 logcategories = {}
+
 init_logcategories = function()
-	for a,b in pairs(logcats) do
-		logcategories[a] = a
-	end
+    init_table_keys(logcategories, logcats, true)
 end
 
 logkeywords = {}
+
 init_logkeywords = function()
-	for a,b in pairs(logcats) do
-		logkeywords[a] = b
-	end
-	logkeywords["FLIGHT"] = "WINGMAN"
-	logkeywords["ALL"] = "ALLIES"
+    init_table_keys(logkeywords, logcats, "")
+    logkeywords["FLIGHT"] = "WINGMAN"
+    logkeywords["ALL"] = "ALLIES"
 end
+
+-- === Server Data ===
 
 serverdata = {}
+
 init_serverdata = function()
-	serverdata["ato"]				= ""
-	serverdata["theater"] 			= ""
-	serverdata["autoswitch"] 		= false
-	serverdata["dictmode"] 			= 0
-	serverdata["dcsversion"]		= ""
-	serverdata["aircraft"]			= ""
-	serverdata["groupcount"]		= 0
-	serverdata["playerusername"]	= ""
-	serverdata["playercallsign"]	= ""
-	serverdata["coalition"]			= ""
-	serverdata["missiontitle"]		= ""
-	serverdata["missionbriefing"]	= ""
-	serverdata["missiondetails"]	= ""
-	serverdata["sortie"] 			= ""
-	serverdata["task"] 				= ""
-	serverdata["country"] 			= ""
-	serverdata["multiplayer"]		= false
+    serverdata = {
+        ato             = "",
+        theater         = "",
+        autoswitch      = false,
+        dictmode        = 0,
+        dcsversion      = "",
+        aircraft        = "",
+        groupcount      = 0,
+        playerusername  = "",
+        playercallsign  = "",
+        coalition       = "",
+        missiontitle    = "",
+        missionbriefing = "",
+        missiondetails  = "",
+        sortie          = "",
+        task            = "",
+        country         = "",
+        multiplayer     = false,
+    }
 end
+
+-- === Page State ===
 
 page_active = {}
+
 init_page_active = function()
-	for a,b in pairs(logcats) do
-		page_active[a] = false
-	end
+    init_table_keys(page_active, logcats, false)
 end
-set_page_active = function(str)
-	for page, state in pairs(page_active) do	
-		page_active[page] = page == str
-	end
+
+set_page_active = function(selected)
+    for page in pairs(page_active) do
+        page_active[page] = (page == selected)
+    end
 end
+
 get_page_active = function()
-	for page, state in pairs(page_active) do	
-		if state then
-			return page == "LOG" and "ATO" or page
-		end
-	end
+    for page, state in pairs(page_active) do
+        if state then
+            return page == "LOG" and "ATO" or page
+        end
+    end
 end
 
+-- === Utilities ===
 
+getlines = function(text)
+    local lines = {}
+    local count = 0
+    for line in text:gmatch("[^\r\n]+") do
+        count = count + 1
+        lines[count] = line
+    end
+    return lines, count
+end
+
+mergearrays = function(t1, t2)
+    local l = #t1
+    for i = 1, #t2 do
+        t1[l + i] = t2[i]
+    end
+    return t1
+end
+
+mergelog = function(log1, log2)
+    local lines1 = getlines(log1)
+    local lines2 = getlines(log2)
+    local merged = mergearrays(lines1, lines2)
+
+    local max_lines = 27
+    local start_idx = math.max(1, #merged - max_lines + 1)
+    local output = ""
+
+    for i = start_idx, #merged do
+        output = output .. merged[i] .. "\n"
+    end
+
+    return output
+end
