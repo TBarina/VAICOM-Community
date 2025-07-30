@@ -75,8 +75,7 @@ local function format_alias(i, j)
             i = i .. (k == 1 and word or " / " .. word)
         end
     end
-    return i .. " |
-"
+    return i .. " | "
 end
 
 set_aliasdata = function(cat, content, chunk)

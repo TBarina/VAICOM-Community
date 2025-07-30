@@ -31,15 +31,15 @@ function construct(self)
         local w, h = arrow:calcSize()
         arrow:setBounds(0, 0, w, h)
         arrow:setVisible(false)
-        return arrow, w
+        return arrow, w, h
     end
 
-    local left, _ = createArrow()
+    local left, _, _ = createArrow()
     self.container:insertWidget(left)
     self.left = left
 
-    local right, rightW = createArrow()
-    right:setBounds(width - rightW, 0, rightW, right:getHeight())
+    local right, rightW, rightH = createArrow()
+    right:setBounds(width - rightW, 0, rightW, rightH)
     self.container:insertWidget(right)
     self.right = right
 
