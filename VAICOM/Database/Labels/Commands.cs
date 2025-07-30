@@ -271,6 +271,7 @@ namespace VAICOM
                 { "options",            "Show Options"          },
                 { "state",              "Check Unit"            },
                 { "readbriefing",       "Read Mission Briefing" },
+                { "loadout",            "loadout"               },
 
                 { "wMsgKneeboardDictateStart", "Dictation Start"     },
                 { "wMsgKneeboardDictateStop", "Dictation Stop"       },
@@ -287,7 +288,7 @@ namespace VAICOM
                 // Direct Cockpit Commnads
                 { "gearup",           "gearup"             },
                 { "geardown",         "geardown"           },
-                { "loadout",          "loadout"           },
+                //{ "loadout",          "loadout"           },
                 //{ "Emergency Landing",   "Emergency Landing"       },
 
                 // AI_ATC

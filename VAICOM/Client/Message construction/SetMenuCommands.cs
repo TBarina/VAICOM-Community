@@ -43,6 +43,8 @@ namespace VAICOM
 
                 public static List<int> iCommandPushToTalkEnableVoice = new List<int>() { iCommands.iCommandPushToTalkEnableVoice };
                 public static List<int> iCommandPushToTalkDisableVoice = new List<int>() { iCommands.iCommandPushToTalkDisableVoice };
+                // Add more command sequences as needed
+                public static List<int> iCommandViewRearm = new List<int>() { iCommands.iCommandViewRearm };
 
                 public static List<int> menuindex()
                 {

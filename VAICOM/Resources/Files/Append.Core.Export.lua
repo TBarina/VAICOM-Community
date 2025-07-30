@@ -1,3 +1,4 @@
+--[[ VAICOM BEGIN EXPORT BLOCK ]]
 -- Load VAICOMPRO Export Script Safely
 local lfs_status, lfs = pcall(require, 'lfs')
 if lfs_status and lfs and type(lfs.writedir) == "function" then
@@ -9,3 +10,4 @@ if lfs_status and lfs and type(lfs.writedir) == "function" then
 else
     log.write("VAICOM", log.ERROR, "Failed to load LuaFileSystem or invalid lfs.writedir()")
 end
+--[[ VAICOM END EXPORT BLOCK ]]

@@ -453,9 +453,10 @@ namespace VAICOM
                 { "Take Twelve",            "menu12"                },
 
                 // special
-                { "Switch",                "switch"                },
+                { "Switch",                 "switch"                },
                 { "Select",                 "select"                },
                 { "Options",                "options"               },
+                { "View Loadout",           "loadout"               },
 
                 // aocs
                 { "Interrogate",            "state"                 },
@@ -699,7 +700,7 @@ namespace VAICOM
                 /// Direct Cockpit Commnads
                 { "Gear Up",                          "gearup"                                          },
                 { "Gear Down",                        "geardown"                                        },
-                { "View Loadout",                     "loadout"                                         },
+                //{ "View Loadout",                     "loadout"                                         },
                 //{ "Emergency Landing",               "Emergency Landing"                                  },
 
             };

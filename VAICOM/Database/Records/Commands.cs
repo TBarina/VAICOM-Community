@@ -17,7 +17,7 @@ namespace VAICOM
             { "iCommandNull" ,          new Command { uniqueid = 00000, category = CommandCategories.cockpit, dcsid = "iCommandNull" } },
             { "gearup" ,                new Command { uniqueid = 00001, category = CommandCategories.cockpit, eventnumber = 0068, dcsid = "iCommandGearUp" ,   displayname=Labels.aicommands["gearup"],   hasparameter =  true, on = true} },
             { "geardown" ,              new Command { uniqueid = 00002, category = CommandCategories.cockpit, eventnumber = 0068, dcsid = "iCommandGearDown" , displayname=Labels.aicommands["geardown"], hasparameter =  true, on = false} },
-            { "loadout" ,               new Command { uniqueid = 00003, category = CommandCategories.cockpit, eventnumber = 1754, dcsid = "iCommandViewRearm" , displayname=Labels.aicommands["loadout"], hasparameter =  true, on = true} },
+            //{ "loadout" ,               new Command { uniqueid = 00003, category = CommandCategories.cockpit, eventnumber = 1754, dcsid = "iCommandViewRearm" , displayname=Labels.aicommands["loadout"], hasparameter =  true, on = true} },
             { "iCommandMaximum" ,       new Command { uniqueid = 09999, category = CommandCategories.cockpit, dcsid = "iCommandMaximum" } },
 
 
@@ -415,6 +415,7 @@ namespace VAICOM
             { "wMsgShowKneeboardTab",          new Command { uniqueid = 23004, category = CommandCategories.special, eventnumber = 4000, dcsid = "wMsgShowKneeboardTab",   displayname = Labels.aicommands["wMsgShowKneeboardTab"],blockedforFree = true } },
             //{ "wMsgClearKneeboardTab",         new Command { uniqueid = 23005, category = CommandCategories.special, eventnumber = 4000, name = "wMsgClearKneeboardTab",  displayname = Labels.aicommands["wMsgClearKneeboardTab"],blockedforFree = true } },
             { "repeat",                        new Command { uniqueid = 23006, category = CommandCategories.special, eventnumber = 4000, dcsid = "wMsgReplySayAgain",displayname = Labels.aicommands["repeat"], blockedforFCnonPro = true} }, //
+            { "loadout" ,                      new Command { uniqueid = 23007, category = CommandCategories.special, eventnumber = 4000, dcsid = "wMsgLoadout" , displayname=Labels.aicommands["loadout"]} },
             { "wMsgSpecialCmndsMaximum",       new Command { uniqueid = 23099, category = CommandCategories.special, eventnumber = 4000, dcsid = "wMsgSpecialCmndsMaximum" } },
 
             // AOCS commands 23100

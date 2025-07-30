@@ -8,7 +8,7 @@ package.cpath = package.cpath..";.\\LuaSocket\\?.dll;"
 local socket = require("socket")
 
 -- Debugging
-local DEBUG = false
+local DEBUG = true
 local function log(msg)
     if DEBUG then
         env.info("[VAICOM] " .. msg)
@@ -105,4 +105,4 @@ end
 append_export_hook("LuaExportStart", function(self) self:Start() end)
 append_export_hook("LuaExportBeforeNextFrame", function(self) self:BeforeNextFrame() end)
 append_export_hook("LuaExportAfterNextFrame", function(self) self:AfterNextFrame() end)
-append_export_hook("LuaExportStop", function(self) self:Stop() end)  
+append_export_hook("LuaExportStop", function(self) self:Stop() end)
