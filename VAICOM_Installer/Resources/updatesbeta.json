@@ -8,10 +8,10 @@
       "isdev": false,
       "productid": 1,
       "releasedate": 20250730,
-      "version": 3045,
-      "versionstring": "3.0.4.5",
+      "version": 3046,
+      "versionstring": "3.0.4.6",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " New Export.lua entry, optimized VAICOMPRO.lua and debugging, Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
+      "releasenotes": " Hooking bug fix, New Export.lua entry, optimized VAICOMPRO.lua and debugging, Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
     }
   ]
 }

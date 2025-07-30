@@ -2,13 +2,13 @@
 -- Original: VAICOMPRO.export.lua
 -- www.vaicompro.com
 
-package.path  = package.path..";.\\LuaSocket\\?.lua;"
-package.cpath = package.cpath..";.\\LuaSocket\\?.dll;"
+package.path  = package.path..";.\LuaSocket\?.lua;"
+package.cpath = package.cpath..";.\LuaSocket\?.dll;"
 
 local socket = require("socket")
 
 -- Debugging
-local DEBUG = true
+local DEBUG = false
 local function log(msg)
     if DEBUG then
         env.info("[VAICOM] " .. msg)
@@ -54,7 +54,7 @@ vaicom.insert = {
             true
         )
 
-        vaicom.sendtoclient = create_udp_socket(
+        vaicom.sendtoclient = create_udpsocket(
             vaicom.config.sendtoclient.address,
             vaicom.config.sendtoclient.port,
             vaicom.config.sendtoclient.timeout,
@@ -63,12 +63,14 @@ vaicom.insert = {
     end,
 
     BeforeNextFrame = function(self)
+    if vaicom.receivefromclient then
         local newdata = vaicom.receivefromclient:receive()
         if newdata then
-            log("Received data from client")
-            local ok, err = vaicom.sendtoradio:send(newdata)
-            if not ok then
-                log("Failed to send to radio: " .. tostring(err))
+        log("Received data from client")
+        local ok, err = vaicom.sendtoradio:send(newdata)
+        if not ok then
+        log("Failed to send to radio: " .. tostring(err))
+    end
             end
         end
     end,
@@ -84,7 +86,7 @@ vaicom.insert = {
             vaicom.sendtoclient:send(vaicom.config.beaconclose)
         end
 
-        for _, sock in pairs({"sendtoradio", "receivefromclient", "sendtoclient"}) do
+        for sock in pairs({"sendtoradio", "receivefromclient", "sendtoclient"}) do
             if vaicom[sock] then
                 socket.try(vaicom[sock]:close())
                 vaicom[sock] = nil
