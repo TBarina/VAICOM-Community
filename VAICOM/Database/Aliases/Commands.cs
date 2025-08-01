@@ -193,6 +193,8 @@ namespace VAICOM
                 { "Request Startup",        "requestenginesstart"   },
                 { "Request Hover",          "requesthover"          },
                 { "Request Taxi to Runway", "requesttaxitorunway"   },
+                { "Request Taxi for Takeoff","requesttaxitorunway"  },
+                { "Taxi Clearance",         "requesttaxitorunway"   },
                 { "Request Takeoff",        "requesttakeoff"        },
                 { "Request Departure",      "requesttakeoff"        },
                 { "Ready for Takeoff",      "requesttakeoff"        },
@@ -208,9 +210,7 @@ namespace VAICOM
                 { "Inbound for Landing",    "inbound"               },
                 { "Abort Inbound",          "abortinbound"          },
                 { "Cancel Approach",        "abortinbound"          },
-                { "Request Landing",        "requestlanding"        },
-                { "Request Taxi for Takeoff","reqtaxifortakeoff"    },
-                { "Taxi Clearance",          "reqtaxifortakeoff"    },
+                { "Request Landing",        "requestlanding"        },                
                 { "Request Taxi to Parking","reqtaxitoparking"      },
                 { "For parking Stand",      "reqtaxitoparking"      },
                 { "Inbound Straight",       "inboundstraight"       },
@@ -401,7 +401,7 @@ namespace VAICOM
                 
                 { "Established" ,              "wMsgLeaderEsteblished"                 },
                 { "Commencing" ,               "wMsgLeaderCommencing"                  },// CASE III
-                { "Checking In" ,              "wMsgLeaderCheckingIn"                  },// CASE III //fixed? Pene testing
+                { "Checking In" ,              "wMsgLeaderCheckingIn"                  },// CASE III 
                 { "Approach Check In" ,        "wMsgLeaderCheckingIn"                  }, //forced
                 { "Platform" ,                 "wMsgLeaderPlatform"                    },// CASE III
 

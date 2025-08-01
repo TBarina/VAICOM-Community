@@ -33,7 +33,7 @@ namespace VAICOM
         public static bool versiondev = false; //set if Dev version
         public static bool usenewselectmethod = false;
         public static string debuguser = "VAICOM_Tester";
-        public static string clientmode = ClientModes.Normal;
+        public static string clientmode = ClientModes.Debug; //set to Normal for release, Debug for development
 
         public static string versionstring = "";
         public static string pluginversionnumber = "3.0.4"; // used by Theme (Special page)
@@ -43,7 +43,7 @@ namespace VAICOM
         public static bool installkneeboard = true;
 
         public static bool deepdebugmode = true; //set to deepdebug mode
-        public static bool databaseencrypted = false;
+        public static bool databaseencrypted = false; //set to true if database is encrypted, false if not
         public static bool luahardreset = true;
         public static bool exitapp = false;
         public static bool datawasreset = false;
