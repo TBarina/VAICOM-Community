@@ -34,7 +34,7 @@ namespace VAICOM
             public bool value;
             public bool close;
             public double volume;
-            public int parameters;
+            public object parameters;
             public bool readback;
             public Server.Vector point;
 

@@ -1,5 +1,4 @@
-﻿
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace VAICOM
 {
@@ -52,13 +51,13 @@ namespace VAICOM
                                         break;
 
                                     case 18004: //hmd
-                                        State.currentmessage.parameters.Add(State.currentcommand.type);
-                                        State.currentmessage.parameters.Add(State.currentcommand.device);                                        
+                                        State.currentmessage.parameters.Add(new { device = 0, type = 4 });
+                                        //State.currentmessage.parameters.Add(State.currentcommand.type);                                        
                                         break;
 
                                     case 18005: //nvg
-                                        State.currentmessage.parameters.Add(State.currentcommand.type);//Set NVG
-                                        State.currentmessage.parameters.Add(State.currentcommand.device);
+                                        State.currentmessage.parameters.Add(new { device = 1, type = 4 });
+                                        //State.currentmessage.parameters.Add(State.currentcommand.type);
                                         break;
 
                                     case 18007: //epu on
@@ -82,9 +81,8 @@ namespace VAICOM
                                         break;
 
                                     case 18006: //load water
-                                        //State.currentmessage.parameters.Add(State.currentcommand.type);
-                                        State.currentmessage.parameters.Add(State.currentcommand.volume); // load water for AV-8B
-                                        State.currentmessage.parameters.Add(State.currentcommand.device);
+                                        State.currentmessage.parameters.Add(State.currentcommand.device); // load water for AV-8B
+                                        State.currentmessage.parameters.Add(State.currentcommand.volume);
                                         break;
 
                                     default:

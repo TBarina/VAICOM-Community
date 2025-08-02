@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250801,
-      "version": 3049,
-      "versionstring": "3.0.4.9",
+      "releasedate": 20250803,
+      "version": 30411,
+      "versionstring": "3.0.4.11",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": " Kneeboard reversion for this build, Fix taxi to runway bug, Fix long running rearming bug, Full opitimization of lua environment (thanks Hue Jass), Adds beter debugging, Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
+      "releasenotes": " Fix phantom scripts folder generation in Root Directory, Kneeboard reversion for this build, Fix taxi to runway bug, Fix long running rearming bug, Full opitimization of lua environment (thanks Hue Jass), Adds beter debugging, Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
     }
   ]
 }

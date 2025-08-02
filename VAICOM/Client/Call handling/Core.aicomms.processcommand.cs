@@ -369,9 +369,7 @@ namespace VAICOM
 
                 public static void sendmessage()
                 {
-
                     Log.Write("Ready, sending message for recipient class " + State.currentrecipientclass.Name + ", calledisclass = " + State.calledisclass, Colors.Inline);
-
 
                     if (ConstructMessage())
                     {
@@ -380,8 +378,9 @@ namespace VAICOM
                         State.previousmessageunit = State.currentmessageunit;
                         State.previousrecipientclass = State.currentrecipientclass;
 
-                        // for ics hotmic:
+                        Log.Write("Message sent successfully for recipient class " + State.currentrecipientclass.Name + ".", Colors.Inline);
 
+                        // for ics hotmic:
                         if (State.AIRIOactive && State.activeconfig.ICShotmic)
                         {
                             if (!State.valistening)
@@ -395,14 +394,12 @@ namespace VAICOM
                                 Extensions.RIO.helper.ShowWheel(false);
                                 Extensions.RIO.helper.showingjestermenu = false;
                             }
-
-                        }
-                        else
-                        {
-                            Log.Write("No message sent.", Colors.Inline);
                         }
                     }
-
+                    else
+                    {
+                        Log.Write("No message sent: message construction failed.", Colors.Warning);
+                    }
                 }
 
                 public static void sendvoid()

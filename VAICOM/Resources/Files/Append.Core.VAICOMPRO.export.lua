@@ -11,7 +11,7 @@ local socket = require("socket")
 local DEBUG = false
 local function log(msg)
     if DEBUG then
-        env.info("[VAICOM] " .. msg)
+        base.print("[VAICOM] " .. msg)
     end
 end
 
@@ -54,7 +54,7 @@ vaicom.insert = {
             true
         )
 
-        vaicom.sendtoclient = create_udpsocket(
+        vaicom.sendtoclient = create_udp_socket(
             vaicom.config.sendtoclient.address,
             vaicom.config.sendtoclient.port,
             vaicom.config.sendtoclient.timeout,
