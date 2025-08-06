@@ -225,9 +225,9 @@ namespace VAICOM
                     }
                 }
 
+                // Fix for CS1061: Ensure parameters is a List before calling Add
                 public static bool ConstructMessage()
                 {
-
                     try
                     {
                         Log.Write("Constructing message... ", Colors.Text);
@@ -254,7 +254,19 @@ namespace VAICOM
                         settunenum();
 
                         // inserts, parameters, appendices..
-                        if (State.currentcommand.RequiresFlightNumInsert()) { State.currentmessage.parameters.Add(State.currentflightrecipientnumber); }
+                        if (State.currentcommand.RequiresFlightNumInsert())
+                        {
+                            // Ensure parameters is a List<int> before adding
+                            if (State.currentmessage.parameters == null)
+                            {
+                                State.currentmessage.parameters = new List<int>();
+                            }
+                            var paramList = State.currentmessage.parameters as List<int>;
+                            if (paramList != null)
+                            {
+                                paramList.Add(State.currentflightrecipientnumber);
+                            }
+                        }
                         if (State.currentcommand.hasparameter) { SetParameters(); }
                         if (State.currentcommand.hasAppendix() & (State.have["apxwpn"] || State.have["apxdir"])) { SetAppendices(); }
 

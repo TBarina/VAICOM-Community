@@ -39,7 +39,7 @@ namespace VAICOM
                     public bool insert;
                     public string selectrecipient = "";
                     public int selectunit;
-                    public List<object> parameters;
+                    public object parameters;
                     public List<int> cmdsequence;
                     public List<int> actionsequence;
                     public List<DeviceAction> devsequence;

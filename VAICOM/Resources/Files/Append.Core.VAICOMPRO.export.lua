@@ -1,6 +1,6 @@
 -- VAICOM PRO server-side script (Optimized Version)
 -- Original: VAICOMPRO.export.lua
--- www.vaicompro.com
+-- Vaicom Discord at https://discord.gg/7c22BHNSCS 
 
 package.path  = package.path..";.\LuaSocket\?.lua;"
 package.cpath = package.cpath..";.\LuaSocket\?.dll;"
@@ -63,14 +63,16 @@ vaicom.insert = {
     end,
 
     BeforeNextFrame = function(self)
-    if vaicom.receivefromclient then
-        local newdata = vaicom.receivefromclient:receive()
-        if newdata then
-        log("Received data from client")
-        local ok, err = vaicom.sendtoradio:send(newdata)
-        if not ok then
-        log("Failed to send to radio: " .. tostring(err))
-    end
+        if vaicom.receivefromclient then
+            local newdata, err = vaicom.receivefromclient:receive()
+            if newdata then
+                log("Received data from client")
+                local ok, send_err = vaicom.sendtoradio:send(newdata)
+                if not ok then
+                    log("Failed to send to radio: " .. tostring(send_err))
+                end
+            elseif err ~= "timeout" then
+                log("Error receiving data from client: " .. tostring(err))
             end
         end
     end,
@@ -82,13 +84,23 @@ vaicom.insert = {
     Stop = function(self)
         log("Stopping sockets")
 
+        -- Send beacon close message to the client
         if vaicom.sendtoclient then
-            vaicom.sendtoclient:send(vaicom.config.beaconclose)
+            local ok, err = pcall(function()
+                vaicom.sendtoclient:send(vaicom.config.beaconclose)
+            end)
+            if not ok then
+                log("Error sending beacon close message: " .. tostring(err))
+            end
         end
 
-        for sock in pairs({"sendtoradio", "receivefromclient", "sendtoclient"}) do
+        -- Close all sockets
+        for _, sock in ipairs({"sendtoradio", "receivefromclient", "sendtoclient"}) do
             if vaicom[sock] then
-                socket.try(vaicom[sock]:close())
+                local ok, err = pcall(function() socket.try(vaicom[sock]:close()) end)
+                if not ok then
+                    log("Error closing socket " .. sock .. ": " .. tostring(err))
+                end
                 vaicom[sock] = nil
             end
         end
