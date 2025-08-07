@@ -8,10 +8,10 @@
       "isdev": false,
       "productid": 1,
       "releasedate": 20250807,
-      "version": 30412,
-      "versionstring": "3.0.4.12",
+      "version": 3050,
+      "versionstring": "3.0.5.0",
       "downloadurl": "https://raw.githubusercontent.com/Penecruz/VAICOM-Community/Development/VAICOM_Installer/Resources/VAICOMPRO.zip",
-      "releasenotes": "Fix, special commands passing (Request NVG/HMD, etc), Proritise UHF > VHF> FM and display in Kneeboard Frequesncies, Fix phantom scripts folder generation in Root Directory, Fix taxi to runway bug, Fix long running Request Rearming bug, Full opitimization of lua environment (thanks Hue Jass), Adds beter debugging, Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
+      "releasenotes": "Fix Export.lua reset function and add legacy entry removal, Fix, special commands passing (Request NVG/HMD, etc), Proritise UHF > VHF> FM and display in Kneeboard Frequesncies, Fix phantom scripts folder generation in Root Directory, Fix taxi to runway bug, Fix long running Request Rearming bug, Full opitimization of lua environment (thanks Hue Jass), Adds beter debugging, Update DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), Vaicom UI will now not remain on top of other programs (please provide feedback), Fix Supercarrier verification, database clean up"
     }
   ]
 }

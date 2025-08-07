@@ -186,19 +186,17 @@ namespace VAICOM.Properties {
         ///-- www.vaicompro.com
         ///
         ///function make(message)
-        ///	if message.type == base.Message.type.TYPE_MORZE then
-        ///		return p.morze(message.string, message.parameters.type)
-        ///	else
-        ///		base.assert(message.sender ~= nil)
-        ///		local country = getCountry(message)
-        ///		local stateProtocol = nil
-        ///		if country then
-        ///			stateProtocol = protocolByCountry[country] or defaultProtocol
-        ///		else
-        ///			stateProtocol = &apos;common&apos;
-        ///		end	
-        ///		local protocol = protocols[stateProtocol]
-        ///		ba [rest of string was truncated]&quot;;.
+        ///    -- Handle Morse code messages separately
+        ///    if message.type == base.Message.type.TYPE_MORZE then
+        ///        return p.morze(message.string, message.parameters.type)
+        ///    end
+        ///
+        ///    -- Sanity check: ensure sender exists
+        ///    base.assert(message.sender ~= nil)
+        ///
+        ///    -- Determine speech protocol based on sender&apos;s country
+        ///    local country = getCountry(message)
+        ///    local stateProtocol = protocolByCoun [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_speech {
             get {
@@ -212,21 +210,20 @@ namespace VAICOM.Properties {
         ///-- www.vaicompro.com
         ///
         ///function construct(self)
-        ///	self.skin = {
-        ///		container = {},
-        ///		item = Skin.staticSkin(),
-        ///		selectedItem = Skin.staticSkin(),
-        ///		arrows = Skin.staticSkin(),
-        ///		spacing = 0,        
-        ///	}
+        ///    -- === UI Skin Definition ===
+        ///    self.skin = {
+        ///        container     = {},
+        ///        item          = Skin.staticSkin(),
+        ///        selectedItem  = Skin.staticSkin(),
+        ///        arrows        = Skin.staticSkin(),
+        ///        spacing       = 0
+        ///    }
         ///
-        ///    self.window = Window.new(0,0,1280,30)
+        ///    -- === Window Setup ===
+        ///    self.window = Window.new(0, 0, 1280, 30)
         ///    self.window:setHasCursor(false)
         ///    self.window:setVisible(false)
-        ///    
-        ///	self.container = Panel.new()
-        ///	self.container:setSkin(self.skin.container)
-        ///	local x, y, width, height = self.conta [rest of string was truncated]&quot;;.
+        ///        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_TabSheetBar {
             get {
@@ -237,24 +234,23 @@ namespace VAICOM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to -- VAICOM PRO server-side script (Optimized Version)
         ///-- Original: VAICOMPRO.export.lua
-        ///-- www.vaicompro.com
+        ///-- Vaicom Discord at https://discord.gg/7c22BHNSCS 
         ///
-        ///package.path  = package.path..&quot;;.\\LuaSocket\\?.lua;&quot;
-        ///package.cpath = package.cpath..&quot;;.\\LuaSocket\\?.dll;&quot;
+        ///package.path  = package.path..&quot;;.\LuaSocket\?.lua;&quot;
+        ///package.cpath = package.cpath..&quot;;.\LuaSocket\?.dll;&quot;
         ///
         ///local socket = require(&quot;socket&quot;)
         ///
         ///-- Debugging
-        ///local DEBUG = true
+        ///local DEBUG = false
         ///local function log(msg)
         ///    if DEBUG then
-        ///        env.info(&quot;[VAICOM] &quot; .. msg)
+        ///        base.print(&quot;[VAICOM] &quot; .. msg)
         ///    end
         ///end
         ///
         ///-- Socket utility function
-        ///local function create_udp_socket(address, port, timeout, is_server)
-        ///    local sock = sock [rest of string was truncated]&quot;;.
+        ///local function create_udp_socket(address, port, timeout, is_ [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Append_Core_VAICOMPRO_export {
             get {
@@ -384,14 +380,7 @@ namespace VAICOM.Properties {
         ///	devices = {}
         ///end
         ///
-        ///devices[&quot;VAICOMPRO&quot;] = VAICOM_id
-        ///
-        ///
-        ///
-        ///
-        ///
-        ///
-        ///.
+        ///devices[&quot;VAICOMPRO&quot;] = VAICOM_id.
         /// </summary>
         public static string Append_Kneeboard_declare_VAICOMPRO_device {
             get {
@@ -1026,6 +1015,15 @@ namespace VAICOM.Properties {
             get {
                 object obj = ResourceManager.GetObject("icon_select", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to local vaicomlfs = require(&apos;lfs&apos;); dofile(vaicomlfs.writedir()..[[Scripts\\VAICOMPRO\\VAICOMPRO.export.lua]]).
+        /// </summary>
+        public static string LegacyExportmatch {
+            get {
+                return ResourceManager.GetString("LegacyExportmatch", resourceCulture);
             }
         }
         

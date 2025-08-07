@@ -40,7 +40,7 @@ namespace VAICOM
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.readback);
                             break;
 
-                        case "wMsgLeaderSpecialCommand": // crew special command to add device and paramater types.
+                        case "wMsgLeaderSpecialCommand": // crew special command to add device and paramater types.Must be an object as DCS does not support lists for this command. 
                             {
                                 int commandkey = State.currentcommand.uniqueid;
                                 switch (commandkey)
