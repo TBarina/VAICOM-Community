@@ -225,9 +225,9 @@ namespace VAICOM
                     }
                 }
 
-                // Fix for CS1061: Ensure parameters is a List before calling Add
                 public static bool ConstructMessage()
                 {
+
                     try
                     {
                         Log.Write("Constructing message... ", Colors.Text);
@@ -254,18 +254,10 @@ namespace VAICOM
                         settunenum();
 
                         // inserts, parameters, appendices..
+                        // Fix: Cast parameters to List<object> before calling Add
                         if (State.currentcommand.RequiresFlightNumInsert())
                         {
-                            // Ensure parameters is a List<int> before adding
-                            if (State.currentmessage.parameters == null)
-                            {
-                                State.currentmessage.parameters = new List<int>();
-                            }
-                            var paramList = State.currentmessage.parameters as List<int>;
-                            if (paramList != null)
-                            {
-                                paramList.Add(State.currentflightrecipientnumber);
-                            }
+                            (State.currentmessage.parameters as List<object>)?.Add(State.currentflightrecipientnumber);
                         }
                         if (State.currentcommand.hasparameter) { SetParameters(); }
                         if (State.currentcommand.hasAppendix() & (State.have["apxwpn"] || State.have["apxdir"])) { SetAppendices(); }
@@ -403,7 +395,6 @@ namespace VAICOM
                             State.currentmessage.type = Messagetypes.ActionIndexSequence;
                             Message.SetMenuItemAction();
                         }
-
                         // ------------------------------------------------------------------------
 
                         Log.Write("Done. ", Colors.Text);
@@ -419,6 +410,3 @@ namespace VAICOM
         }
     }
 }
-
-
-

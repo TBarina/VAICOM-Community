@@ -33,30 +33,17 @@ namespace VAICOM
                     }
 
                     // Ensure parameters is a List<object> before adding
-                    if (State.currentmessage.parameters is List<object> paramList)
+                    if (!(State.currentmessage.parameters is List<object>))
                     {
-                        paramList.Add(useweapon);
-                        paramList.Add(usedirection);
-                        paramList.Add(weaponnumber);
-                        paramList.Add(direction);
+                        State.currentmessage.parameters = new List<object>();
                     }
-                    else
-                    {
-                        // If not, create a new List<object> and assign
-                        var newParamList = new List<object>
-                        {
-                            useweapon,
-                            usedirection,
-                            weaponnumber,
-                            direction
-                        };
-                        State.currentmessage.parameters = newParamList;
-                    }
+                    var paramList = (List<object>)State.currentmessage.parameters;
+                    paramList.Add(useweapon);
+                    paramList.Add(usedirection);
+                    paramList.Add(weaponnumber);
+                    paramList.Add(direction);
                 }
             }
         }
     }
 }
-
-
-
