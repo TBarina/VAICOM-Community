@@ -254,7 +254,7 @@ namespace VAICOM
                         settunenum();
 
                         // inserts, parameters, appendices..
-                        // Fix: Cast parameters to List<object> before calling Add
+                        // Flight and Wingmen: Cast parameters to List<object> before calling Add
                         if (State.currentcommand.RequiresFlightNumInsert())
                         {
                             (State.currentmessage.parameters as List<object>)?.Add(State.currentflightrecipientnumber);

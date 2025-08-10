@@ -340,8 +340,11 @@ namespace VAICOM
                 }
             }
 
-
-
+            public static void LogFlightUnits(ServerMessage serverMessage)
+            {
+                Log.Write($"Flight units in serverMessage: {serverMessage.availablerecipients["Flight"]?.Count ?? 0}", Colors.Text);
+                Log.Write($"Flight units in State: {State.currentstate.availablerecipients["Flight"].Count}", Colors.Text);
+            }
         }
     }
 }

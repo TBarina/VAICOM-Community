@@ -20,22 +20,26 @@ namespace VAICOM
                     switch (selector)
                     {
                         case "wMsgLeaderMakeRecon": // make recon
+                            Log.Write("Setting parameters for Make Recon", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.parameters);
                             break;
 
                         case "wMsgLeaderInbound": // ATC inbound 
+                            Log.Write("Setting parameters for ATC Inbound", Colors.Inline);
                             State.currentcommand.point = State.currentstate.availablerecipients["Player"][0].pos;
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.point);
                             break;
 
                         case "wMsgLeaderCheckIn":// jtac check-in
+                            Log.Write("Setting parameters for JTAC Check-In", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.parameters);
                             break;
 
                         case "wMsgLeader9LineReadback": // jtac readback
+                            Log.Write("Setting parameters for JTAC Readback", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.readback);
                             break;
@@ -86,53 +90,63 @@ namespace VAICOM
                                         break;
 
                                     case 18006: //load water
+                                        Log.Write("Setting parameters for Load Water", Colors.Inline);
                                         EnsureParametersIsList();
                                         ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.device); // load water for AV-8B
                                         ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.volume);
                                         break;
 
                                     default:
+                                        Log.Write($"Unhandled command: {State.currentcommand.dcsid}, uniqueid: {State.currentcommand.uniqueid}", Colors.Warning);
                                         break;
                                 }
                             }
                             break;
 
                         case "wMsgLeaderRequestRefueling":
+                            Log.Write("Setting parameters for Request Refueling", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.volume);
                             break;
 
                         case "wMsgLeaderGroundToggleElecPower":
+                            Log.Write("Setting parameters for Ground Toggle Electric Power", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.on);
                             break;
 
                         case "wMsgLeaderGroundToggleWheelChocks":
+                            Log.Write("Setting parameters for Ground Toggle Wheel Chocks", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.on); // F-14 try leaving state null?
                             break;
 
                         case "wMsgLeaderGroundToggleCanopy":
+                            Log.Write("Setting parameters for Ground Toggle Canopy", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.close); //.on
                             break;
 
                         case "wMsgLeaderGroundToggleAir":
+                            Log.Write("Setting parameters for Ground Toggle Air", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.on);
                             break;
 
                         case "wMsgLeaderGroundApplyAir":
+                            Log.Write("Setting parameters for Ground Apply Air", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.on);
                             break;
 
                         case "wMsgLeaderGroundGestureSalut":
+                            Log.Write("Setting parameters for Ground Gesture Salut", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.on);
                             break;
 
                         case "wMsgLeaderGroundRequestLaunch":
+                            Log.Write("Setting parameters for Ground Request Launch", Colors.Inline);
                             EnsureParametersIsList();
                             ((List<object>)State.currentmessage.parameters).Add(State.currentcommand.on);
                             break;
