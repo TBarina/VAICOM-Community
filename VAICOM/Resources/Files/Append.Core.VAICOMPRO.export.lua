@@ -2,8 +2,8 @@
 -- Original: VAICOMPRO.export.lua
 -- Vaicom Discord at https://discord.gg/7c22BHNSCS 
 
-package.path  = package.path..";.\LuaSocket\?.lua;"
-package.cpath = package.cpath..";.\LuaSocket\?.dll;"
+package.path  = package.path..";.\\LuaSocket\\?.lua;"
+package.cpath = package.cpath..";.\\LuaSocket\\?.dll;"
 
 local socket = require("socket")
 

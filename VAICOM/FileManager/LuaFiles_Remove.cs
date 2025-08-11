@@ -129,7 +129,9 @@ namespace VAICOM
                                                     var blocksToRemove = new (string Block, string Name)[]
                                                     {
                                                         (Properties.Resources.Exportmatch, "New Vaicom code"),
-                                                        (Properties.Resources.LegacyExportmatch, "Legacy Vaicom code")
+                                                        (Properties.Resources.LegacyExportmatch, "Legacy Vaicom code"),
+                                                        ("local vaicomlfs = require('lfs'); dofile(vaicomlfs.writedir()..[[Scripts\\VAICOMPRO\\VAICOMPRO.export.lua]])", "Legacy Vaicom code with double backslashes"),
+                                                        ("local vaicomlfs = require('lfs'); dofile(vaicomlfs.writedir()..[[Scripts\\VAICOMPRO\\VAICOMPRO.export.lua]])".Replace(@"\\", @"\"), "Legacy Vaicom code with single backslashes")
                                                     };
 
                                                     foreach (var blockInfo in blocksToRemove)
