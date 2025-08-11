@@ -7,11 +7,11 @@
       "isbeta": false,
       "isdev": false,
       "productid": 1,
-      "releasedate": 20250810,
-      "version": 3052,
-      "versionstring": "3.0.5.2",
-      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.5.2/VAICOMPRO.zip",
-      "releasenotes": "Release 3.0.5.2 -	** IMPORTANT YOU MUST RESET LUA CODE IN THE RESET TAB OF THE VAICOM UI BEFORE STARTING DCS** - Fixes the rearming command to ensure the Mission Resources dialog pops up, Fixes NVG, HMD, Inertial starter commands and other special commands,Fixes “request taxi for takeoff” bug, Fixes Supercarrier verification bug, Fixes lua code reset behavior and expands to cleanup legacy export.lua hook if present, New Kneeboard frequency priority for recipients UHF>VHF>FM, Fixes bug with Flight and Wingman commands, Fixes phantom scripts folder generation in Root Directory, New DCS Input Commands Table to latest DCS standard (also add Dev notes and instructions to codebase), New debugging and logging improvements, New lua code optimization for many appended files, New Vaicom UI will now not remain on top of other programs (please provide feedback), New export.lua safe handling and better logging, New faster two-way communications rate between DCS and Vaicom, New safe handling of export.lua and better logging, New lua code optimization for many appended files, New Vaicom UI window handling now will not remain on top of other windows."
+      "releasedate": 20250811,
+      "version": 3053,
+      "versionstring": "3.0.5.3",
+      "downloadurl": "https://github.com/Penecruz/VAICOM-Community/releases/download/v3.0.5.3/VAICOMPRO.zip",
+      "releasenotes": "Release 3.0.5.3 -\t** HOTFIX for some systems having hooking issues with the new export.lua code (No other changes)**"
     }
   ]
 }
