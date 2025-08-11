@@ -74,31 +74,34 @@ Flashing Comms Menu after DCS World update is a known issue and can be resolved 
 ## Patch Notes
 
 
-**VAICOM plugin 3.0.1.8**
+**VAICOM plugin 3.0.5.3**
 
-This update fixes a bug Introduced in the last version for Ground and tower commands. Adds some new Tanker recipients and some more AI_ATC functionality. It also see the branding change from Vaicom Pro to just Vaicom, this is long overdue as there is no paid content in the community version.
+This update adds a new hooking method for DCS and a major lua optimization, which brings a faster communication rate between Vaicom and DCS, along with better logging of message construction and message passing when set to debug. It also adds a new file handling routine.
 
--	Fix conflict errors in the Aliases with "Request Taxi".
--	Add new S3 Tanker callsigns Bloodhound, Mauler and Navy One.
--	Add new return to approach AI_ATC command.
--	Slight changes in Moose Airboss commands and additional "Airboss Training Pattern" command.
--	New Vaicom branding and artwork.
+The import part for the end user, It also makes many fixes, brings better Kneeboard data management and stops the phantom Scripts file that was being generated in the root directory during file writing.
 
+-	Fixes the rearming command to ensure the Mission Resources dialog pops up.
+-	Fixes NVG, HMD, Inertial starter commands and other special commands.
+-	Fixes “request taxi for takeoff” bug
+-	Fixes Supercarrier verification bug
+-	Fixes lua code reset behavior and expands to cleanup legacy export.lua hook if present.
+-	New Kneeboard frequency priority for recipients UHF>VHF>FM.
+-	New faster two-way communications rate between DCS and Vaicom.
+-	New safe handling of export.lua and better logging.
+-	New lua code optimization for many appended files.
+-	New Vaicom UI window handling now will not remain on top of other windows.
 
-YOU WILL NEED A KEYWORD RESET AND RESTART VOICE ATTACK, DO FINISH IN THE EDITOR AND PASTE THE NEW KEYWORD SET TO THE PROFILE AS DESCRIBED IN THE MANUAL.
+ALL USERS NEED TO DO A RESET OF THEIR LUA CODE USING THE RESET TAB OF THE VAICOM UI.
+If you do not perform this reset the legacy entry will remain and Vaicom will not connect to DCS
+
 
 Known Issues
 
--	Rearming Request with Ground Crew will not open Rearming UI, only rearms last selection (Use Options Command to access menu for now).
-
-There have been changes since DCS Version 2.9.6.X that adds new rearm routine to support
-Dynamic Spawn Client Slots, Some Users have reported issues when jumping between Dynamic slots and Vaicom Pro not recognizing the module.
-
-**Note the MSI version below is for Voice Attack 1.16 and Voice Attack 2.0 or greater only. If you have both installed, you must manually select the path to the version you would like to install Vaicom.**
+- None 
 
 ## Community Team
 
-Pene, Special K, D3adCy11nd3r, Folgers, Hornblower793, Liam8, MAXsenna, MisterOutofTime, Raskit and stag1975
+Pene, Special K, D3adCy11nd3r, Folgers, Hornblower793, Liam8, MAXsenna, MisterOutofTime, Raskit, Hue Jass and stag1975
 
 ## Patreon Donations
 
@@ -107,4 +110,4 @@ If you want to donate a beer, visit the Official Vaicom Patreon.
 
 
 #### Beta Team
-104th_Aeons, GSG-3|Turbine|202, DrChainsaw, Jaeger, Nicola, Padinn, SPAZ-505, tomeye, Virus, Bonz RexExGSR, LawnBoy and Scotia
+104th_Aeons, GSG-3|Turbine|202, DrChainsaw, Jaeger, Nicola, Padinn, SPAZ-505, tomeye, Virus, Bonz RexExGSR, LawnBoy, Scotia, Sleighzy and MrAxen, 
