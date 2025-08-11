@@ -171,7 +171,7 @@ namespace VAICOM
                     unitslist = new List<string>();
                     List<KneeboardUnitSummary> units = new List<KneeboardUnitSummary>();
 
-                    Log.Write($"Processing {State.currentstate.availablerecipients[cat].Count} Flight units for kneeboard.", Colors.Text);
+                    Log.Write($"Processing {State.currentstate.availablerecipients[cat].Count} {cat} units for kneeboard.", Colors.Text);
 
                     foreach (Server.DcsUnit unit in State.currentstate.availablerecipients[cat])
                     {
