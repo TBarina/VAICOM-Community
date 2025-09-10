@@ -157,6 +157,12 @@ namespace VAICOM
                 State.Stopwatch = new System.Diagnostics.Stopwatch();
                 Server.homebaselocation = new Server.Vector();
 
+                if (State.KneeboardExporter != null)
+                {
+                    State.KneeboardExporter.Dispose();
+                    State.KneeboardExporter = null;
+                    Log.Write("Kneeboard remote exporter stopped.", Colors.Text);
+                }
             }
 
             public static void ResetConfig(dynamic vaProxy)
@@ -462,6 +468,35 @@ namespace VAICOM
                     StartNetwork(vaProxy);
                     StartTimers(vaProxy);
                     StartSpeechSynth(vaProxy);
+
+                    // === Kneeboard Remote Exporter init ===
+                    try
+                    {
+                        // Base folder "C:\Users\<utente>\Saved Games"
+                        string baseFolder = Framework.SpecialFoldersRetrieve.GetSavedGames();
+
+                        // Usa la stessa logica di VAICOM: versione di DCS (es. "DCS" o "DCS.openbeta")
+                        // NB: set.Key deve essere quello valido nel contesto di inizializzazione
+                        string dcsVersion = Server.dcsversion.ContainsKey("root")
+                            ? Server.dcsversion["root"]
+                            : "DCS"; // fallback
+
+                        string kneeboardFolder = Path.Combine(baseFolder, dcsVersion, "Kneeboard");
+
+                        State.KneeboardExporter = new VAICOM.Extensions.Kneeboard.KneeboardRemoteExporter(
+                            kneeboardFolder,
+                            "localhost",        // IP del PC remoto
+                            55000               // Porta receiver 
+                        );
+
+                        Log.Write("Kneeboard remote exporter started on: " + kneeboardFolder, Colors.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Write("Kneeboard exporter init failed: " + ex.Message, Colors.Warning);
+                    }
+                    // === End Kneeboard Remote Exporter init ===
+
                     InitListeningState(vaProxy);
                     UI.Playsound.Startup();
                     SendUpdateRequest();

@@ -131,6 +131,8 @@ namespace VAICOM
         public static KneeboardState KneeboardState;
         public static Dictionary<string, SortedDictionary<string, List<string>>>[] KneeboardCatAliasStrings;
 
+        public static VAICOM.Extensions.Kneeboard.KneeboardRemoteExporter KneeboardExporter;
+
         // ------------------------------------------------------------------------------------------------------------
         // call handling control flags
 

@@ -212,6 +212,11 @@ namespace VAICOM
                 {
                     activecat = "LOG";
                 }
+                public void DumpToLog()
+                {
+                    VAICOM.Static.Log.Write("=== KneeboardState dump ===", VAICOM.Static.Colors.Text);
+                    VAICOM.Static.Log.Write("Active category: " + activecat, VAICOM.Static.Colors.Text);
+                }
 
             }
         }
