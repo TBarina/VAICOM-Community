@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Speech.Synthesis;
 using VAICOM.Database;
 using VAICOM.Extensions.Kneeboard;
+using VAICOM.Extensions.Kneeboard.Logger;
 using VAICOM.Extensions.WorldAudio;
 using VAICOM.FileManager;
 using VAICOM.Products;
@@ -423,12 +424,9 @@ namespace VAICOM
 
                 try
                 {
-
                     State.SetEnvironment(vaProxy);
                     ResetProcessValues(vaProxy);
-
                     Products.Products.CheckActiveLicenses();
-
                     FileHandler.Root.CheckSubFolders();
                     FileHandler.Root.ExtractCompagnionApp();
                     FileHandler.Root.ExtractNoLoadContext();
@@ -454,20 +452,10 @@ namespace VAICOM
 
                 try
                 {
-
                     FixFiles(vaProxy);
                     CheckUpdates(vaProxy);
                     LogVersionData(vaProxy);
                     ResetStateValues(vaProxy);
-                    Processor.InitTTSPlaybackStream();
-                    ResetPTTConfig(vaProxy);
-                    InstallLuaFiles(vaProxy);
-                    FileHandler.Root.CheckProfile(false);
-                    MergeRIO(vaProxy);
-                    CreateDatabase(vaProxy);
-                    StartNetwork(vaProxy);
-                    StartTimers(vaProxy);
-                    StartSpeechSynth(vaProxy);
 
                     // === Kneeboard Remote Exporter init ===
                     try
@@ -490,6 +478,11 @@ namespace VAICOM
                         );
 
                         Log.Write("Kneeboard remote exporter started on: " + kneeboardFolder, Colors.Text);
+
+                        State.KneeboardExporter.StartTest();
+
+                        VAICOM.Extensions.Kneeboard.KneeboardUpdater.UpdateServerData();
+
                     }
                     catch (Exception ex)
                     {
@@ -497,12 +490,22 @@ namespace VAICOM
                     }
                     // === End Kneeboard Remote Exporter init ===
 
+                    Processor.InitTTSPlaybackStream();
+                    ResetPTTConfig(vaProxy);
+                    InstallLuaFiles(vaProxy);
+                    FileHandler.Root.CheckProfile(false);
+                    MergeRIO(vaProxy);
+                    CreateDatabase(vaProxy);
+                    StartNetwork(vaProxy);
+                    StartTimers(vaProxy);
+                    StartSpeechSynth(vaProxy);
                     InitListeningState(vaProxy);
                     UI.Playsound.Startup();
                     SendUpdateRequest();
 
                     Log.Write("Startup finished.", Colors.Text);
-                    Log.Write("Ready for commands.", Colors.Message);
+                    //Log.Write("Ready for commands.", Colors.Message);
+                    RemoteLogger.Write("Ready for commands.");
 
                     if (State.clientmode.Equals(ClientModes.Debug))
                     {

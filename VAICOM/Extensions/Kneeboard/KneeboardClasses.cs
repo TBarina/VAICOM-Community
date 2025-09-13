@@ -86,23 +86,74 @@ namespace VAICOM
 
                 public KneeboardServerData()
                 {
-                    theater = State.currentstate.theatre;
-                    dcsversion = State.currentstate.dcsversion;
-                    aircraft = State.currentstate.id;
-                    flightsize = State.currentstate.availablerecipients["Flight"].Count;
-                    playerusername = State.currentstate.playerusername;
-                    playercallsign = State.currentstate.playercallsign;
-                    coalition = State.currentstate.playercoalition.ToUpper();
-                    Int32.TryParse(State.currentstate.sortie, out int daytimeinsecs);
-                    int hr = (daytimeinsecs / 3600);
-                    int min = (daytimeinsecs - hr * 3600) / 60;
-                    sortie = "TO " + KneeboardHelper.theatercode(State.currentstate.theatre) + " MST " + hr.ToString().PadLeft(2, '0') + ":" + min.ToString().PadRight(2, '0') + " " + KneeboardHelper.theatertimezonestring(State.currentstate.theatre);
-                    task = State.currentstate.task;
-                    country = State.currentstate.country;
-                    missiontitle = State.currentstate.missiontitle;
-                    missionbriefing = State.currentstate.missionbriefing;
-                    missiondetails = State.currentstate.missiondetails;
-                    multiplayer = State.currentstate.multiplayer;
+                    try
+                    {
+                        theater = State.currentstate.theatre;
+                        dcsversion = State.currentstate.dcsversion;
+                        aircraft = State.currentstate.id;
+                        //flightsize = State.currentstate.availablerecipients["Flight"].Count;
+                        // CORREZIONE PER flightsize - con controllo null
+                        flightsize = 0;
+                        if (State.currentstate?.availablerecipients != null &&
+                            State.currentstate.availablerecipients.ContainsKey("Flight"))
+                        {
+                            flightsize = State.currentstate.availablerecipients["Flight"].Count;
+                        }
+                        playerusername = State.currentstate.playerusername;
+                        playercallsign = State.currentstate.playercallsign;
+                        //coalition = State.currentstate.playercoalition.ToUpper();
+                        // CORREZIONE PER coalition - con controllo null
+                        coalition = State.currentstate?.playercoalition?.ToUpper();
+
+                        Int32.TryParse(State.currentstate.sortie, out int daytimeinsecs);
+                        int hr = (daytimeinsecs / 3600);
+                        int min = (daytimeinsecs - hr * 3600) / 60;
+                        //sortie = "TO " + KneeboardHelper.theatercode(State.currentstate.theatre) + " MST " + hr.ToString().PadLeft(2, '0') + ":" + min.ToString().PadRight(2, '0') + " " + KneeboardHelper.theatertimezonestring(State.currentstate.theatre);
+                        // CORREZIONE PER sortie - con controllo null
+                        sortie = "N/A";
+                        if (!string.IsNullOrEmpty(State.currentstate?.sortie))
+                        {
+                            // DICHIARA LA VARIABILE QUI - questo risolve l'errore CS0136
+                            Int32.TryParse(State.currentstate.sortie, out int _daytimeinsecs);
+                            int _hr = (_daytimeinsecs / 3600);
+                            int _min = (_daytimeinsecs - hr * 3600) / 60;
+                            string theaterCode = KneeboardHelper.theatercode(State.currentstate?.theatre);
+                            string timezoneString = KneeboardHelper.theatertimezonestring(State.currentstate?.theatre);
+                            sortie = $"TO {theaterCode} MST {_hr:00}:{_min:00} {timezoneString}";
+                        }
+                        else
+                        {
+                            // Se sortie è null o vuoto, usa valori di default
+                            sortie = "TO N/A MST 00:00 N/A";
+                        }
+                        task = State.currentstate.task;
+                        country = State.currentstate.country;
+                        missiontitle = State.currentstate.missiontitle;
+                        missionbriefing = State.currentstate.missionbriefing;
+                        missiondetails = State.currentstate.missiondetails;
+                        multiplayer = State.currentstate.multiplayer;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log dell'errore nel costruttore
+                        Log.Write($"KneeboardServerData constructor error: {ex.Message}", Colors.Warning);
+
+                        // Imposta valori di default in caso di errore
+                        theater = "N/A";
+                        dcsversion = "N/A";
+                        aircraft = "N/A";
+                        flightsize = 0;
+                        playerusername = "N/A";
+                        playercallsign = "N/A";
+                        coalition = "N/A";
+                        sortie = "TO N/A MST 00:00 N/A";
+                        task = "N/A";
+                        country = "N/A";
+                        missiontitle = "N/A";
+                        missionbriefing = "N/A";
+                        missiondetails = "N/A";
+                        multiplayer = false;
+                    }
                 }
 
             }

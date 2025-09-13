@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using VAICOM.Client;
+using VAICOM.Extensions.Kneeboard.Logger;
 using VAICOM.Servers;
 using VAICOM.Static;
 
@@ -66,12 +67,24 @@ namespace VAICOM
                     //
                     try
                     {
+                        RemoteLogger.Write("Updating server data");
+
                         KneeboardMessage msg = new KneeboardMessage();
                         msg.serverdata = new KneeboardServerData();
                         Client.DcsClient.SendKneeboardMessage(msg);
+
+                        // Invia anche al receiver remoto se abilitato
+                        if (State.KneeboardExporter != null && State.KneeboardExporter.Enabled)
+                        {
+                            Log.Write("Sending server data to remote receiver", Colors.Text);
+                            State.KneeboardExporter.SendKneeboardMessage(msg);
+                        }
+
+                        RemoteLogger.Write("Server data updated successfully");
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Log.Write("UpdateServerData error: " + ex.Message, Colors.Warning);
                     }
                 }
 
@@ -146,12 +159,33 @@ namespace VAICOM
                 {
                     try
                     {
+                        //Log.Write("SendHeartBeatCycle started", Colors.Text);
+
+                        // 1. Check if State is null
+                        if (State.currentstate == null)
+                        {
+                            //Log.Write("State.currentstate is null", Colors.Warning);
+                            return;
+                        }
+
                         KneeboardMessage msg = new KneeboardMessage(); // includes dict state
 
-                        msg.serverdata = new KneeboardServerData();
+                        // 2. Check if KneeboardServerData constructor works
+                        try
+                        {
+                            msg.serverdata = new KneeboardServerData();
+                            //Log.Write("KneeboardServerData created successfully", Colors.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Write("KneeboardServerData creation failed: " + ex.Message, Colors.Warning);
+                            return;
+                        }
 
                         if (State.Proxy.Dictation.IsOn()) // in dictation mode: include buffer update every 1/4 second:
                         {
+                            Log.Write("Dictation mode is ON", Colors.Text);
+
                             State.uitimerinterval = 250;
                             // RELAY TO KNEEBOARD
                             string dictbuffer = State.Proxy.Utility.ParseTokens("{DICTATION:NEWLINE}");
@@ -168,9 +202,31 @@ namespace VAICOM
 
                         Client.DcsClient.SendKneeboardMessage(msg);
 
+                        // INVIO AL RECEIVER REMOTO
+                        if (State.IsKneeboardExporterReady && State.KneeboardExporter != null)
+                        {
+                            if (State.KneeboardExporter.Enabled)
+                            {
+                                Log.Write("Sending to remote receiver", Colors.Text);
+                                State.KneeboardExporter.SendKneeboardMessage(msg);
+                            }
+                            else
+                            {
+                                Log.Write("Remote exporter disabled", Colors.Text);
+                            }
+                        }
+                        //else
+                        //{
+                        //    Log.Write("KneeboardExporter is null", Colors.Text);
+                        //}
+
+                        //Log.Write("SendHeartBeatCycle completed", Colors.Text);
+
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Log.Write("SendHeartBeatCycle error: " + ex.Message, Colors.Text);
+                        Log.Write("Stack trace: " + ex.StackTrace, Colors.Warning);
                     }
                 }
 
@@ -214,8 +270,8 @@ namespace VAICOM
                 }
                 public void DumpToLog()
                 {
-                    VAICOM.Static.Log.Write("=== KneeboardState dump ===", VAICOM.Static.Colors.Text);
-                    VAICOM.Static.Log.Write("Active category: " + activecat, VAICOM.Static.Colors.Text);
+                    Log.Write("=== KneeboardState dump ===", VAICOM.Static.Colors.Text);
+                    Log.Write("Active category: " + activecat, VAICOM.Static.Colors.Text);
                 }
 
             }

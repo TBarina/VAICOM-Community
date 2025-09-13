@@ -72,6 +72,11 @@ namespace VAICOM
         public static bool updateavailable_wingman = false;
 
         // ------------------------------------------------------------------------------------------------------------
+        // KneeboardExporter
+
+        public static bool IsKneeboardExporterReady = false;
+
+        // ------------------------------------------------------------------------------------------------------------
         // AIRIO
 
         public static string riomod = "F-14AB";

@@ -122,6 +122,8 @@ namespace VAICOM
                     State.KneeboardState = new KneeboardState();
                     State.kneeboardcurrentbuffer = "";
                     State.Proxy.Dictation.ClearBuffer(false, out String Message2);
+
+                    VAICOM.Extensions.Kneeboard.KneeboardUpdater.UpdateServerData();
                 }
                 catch
                 {
