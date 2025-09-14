@@ -9,7 +9,6 @@ namespace VAICOM.KneeboardReceiver
     {
         private AdvancedKneeboardManager _manager;
         private List<string> _pendingMessages = new List<string>();
-        private PageGroup _selectedGroup;
 
         public MainForm()
         {
@@ -33,100 +32,174 @@ namespace VAICOM.KneeboardReceiver
             UpdateNightModeButton();
         }
 
-        //private void groupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void BuildKneeboardTree()
+        {
+            kneeboardTreeView.Nodes.Clear();
+            var groups = _manager.GetAvailableGroups();
+
+            // Nodo radice con tipo Root
+            var rootNode = new TreeNode("📁 Kneeboard Groups")
+            {
+                Tag = new NodeInfo { Type = NodeType.Root } // Usa NodeType.Root
+            };
+
+            foreach (var group in groups.OrderBy(g => g.DisplayName))
+            {
+                var groupNode = new TreeNode(group.DisplayName)
+                {
+                    Tag = new NodeInfo { Type = NodeType.Group, GroupName = group.Name }
+                };
+
+                // Aggiungi sottogruppi
+                if (group.SubGroups.Count > 0)
+                {
+                    // Nodo per il gruppo principale (senza sottogruppo)
+                    var mainGroupNode = new TreeNode("(Main Group)")
+                    {
+                        Tag = new NodeInfo { Type = NodeType.MainGroup, GroupName = group.Name }
+                    };
+                    groupNode.Nodes.Add(mainGroupNode);
+
+                    // Sottogruppi
+                    foreach (var subGroup in group.SubGroups.OrderBy(s => s))
+                    {
+                        var subGroupNode = new TreeNode(subGroup)
+                        {
+                            Tag = new NodeInfo
+                            {
+                                Type = NodeType.SubGroup,
+                                GroupName = group.Name,
+                                SubGroupName = subGroup
+                            }
+                        };
+                        groupNode.Nodes.Add(subGroupNode);
+                    }
+                }
+
+                rootNode.Nodes.Add(groupNode);
+            }
+
+            //// Aggiungi nodo per Brevity Codes
+            //var brevityNode = new TreeNode("Brevity Codes")
+            //{
+            //    Tag = new NodeInfo { Type = NodeType.BrevityRoot }
+            //};
+
+            //for (char c = 'A'; c <= 'Z'; c++)
+            //{
+            //    var letterNode = new TreeNode(c.ToString())
+            //    {
+            //        Tag = new NodeInfo
+            //        {
+            //            Type = NodeType.BrevityLetter,
+            //            GroupName = "BrevityCodes",
+            //            SubGroupName = c.ToString()
+            //        }
+            //    };
+            //    brevityNode.Nodes.Add(letterNode);
+            //}
+            //rootNode.Nodes.Add(brevityNode);
+            
+            kneeboardTreeView.Nodes.Add(rootNode);
+            rootNode.Expand();
+        }        //private void ConfigureTreeViewImages()
         //{
-        //    if (groupListBox.SelectedIndex >= 0)
-        //    {
-        //        var groups = _manager.GetAvailableGroups();
-        //        if (groupListBox.SelectedIndex < groups.Count)
-        //        {
-        //            _selectedGroup = groups[groupListBox.SelectedIndex];
-        //            LoadSubGroups(_selectedGroup);
+        //    var imageList = new ImageList();
+        //    imageList.Images.Add("group", SystemIcons.Information); // Icona gruppo
+        //    imageList.Images.Add("folder", SystemIcons.Folder); // Icona cartella
+        //    imageList.Images.Add("folder_open", SystemIcons.FolderOpen); // Cartella aperta
+        //    imageList.Images.Add("book", SystemIcons.Book); // Libro
+        //    imageList.Images.Add("page", SystemIcons.Document); // Pagina
 
-        //            // Se il gruppo non ha sottogruppi, caricalo direttamente
-        //            if (_selectedGroup.SubGroups.Count == 0)
-        //            {
-        //                _manager.LoadGroup(_selectedGroup.Name);
-        //            }
-        //        }
-        //    }
+        //    kneeboardTreeView.ImageList = imageList;
         //}
-        private void groupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ConfigureTreeViewImages()
         {
-            if (groupListBox.SelectedIndex >= 0)
-            {
-                var groups = _manager.GetAvailableGroups();
-                if (groupListBox.SelectedIndex < groups.Count)
-                {
-                    var selectedGroup = groups[groupListBox.SelectedIndex];
+            var imageList = new ImageList();
 
-                    // PER TUTTI I GRUPPI, carica senza sottogruppo
-                    _manager.LoadGroup(selectedGroup.Name);
-                    DisplayCurrentPage();
-                }
-            }
+            // Usa icone di sistema disponibili invece di quelle inesistenti
+            imageList.Images.Add("group", SystemIcons.Information); // Icona gruppo
+            imageList.Images.Add("folder", SystemIcons.Shield); // Usa Shield come folder (alternativa)
+            imageList.Images.Add("folder_open", SystemIcons.Exclamation); // Alternativa per folder open
+            imageList.Images.Add("book", SystemIcons.Application); // Libro
+            imageList.Images.Add("page", SystemIcons.Asterisk); // Pagina
+
+            kneeboardTreeView.ImageList = imageList;
         }
 
-        private void LoadSubGroups(PageGroup group)
+        private void KneeboardTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            subGroupListBox.Items.Clear();
-
-            if (group.SubGroups.Count > 0)
+            if (e.Node?.Tag is NodeInfo nodeInfo)
             {
-                subGroupListBox.Items.Add("(Main Group)");
-                foreach (var subGroup in group.SubGroups.OrderBy(s => s))
+                switch (nodeInfo.Type)
                 {
-                    subGroupListBox.Items.Add(subGroup);
+                    case NodeType.Root:
+                        // Nessuna azione per la radice
+                        break;
+
+                    case NodeType.Group:
+                        // Gruppo senza sottogruppi - carica direttamente
+                        _manager.LoadGroup(nodeInfo.GroupName);
+                        DisplayCurrentPage();
+                        break;
+
+                    case NodeType.MainGroup:
+                        // Gruppo principale (senza sottogruppo)
+                        _manager.LoadGroup(nodeInfo.GroupName);
+                        DisplayCurrentPage();
+                        break;
+
+                    case NodeType.SubGroup:
+                        // Sottogruppo specifico
+                        _manager.LoadGroup(nodeInfo.GroupName, nodeInfo.SubGroupName);
+                        DisplayCurrentPage();
+                        break;
+
+                    case NodeType.BrevityRoot:
+                        // Nessuna azione per la radice brevity
+                        break;
+
+                    case NodeType.BrevityLetter:
+                        // Lettera brevity code
+                        _manager.LoadGroup(nodeInfo.GroupName, nodeInfo.SubGroupName);
+                        DisplayCurrentPage();
+                        break;
                 }
             }
+
+
+            // Forza il refresh
+            kneeboardTreeView.Refresh();
+            kneeboardTreeView.Invalidate();
+            kneeboardTreeView.Update();
+
+            LogMessage("TreeView refreshed");
+        }
+        private void KneeboardTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            // Doppio click espande/contrae invece di selezionare
+            if (e.Node.IsExpanded)
+                e.Node.Collapse();
             else
-            {
-                subGroupListBox.Items.Add("(No SubGroups)");
-            }
-
-            // Seleziona il primo item
-            if (subGroupListBox.Items.Count > 0)
-            {
-                subGroupListBox.SelectedIndex = 0;
-            }
+                e.Node.Expand();
         }
 
-        private void subGroupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        // Classi di supporto per il TreeView
+        private enum NodeType
         {
-            if (_selectedGroup != null && subGroupListBox.SelectedItem != null)
-            {
-                string selectedItem = subGroupListBox.SelectedItem.ToString();
-
-                if (selectedItem == "(Main Group)")
-                {
-                    _manager.LoadGroup(_selectedGroup.Name);
-                }
-                else if (selectedItem != "(No SubGroups)")
-                {
-                    _manager.LoadGroup(_selectedGroup.Name, selectedItem);
-                }
-            }
-        }
-        private void brevityCodesListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (brevityCodesListView.SelectedItems.Count > 0)
-            {
-                string letter = brevityCodesListView.SelectedItems[0].Text;
-                _manager.LoadGroup("BrevityCodes", letter);
-            }
+            Root,           // Nodo radice "Kneeboard Groups"
+            Group,          // Gruppo principale (es: "F-16C Procedures")
+            MainGroup,      // Sottogruppo principale "(Main Group)" 
+            SubGroup,       // Sottogruppo specifico (es: "Emergency")
+            BrevityRoot,    // Radice brevity codes "Brevity Codes"
+            BrevityLetter   // Lettera brevity code (es: "A")
         }
 
-        private void InitializeBrevityCodes()
+        private class NodeInfo
         {
-            brevityCodesListView.Items.Clear();
-
-            // Aggiungi le lettere da A a Z
-            for (char c = 'A'; c <= 'Z'; c++)
-            {
-                var item = new ListViewItem(c.ToString());
-                item.SubItems.Add($"Brevity Codes - {c}");
-                brevityCodesListView.Items.Add(item);
-            }
+            public NodeType Type { get; set; }
+            public string GroupName { get; set; }
+            public string SubGroupName { get; set; }
         }
 
         public void ShowMainMenu()
@@ -142,23 +215,10 @@ namespace VAICOM.KneeboardReceiver
         }
         public void LoadGroups()
         {
-            groupListBox.Items.Clear();
-            var groups = _manager.GetAvailableGroups();
-
-            foreach (var group in groups)
-            {
-                string nightIndicator = group.HasNightVersion ? " 🌙" : "";
-                string subGroupIndicator = group.SubGroups.Count > 0 ? " ➤" : "";
-                groupListBox.Items.Add($"{group.DisplayName}{nightIndicator}{subGroupIndicator}");
-            }
-
-            if (groupListBox.Items.Count > 0)
-            {
-                groupListBox.SelectedIndex = 0;
-            }
+            BuildKneeboardTree();
 
             // Inizializza i brevity codes
-            InitializeBrevityCodes();
+            // InitializeBrevityCodes();
         }
 
         public void ShowCurrentPage()
@@ -300,19 +360,93 @@ namespace VAICOM.KneeboardReceiver
         {
             this.Invoke((MethodInvoker)delegate
             {
-                LoadGroups();
+                // Salva lo stato corrente della selezione nel TreeView
+                TreeNode selectedNode = kneeboardTreeView.SelectedNode;
+                NodeInfo selectedNodeInfo = selectedNode?.Tag as NodeInfo;
 
-                // Se c'è un gruppo selezionato, aggiorna i sottogruppi
-                if (_selectedGroup != null)
+                // Ricarica l'albero
+                BuildKneeboardTree();
+
+                // Ripristina la selezione precedente se possibile
+                if (selectedNodeInfo != null)
                 {
-                    var updatedGroup = _manager.GetAvailableGroups()
-                        .FirstOrDefault(g => g.Name == _selectedGroup.Name);
-                    if (updatedGroup != null)
+                    TreeNode nodeToSelect = FindNodeByInfo(selectedNodeInfo);
+                    if (nodeToSelect != null)
                     {
-                        LoadSubGroups(updatedGroup);
+                        kneeboardTreeView.SelectedNode = nodeToSelect;
+                        nodeToSelect.EnsureVisible();
+
+                        // Se era un nodo selezionabile, ricarica anche i contenuti
+                        if (selectedNodeInfo.Type == NodeType.Group ||
+                            selectedNodeInfo.Type == NodeType.MainGroup ||
+                            selectedNodeInfo.Type == NodeType.SubGroup ||
+                            selectedNodeInfo.Type == NodeType.BrevityLetter)
+                        {
+                            KneeboardTreeView_AfterSelect(this, new TreeViewEventArgs(nodeToSelect));
+                        }
+                    }
+                }
+                else
+                {
+                    // Se non c'era selezione precedente, seleziona il primo nodo
+                    if (kneeboardTreeView.Nodes.Count > 0 && kneeboardTreeView.Nodes[0].Nodes.Count > 0)
+                    {
+                        kneeboardTreeView.SelectedNode = kneeboardTreeView.Nodes[0].Nodes[0];
                     }
                 }
             });
+        }
+
+        // Metodo helper per trovare un nodo basato su NodeInfo
+        private TreeNode FindNodeByInfo(NodeInfo targetInfo)
+        {
+            foreach (TreeNode node in kneeboardTreeView.Nodes)
+            {
+                var foundNode = FindNodeByInfoRecursive(node, targetInfo);
+                if (foundNode != null) return foundNode;
+            }
+            return null;
+        }
+
+        private TreeNode FindNodeByInfoRecursive(TreeNode currentNode, NodeInfo targetInfo)
+        {
+            if (currentNode.Tag is NodeInfo currentInfo)
+            {
+                // Ora NodeType.Root è definito
+                if (currentInfo.Type == targetInfo.Type &&
+                    currentInfo.GroupName == targetInfo.GroupName &&
+                    currentInfo.SubGroupName == targetInfo.SubGroupName)
+                {
+                    return currentNode;
+                }
+            }
+
+            foreach (TreeNode childNode in currentNode.Nodes)
+            {
+                var foundNode = FindNodeByInfoRecursive(childNode, targetInfo);
+                if (foundNode != null) return foundNode;
+            }
+
+            return null;
+        }
+
+        // Metodo helper per trovare un nodo per percorso
+        private TreeNode FindNodeByPath(TreeNodeCollection nodes, string path)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.FullPath.Equals(path, StringComparison.OrdinalIgnoreCase))
+                {
+                    return node;
+                }
+
+                if (path.StartsWith(node.FullPath, StringComparison.OrdinalIgnoreCase))
+                {
+                    var found = FindNodeByPath(node.Nodes, path);
+                    if (found != null) return found;
+                }
+            }
+            return null;
         }
 
         private void Manager_PageChanged()
@@ -402,23 +536,38 @@ namespace VAICOM.KneeboardReceiver
                     break;
 
                 case Keys.F5:
-                    LoadGroups();
+                    LoadGroups(); // Ricarica l'albero
                     break;
 
-                case Keys.Tab:
-                    // Naviga tra i tab
-                    if (groupsTabControl.SelectedIndex < groupsTabControl.TabCount - 1)
-                        groupsTabControl.SelectedIndex++;
-                    else
-                        groupsTabControl.SelectedIndex = 0;
+                case Keys.Enter:
+                    // Enter per selezionare il nodo corrente
+                    if (kneeboardTreeView.SelectedNode != null)
+                    {
+                        KneeboardTreeView_AfterSelect(this,
+                            new TreeViewEventArgs(kneeboardTreeView.SelectedNode));
+                    }
                     break;
 
-                case Keys.Control | Keys.Tab:
-                    // Naviga all'indietro tra i tab
-                    if (groupsTabControl.SelectedIndex > 0)
-                        groupsTabControl.SelectedIndex--;
-                    else
-                        groupsTabControl.SelectedIndex = groupsTabControl.TabCount - 1;
+                case Keys.Add:
+                    // Espandi nodo selezionato
+                    if (kneeboardTreeView.SelectedNode != null)
+                        kneeboardTreeView.SelectedNode.Expand();
+                    break;
+
+                case Keys.Subtract:
+                    // Contrai nodo selezionato
+                    if (kneeboardTreeView.SelectedNode != null)
+                        kneeboardTreeView.SelectedNode.Collapse();
+                    break;
+
+                case Keys.Multiply:
+                    // Espandi tutto
+                    kneeboardTreeView.ExpandAll();
+                    break;
+
+                case Keys.Divide:
+                    // Contrai tutto
+                    kneeboardTreeView.CollapseAll();
                     break;
             }
         }
@@ -474,6 +623,47 @@ namespace VAICOM.KneeboardReceiver
                     }
                 }
             }
+        }
+
+        private void menuItemExpandAll_Click(object sender, EventArgs e)
+        {
+            LogMessage("Expanding all tree nodes...");
+            kneeboardTreeView.BeginUpdate();
+            try
+            {
+                kneeboardTreeView.ExpandAll();
+            }
+            finally
+            {
+                kneeboardTreeView.EndUpdate();
+            }
+        }
+
+        private void menuItemCollapseAll_Click(object sender, EventArgs e)
+        {
+            LogMessage("Collapsing all tree nodes...");
+            kneeboardTreeView.BeginUpdate();
+            try
+            {
+                kneeboardTreeView.CollapseAll();
+
+                // Lascia espansa solo la radice per migliore UX
+                if (kneeboardTreeView.Nodes.Count > 0)
+                {
+                    kneeboardTreeView.Nodes[0].Expand();
+                }
+            }
+            finally
+            {
+                kneeboardTreeView.EndUpdate();
+            }
+        }
+
+        private void menuItemRefresh_Click(object sender, EventArgs e)
+        {
+            LogMessage("Refresh clicked - reloading groups...");
+            LoadGroups(); // Ricarica tutti i gruppi
+            kneeboardTreeView.ExpandAll(); // Espandi tutto per visibilità
         }
     }
 }

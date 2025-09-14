@@ -12,19 +12,21 @@
         private System.Windows.Forms.ToolStripButton btnNightMode;
         private SplitContainer splitContainer2;
         private SplitContainer splitContainer1;
-        private ListBox groupListBox;
         private PictureBox kneeboardPictureBox;
         private TextBox logTextBox;
 
         private System.Windows.Forms.TabControl groupsTabControl;
         private System.Windows.Forms.TabPage mainGroupsTab;
-        private System.Windows.Forms.TabPage subGroupsTab;
-        private System.Windows.Forms.ListBox subGroupListBox;
-        private System.Windows.Forms.TabPage brevityCodesTab;
-        private System.Windows.Forms.ListView brevityCodesListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        //private ListBox groupListBox;
+        //private System.Windows.Forms.TabPage subGroupsTab;
+        //private System.Windows.Forms.ListBox subGroupListBox;
+        //private System.Windows.Forms.TabPage brevityCodesTab;
+        //private System.Windows.Forms.ListView brevityCodesListView;
+        //private System.Windows.Forms.ColumnHeader columnHeader1;
+        //private System.Windows.Forms.ColumnHeader columnHeader2;
 
+        private TreeView kneeboardTreeView;
+        private ContextMenuStrip treeContextMenu;
 
         protected override void Dispose(bool disposing)
         {
@@ -37,6 +39,7 @@
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             statusStrip1 = new StatusStrip();
             statusLabel = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
@@ -46,19 +49,15 @@
             btnNightMode = new ToolStripButton();
             splitContainer2 = new SplitContainer();
             splitContainer1 = new SplitContainer();
-            groupListBox = new ListBox();
-            kneeboardPictureBox = new PictureBox();
-            logTextBox = new TextBox();
-
             groupsTabControl = new TabControl();
             mainGroupsTab = new TabPage();
-            subGroupsTab = new TabPage();
-            subGroupListBox = new ListBox();
-            brevityCodesTab = new TabPage();
-            brevityCodesListView = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-
+            kneeboardTreeView = new TreeView();
+            treeContextMenu = new ContextMenuStrip(components);
+            menuItemRefresh = new ToolStripMenuItem();
+            menuItemExpandAll = new ToolStripMenuItem();
+            menuItemCollapseAll = new ToolStripMenuItem();
+            kneeboardPictureBox = new PictureBox();
+            logTextBox = new TextBox();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
@@ -69,6 +68,9 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            groupsTabControl.SuspendLayout();
+            mainGroupsTab.SuspendLayout();
+            treeContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kneeboardPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -161,7 +163,6 @@
             // 
             // splitContainer1.Panel1
             // 
-            //splitContainer1.Panel1.Controls.Add(groupListBox);
             splitContainer1.Panel1.Controls.Add(groupsTabControl);
             // 
             // splitContainer1.Panel2
@@ -172,34 +173,19 @@
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 1;
             // 
-            // groupListBox
-            // 
-            //groupListBox.Dock = DockStyle.Fill;
-            //groupListBox.Font = new Font("Consolas", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            //groupListBox.ItemHeight = 18;
-            //groupListBox.Location = new Point(0, 0);
-            //groupListBox.Margin = new Padding(4, 3, 4, 3);
-            //groupListBox.Name = "groupListBox";
-            //groupListBox.Size = new Size(259, 544);
-            //groupListBox.TabIndex = 0;
-            //groupListBox.SelectedIndexChanged += groupListBox_SelectedIndexChanged;
-            // 
-            // groupsTabControl (sostituisce groupListBox)
+            // groupsTabControl
             // 
             groupsTabControl.Controls.Add(mainGroupsTab);
-            groupsTabControl.Controls.Add(subGroupsTab);
-            groupsTabControl.Controls.Add(brevityCodesTab);
             groupsTabControl.Dock = DockStyle.Fill;
             groupsTabControl.Location = new Point(0, 0);
             groupsTabControl.Name = "groupsTabControl";
             groupsTabControl.SelectedIndex = 0;
             groupsTabControl.Size = new Size(259, 544);
             groupsTabControl.TabIndex = 0;
-
             // 
             // mainGroupsTab
             // 
-            mainGroupsTab.Controls.Add(groupListBox);
+            mainGroupsTab.Controls.Add(kneeboardTreeView);
             mainGroupsTab.Location = new Point(4, 24);
             mainGroupsTab.Name = "mainGroupsTab";
             mainGroupsTab.Padding = new Padding(3);
@@ -207,79 +193,45 @@
             mainGroupsTab.TabIndex = 0;
             mainGroupsTab.Text = "Groups";
             mainGroupsTab.UseVisualStyleBackColor = true;
-
             // 
-            // groupListBox (modificato per essere dentro il tab)
+            // kneeboardTreeView
             // 
-            groupListBox.Dock = DockStyle.Fill;
-            groupListBox.Font = new Font("Consolas", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupListBox.ItemHeight = 18;
-            groupListBox.Location = new Point(3, 3);
-            groupListBox.Name = "groupListBox";
-            groupListBox.Size = new Size(245, 510);
-            groupListBox.TabIndex = 0;
-            groupListBox.SelectedIndexChanged += groupListBox_SelectedIndexChanged;
-
+            kneeboardTreeView.ContextMenuStrip = treeContextMenu;
+            kneeboardTreeView.Dock = DockStyle.Fill;
+            kneeboardTreeView.Font = new Font("Consolas", 11.25F);
+            kneeboardTreeView.Location = new Point(3, 3);
+            kneeboardTreeView.Name = "kneeboardTreeView";
+            kneeboardTreeView.Size = new Size(245, 510);
+            kneeboardTreeView.TabIndex = 0;
+            kneeboardTreeView.AfterSelect += KneeboardTreeView_AfterSelect;
+            kneeboardTreeView.NodeMouseDoubleClick += KneeboardTreeView_NodeMouseDoubleClick;
             // 
-            // subGroupsTab
+            // treeContextMenu
             // 
-            subGroupsTab.Controls.Add(subGroupListBox);
-            subGroupsTab.Location = new Point(4, 24);
-            subGroupsTab.Name = "subGroupsTab";
-            subGroupsTab.Padding = new Padding(3);
-            subGroupsTab.Size = new Size(251, 516);
-            subGroupsTab.TabIndex = 1;
-            subGroupsTab.Text = "SubGroups";
-            subGroupsTab.UseVisualStyleBackColor = true;
-
+            treeContextMenu.Items.AddRange(new ToolStripItem[] { menuItemRefresh, menuItemExpandAll, menuItemCollapseAll });
+            treeContextMenu.Name = "treeContextMenu";
+            treeContextMenu.Size = new Size(181, 92);
             // 
-            // subGroupListBox
+            // menuItemRefresh
             // 
-            subGroupListBox.Dock = DockStyle.Fill;
-            subGroupListBox.Font = new Font("Consolas", 11.25F);
-            subGroupListBox.ItemHeight = 18;
-            subGroupListBox.Location = new Point(3, 3);
-            subGroupListBox.Name = "subGroupListBox";
-            subGroupListBox.Size = new Size(245, 510);
-            subGroupListBox.TabIndex = 0;
-            subGroupListBox.SelectedIndexChanged += subGroupListBox_SelectedIndexChanged;
-
+            menuItemRefresh.Name = "menuItemRefresh";
+            menuItemRefresh.Size = new Size(180, 22);
+            menuItemRefresh.Text = "Refresh";
+            menuItemRefresh.Click += menuItemRefresh_Click;
             // 
-            // brevityCodesTab
+            // menuItemExpandAll
             // 
-            brevityCodesTab.Controls.Add(brevityCodesListView);
-            brevityCodesTab.Location = new Point(4, 24);
-            brevityCodesTab.Name = "brevityCodesTab";
-            brevityCodesTab.Size = new Size(251, 516);
-            brevityCodesTab.TabIndex = 2;
-            brevityCodesTab.Text = "Brevity Codes";
-            brevityCodesTab.UseVisualStyleBackColor = true;
-
+            menuItemExpandAll.Name = "menuItemExpandAll";
+            menuItemExpandAll.Size = new Size(180, 22);
+            menuItemExpandAll.Text = "Expand All";
+            menuItemExpandAll.Click += menuItemExpandAll_Click;
             // 
-            // brevityCodesListView
+            // menuItemCollapseAll
             // 
-            brevityCodesListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            brevityCodesListView.Dock = DockStyle.Fill;
-            brevityCodesListView.FullRowSelect = true;
-            brevityCodesListView.Location = new Point(0, 0);
-            brevityCodesListView.Name = "brevityCodesListView";
-            brevityCodesListView.Size = new Size(251, 516);
-            brevityCodesListView.TabIndex = 0;
-            brevityCodesListView.UseCompatibleStateImageBehavior = false;
-            brevityCodesListView.View = View.Details;
-            brevityCodesListView.SelectedIndexChanged += brevityCodesListView_SelectedIndexChanged;
-
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "Letter";
-            columnHeader1.Width = 60;
-
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Description";
-            columnHeader2.Width = 150;
+            menuItemCollapseAll.Name = "menuItemCollapseAll";
+            menuItemCollapseAll.Size = new Size(180, 22);
+            menuItemCollapseAll.Text = "Collapse All";
+            menuItemCollapseAll.Click += menuItemCollapseAll_Click;
             // 
             // kneeboardPictureBox
             // 
@@ -336,11 +288,16 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            groupsTabControl.ResumeLayout(false);
+            mainGroupsTab.ResumeLayout(false);
+            treeContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kneeboardPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-
+        private ToolStripMenuItem menuItemRefresh;
+        private ToolStripMenuItem menuItemExpandAll;
+        private ToolStripMenuItem menuItemCollapseAll;
     }
 }

@@ -240,40 +240,68 @@ namespace VAICOM.KneeboardReceiver
             // DEBUG: mostra la struttura dei file
             DebugFileStructure();
 
-            // Cerca nella cartella specifica dell'aereo
+            // PRIMA FASE: Scansiona tutti i gruppi (senza filtro)
             string aircraftPath = Path.Combine(_kneeboardPath, _currentAircraft);
             if (Directory.Exists(aircraftPath))
             {
-                ScanGroupsInDirectory(aircraftPath);
+                ScanGroupsInDirectory(aircraftPath); // Senza targetGroup
             }
 
-            // Cerca nella cartella generale (per contenuti cross-aircraft)
-            ScanGroupsInDirectory(_kneeboardPath);
+            // Scansiona nella cartella generale
+            ScanGroupsInDirectory(_kneeboardPath); // Senza targetGroup
 
-            // RIMOZIONE DUPLICATI - controllo aggiuntivo
+            // SECONDA FASE: Per ogni gruppo trovato, scansiona i sottogruppi
+            foreach (var group in _availableGroups.ToList()) // Usa ToList() per evitare modifiche durante l'iterazione
+            {
+                LogMessage($"Scanning subgroups for group: {group.Name}");
+
+                // Resetta la lista dei sottogruppi per riscansionarli
+                group.SubGroups.Clear();
+
+                // Scansiona nella cartella aircraft specifica
+                if (Directory.Exists(aircraftPath))
+                {
+                    ScanGroupsInDirectory(aircraftPath, group.Name); // Con targetGroup specifico
+                }
+
+                // Scansiona nella cartella generale
+                ScanGroupsInDirectory(_kneeboardPath, group.Name); // Con targetGroup specifico
+            }
+
+            // RIMOZIONE DUPLICATI
             _availableGroups = _availableGroups
                 .GroupBy(g => g.Name, StringComparer.OrdinalIgnoreCase)
                 .Select(g =>
                 {
                     var first = g.First();
+                    // Unisci anche i sottogruppi da tutte le directory
+                    var allSubGroups = g.SelectMany(x => x.SubGroups).Distinct().ToList();
                     return new PageGroup
                     {
                         Name = first.Name,
                         DisplayName = first.DisplayName,
                         HasDayVersion = g.Any(x => x.HasDayVersion),
                         HasNightVersion = g.Any(x => x.HasNightVersion),
-                        FilePath = first.FilePath
+                        FilePath = first.FilePath,
+                        SubGroups = allSubGroups
                     };
                 })
                 .OrderBy(g => g.DisplayName)
                 .ToList();
 
-//SafeInvoke(() => GroupsUpdated?.Invoke());
-
             LogMessage($"Scan completed. Found {_availableGroups.Count} unique groups.");
+
+            // DEBUG: mostra i sottogruppi trovati per ogni gruppo
+            foreach (var group in _availableGroups)
+            {
+                if (group.SubGroups.Count > 0)
+                {
+                    LogMessage($"Group '{group.Name}' has {group.SubGroups.Count} subgroups: {string.Join(", ", group.SubGroups)}");
+                }
+            }
         }
 
-        private void ScanGroupsInDirectory(string directoryPath)
+        private void ScanGroupsInDirectory(string directoryPath, string targetGroup = null)
         {
             if (!Directory.Exists(directoryPath)) return;
 
@@ -281,6 +309,13 @@ namespace VAICOM.KneeboardReceiver
             {
                 var pageInfo = ParseFileName(Path.GetFileNameWithoutExtension(file));
                 if (pageInfo == null || !IsEraAppropriate(pageInfo.GroupName)) continue;
+
+                // FILTRO: se è specificato un targetGroup, salta i file di altri gruppi
+                if (!string.IsNullOrEmpty(targetGroup) &&
+                    !pageInfo.GroupName.Equals(targetGroup, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
 
                 var existingGroup = _availableGroups.FirstOrDefault(g =>
                     g.Name.Equals(pageInfo.GroupName, StringComparison.OrdinalIgnoreCase));
@@ -407,9 +442,8 @@ namespace VAICOM.KneeboardReceiver
         {
             try
             {
+                _currentPages = new List<KneeboardPage>();
                 LogMessage($"=== LOADING GROUP: {groupName}{(subGroup != null ? "/" + subGroup : "")} ===");
-
-                DebugGroupLoading(groupName, subGroup);
 
                 CurrentGroup = groupName;
                 CurrentSubGroup = subGroup;
@@ -417,9 +451,9 @@ namespace VAICOM.KneeboardReceiver
 
                 var searchDirectories = new[]
                 {
-                    Path.Combine(_kneeboardPath, _currentAircraft),
-                    _kneeboardPath
-                };
+            Path.Combine(_kneeboardPath, _currentAircraft),
+            _kneeboardPath
+        };
 
                 foreach (var directory in searchDirectories)
                 {
@@ -431,40 +465,45 @@ namespace VAICOM.KneeboardReceiver
                         var pageInfo = ParseFileName(fileName);
                         if (pageInfo == null) continue;
 
+                        // 1. FILTRO GRUPPO
                         bool groupMatches = pageInfo.GroupName.Equals(groupName, StringComparison.OrdinalIgnoreCase);
+                        if (!groupMatches) continue;
 
+                        // 2. FILTRO SOTTOGRUPPO
                         bool subGroupMatches;
-
                         if (string.IsNullOrEmpty(subGroup))
                         {
-                            // Se cerchi il gruppo principale, accetta sia file senza sottogruppo che con sottogruppo
-                            // subGroupMatches = string.IsNullOrEmpty(pageInfo.SubGroup);
-                            subGroupMatches = true; // ← ACCETTA TUTTI I FILE DEL GRUPPO
+                            // Se cerchi il gruppo principale, mostra solo file SENZA sottogruppo
+                            subGroupMatches = string.IsNullOrEmpty(pageInfo.SubGroup);
                         }
                         else
                         {
                             // Se cerchi un sottogruppo specifico, matcha esattamente
                             subGroupMatches = pageInfo.SubGroup?.Equals(subGroup, StringComparison.OrdinalIgnoreCase) == true;
-                        } 
+                        }
 
+                        // 3. FILTRO NIGHT MODE
                         bool nightModeMatches = _nightMode ? pageInfo.IsNightVersion : !pageInfo.IsNightVersion;
 
+                        // COMBINA TUTTI I FILTRI
                         if (groupMatches && subGroupMatches && nightModeMatches)
                         {
                             LogMessage($"✓ MATCH: {fileName}");
-                            _currentPages.Add(new KneeboardPage
-                            {
-                                FilePath = file,
-                                Title = $"{groupName}{(subGroup != null ? " " + subGroup : "")}",
-                                PageNumber = pageInfo.PageNumber
-                            });
+                            var kneeboardPage = new KneeboardPage(
+                                filePath: file,
+                                groupName: pageInfo.GroupName,
+                                subGroup: pageInfo.SubGroup ?? string.Empty,
+                                pageNumber: pageInfo.PageNumber.ToString("D3"),
+                                displayName: pageInfo.FullName ?? Path.GetFileNameWithoutExtension(file)
+                            );
+                            _currentPages.Add(kneeboardPage);
                         }
-                        else if (groupMatches)
+                        else
                         {
                             LogMessage($"✗ NO MATCH: {fileName} (Group: {groupMatches}, SubGroup: {subGroupMatches}, NightMode: {nightModeMatches})");
                         }
-                    } 
-                } 
+                    }
+                }
 
                 LogMessage($"Total pages found: {_currentPages.Count}");
 
@@ -478,12 +517,6 @@ namespace VAICOM.KneeboardReceiver
                 else
                 {
                     LogMessage($"No pages found for: {groupName}{(subGroup != null ? "/" + subGroup : "")}");
-
-                    // Se non trova file senza subgroup, prova a mostrare il primo subgroup disponibile
-                    if (string.IsNullOrEmpty(subGroup))
-                    {
-                        TryLoadFirstSubGroup(groupName);
-                    }
                 }
             }
             catch (Exception ex)
@@ -534,12 +567,14 @@ namespace VAICOM.KneeboardReceiver
                         if (groupMatches && subGroupMatches && nightModeMatches)
                         {
                             LogMessage($"✓ MATCH: {fileName}");
-                            _currentPages.Add(new KneeboardPage
-                            {
-                                FilePath = file,
-                                Title = $"{groupName}{(subGroup != null ? " " + subGroup : "")}",
-                                PageNumber = pageInfo.PageNumber
-                            });
+                            var kneeboardPage = new KneeboardPage(
+                                filePath: file,
+                                groupName: pageInfo.GroupName,
+                                subGroup: pageInfo.SubGroup ?? string.Empty, // Se SubGroup può essere null
+                                pageNumber: pageInfo.PageNumber.ToString("D3"), // Formatta come "001", "002", etc.
+                                displayName: pageInfo.FullName ?? Path.GetFileNameWithoutExtension(file)
+                            );
+                            _currentPages.Add(kneeboardPage);
                         }
                     }
                 }
@@ -597,12 +632,14 @@ namespace VAICOM.KneeboardReceiver
                     if (nameContainsGroup && nightModeMatches)
                     {
                         LogMessage($"✓ ALTERNATIVE FOUND: {fileName}");
-                        _currentPages.Add(new KneeboardPage
-                        {
-                            FilePath = file,
-                            Title = $"{groupName}{(subGroup != null ? " " + subGroup : "")}",
-                            PageNumber = pageInfo.PageNumber
-                        });
+                        var kneeboardPage = new KneeboardPage(
+                            filePath: file,
+                            groupName: pageInfo.GroupName,
+                            subGroup: pageInfo.SubGroup ?? string.Empty, // Se SubGroup può essere null
+                            pageNumber: pageInfo.PageNumber.ToString("D3"), // Formatta come "001", "002", etc.
+                            displayName: pageInfo.FullName ?? Path.GetFileNameWithoutExtension(file)
+                        );
+                        _currentPages.Add(kneeboardPage);
                     }
                 }
             }
@@ -764,7 +801,7 @@ namespace VAICOM.KneeboardReceiver
             {
                 SafeConsoleClear();
                 SafeConsoleWriteLine($"=== {_currentAircraft} - {_currentTheater} ===");
-                SafeConsoleWriteLine($"=== {page.Title} ===");
+                SafeConsoleWriteLine($"=== {page.DisplayName} ===");
                 SafeConsoleWriteLine($"Page {_currentPage + 1} of {_currentPages.Count}");
                 SafeConsoleWriteLine("==========================================");
                 SafeConsoleWriteLine($"File: {Path.GetFileName(page.FilePath)}");
@@ -1104,7 +1141,19 @@ namespace VAICOM.KneeboardReceiver
     public class KneeboardPage
     {
         public string FilePath { get; set; }
-        public string Title { get; set; }
-        public int PageNumber { get; set; }
+        public string GroupName { get; set; }
+        public string SubGroup { get; set; }
+        public string PageNumber { get; set; }
+        public string DisplayName { get; set; }
+
+        // Oppure costruttore se necessario
+        public KneeboardPage(string filePath, string groupName, string subGroup, string pageNumber, string displayName)
+        {
+            FilePath = filePath;
+            GroupName = groupName;
+            SubGroup = subGroup;
+            PageNumber = pageNumber;
+            DisplayName = displayName;
+        }
     }
 }
