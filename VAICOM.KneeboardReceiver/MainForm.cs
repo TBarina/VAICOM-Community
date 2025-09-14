@@ -8,6 +8,8 @@ namespace VAICOM.KneeboardReceiver
     public partial class MainForm : Form, IKneeboardDisplay
     {
         private AdvancedKneeboardManager _manager;
+        private List<string> _pendingMessages = new List<string>();
+        private PageGroup _selectedGroup;
 
         public MainForm()
         {
@@ -20,6 +22,9 @@ namespace VAICOM.KneeboardReceiver
             _manager.PageChanged += Manager_PageChanged;
             _manager.NightModeToggled += Manager_NightModeToggled;
             _manager.LogMessageReceived += Manager_LogMessageReceived;
+
+            // Inizializza i tab
+            groupsTabControl.SelectedIndex = 0;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -28,6 +33,24 @@ namespace VAICOM.KneeboardReceiver
             UpdateNightModeButton();
         }
 
+        //private void groupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (groupListBox.SelectedIndex >= 0)
+        //    {
+        //        var groups = _manager.GetAvailableGroups();
+        //        if (groupListBox.SelectedIndex < groups.Count)
+        //        {
+        //            _selectedGroup = groups[groupListBox.SelectedIndex];
+        //            LoadSubGroups(_selectedGroup);
+
+        //            // Se il gruppo non ha sottogruppi, caricalo direttamente
+        //            if (_selectedGroup.SubGroups.Count == 0)
+        //            {
+        //                _manager.LoadGroup(_selectedGroup.Name);
+        //            }
+        //        }
+        //    }
+        //}
         private void groupListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (groupListBox.SelectedIndex >= 0)
@@ -35,12 +58,76 @@ namespace VAICOM.KneeboardReceiver
                 var groups = _manager.GetAvailableGroups();
                 if (groupListBox.SelectedIndex < groups.Count)
                 {
-                    _manager.LoadGroup(groups[groupListBox.SelectedIndex].Name);
+                    var selectedGroup = groups[groupListBox.SelectedIndex];
+
+                    // PER TUTTI I GRUPPI, carica senza sottogruppo
+                    _manager.LoadGroup(selectedGroup.Name);
                     DisplayCurrentPage();
                 }
             }
         }
 
+        private void LoadSubGroups(PageGroup group)
+        {
+            subGroupListBox.Items.Clear();
+
+            if (group.SubGroups.Count > 0)
+            {
+                subGroupListBox.Items.Add("(Main Group)");
+                foreach (var subGroup in group.SubGroups.OrderBy(s => s))
+                {
+                    subGroupListBox.Items.Add(subGroup);
+                }
+            }
+            else
+            {
+                subGroupListBox.Items.Add("(No SubGroups)");
+            }
+
+            // Seleziona il primo item
+            if (subGroupListBox.Items.Count > 0)
+            {
+                subGroupListBox.SelectedIndex = 0;
+            }
+        }
+
+        private void subGroupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_selectedGroup != null && subGroupListBox.SelectedItem != null)
+            {
+                string selectedItem = subGroupListBox.SelectedItem.ToString();
+
+                if (selectedItem == "(Main Group)")
+                {
+                    _manager.LoadGroup(_selectedGroup.Name);
+                }
+                else if (selectedItem != "(No SubGroups)")
+                {
+                    _manager.LoadGroup(_selectedGroup.Name, selectedItem);
+                }
+            }
+        }
+        private void brevityCodesListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (brevityCodesListView.SelectedItems.Count > 0)
+            {
+                string letter = brevityCodesListView.SelectedItems[0].Text;
+                _manager.LoadGroup("BrevityCodes", letter);
+            }
+        }
+
+        private void InitializeBrevityCodes()
+        {
+            brevityCodesListView.Items.Clear();
+
+            // Aggiungi le lettere da A a Z
+            for (char c = 'A'; c <= 'Z'; c++)
+            {
+                var item = new ListViewItem(c.ToString());
+                item.SubItems.Add($"Brevity Codes - {c}");
+                brevityCodesListView.Items.Add(item);
+            }
+        }
 
         public void ShowMainMenu()
         {
@@ -61,13 +148,17 @@ namespace VAICOM.KneeboardReceiver
             foreach (var group in groups)
             {
                 string nightIndicator = group.HasNightVersion ? " 🌙" : "";
-                groupListBox.Items.Add($"{group.DisplayName}{nightIndicator}");
+                string subGroupIndicator = group.SubGroups.Count > 0 ? " ➤" : "";
+                groupListBox.Items.Add($"{group.DisplayName}{nightIndicator}{subGroupIndicator}");
             }
 
             if (groupListBox.Items.Count > 0)
             {
                 groupListBox.SelectedIndex = 0;
             }
+
+            // Inizializza i brevity codes
+            InitializeBrevityCodes();
         }
 
         public void ShowCurrentPage()
@@ -91,20 +182,20 @@ namespace VAICOM.KneeboardReceiver
                     // Usa una copia per evitare locking del file
                     using (var tempImage = Image.FromFile(currentPage.FilePath))
                     {
-                        pictureBox.Image = new Bitmap(tempImage);
+                        kneeboardPictureBox.Image = new Bitmap(tempImage);
                     }
 
                     statusLabel.Text = $"Page {_manager.CurrentPageIndex + 1} of {_manager.TotalPages} | {Path.GetFileName(currentPage.FilePath)}";
                 }
                 catch (Exception ex)
                 {
-                    pictureBox.Image = null;
+                    kneeboardPictureBox.Image = null;
                     statusLabel.Text = $"Error loading image: {ex.Message}";
                 }
             }
             else
             {
-                pictureBox.Image = null;
+                kneeboardPictureBox.Image = null;
                 statusLabel.Text = "No page available";
             }
         }
@@ -149,7 +240,7 @@ namespace VAICOM.KneeboardReceiver
         public void ClearDisplay()
         {
             // Implementa la pulizia del form
-            pictureBox.Image = null;
+            kneeboardPictureBox.Image = null;
             statusLabel.Text = "Ready";
             // Altri reset necessari...
 
@@ -207,21 +298,35 @@ namespace VAICOM.KneeboardReceiver
 
         private void Manager_GroupsUpdated()
         {
-            this.Invoke((MethodInvoker)delegate {
+            this.Invoke((MethodInvoker)delegate
+            {
                 LoadGroups();
+
+                // Se c'è un gruppo selezionato, aggiorna i sottogruppi
+                if (_selectedGroup != null)
+                {
+                    var updatedGroup = _manager.GetAvailableGroups()
+                        .FirstOrDefault(g => g.Name == _selectedGroup.Name);
+                    if (updatedGroup != null)
+                    {
+                        LoadSubGroups(updatedGroup);
+                    }
+                }
             });
         }
 
         private void Manager_PageChanged()
         {
-            this.Invoke((MethodInvoker)delegate {
+            this.Invoke((MethodInvoker)delegate
+            {
                 DisplayCurrentPage();
             });
         }
 
         private void Manager_NightModeToggled()
         {
-            this.Invoke((MethodInvoker)delegate {
+            this.Invoke((MethodInvoker)delegate
+            {
                 UpdateNightModeButton();
                 LoadGroups(); // Ricarica per aggiornare indicatori notte
             });
@@ -229,17 +334,46 @@ namespace VAICOM.KneeboardReceiver
 
         private void Manager_LogMessageReceived(string message)
         {
-            // Invoke è necessario perché viene chiamato da thread diversi
-            this.Invoke((MethodInvoker)delegate {
-                logTextBox.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}\r\n");
-                logTextBox.ScrollToCaret();
+            // Controlla se l'handle è stato creato e se Invoke è necessario
+            if (this.IsHandleCreated)
+            {
+                if (this.InvokeRequired)
+                {
+                    // Invoke è necessario perché viene chiamato da thread diversi
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        logTextBox.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}\r\n");
+                        logTextBox.ScrollToCaret();
 
-                // Se siamo in test mode, mostra anche sulla console
+                        // Se siamo in test mode, mostra anche sulla console
+                        if (Program.IsTestMode)
+                        {
+                            Console.WriteLine($"[UI] {message}");
+                        }
+                    });
+                }
+                else
+                {
+                    // Se siamo già sul thread UI
+                    logTextBox.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}\r\n");
+                    logTextBox.ScrollToCaret();
+
+                    if (Program.IsTestMode)
+                    {
+                        Console.WriteLine($"[UI] {message}");
+                    }
+                }
+            }
+            else
+            {
+                // Handle non ancora creato, memorizza i messaggi o logga su console
                 if (Program.IsTestMode)
                 {
-                    Console.WriteLine($"[UI] {message}");
+                    Console.WriteLine($"[DELAYED UI] {message}");
                 }
-            });
+                // Opzionale: memorizza in una lista per visualizzare dopo
+                _pendingMessages.Add(message);
+            }
         }
 
         private void UpdateNightModeButton()
@@ -270,7 +404,35 @@ namespace VAICOM.KneeboardReceiver
                 case Keys.F5:
                     LoadGroups();
                     break;
+
+                case Keys.Tab:
+                    // Naviga tra i tab
+                    if (groupsTabControl.SelectedIndex < groupsTabControl.TabCount - 1)
+                        groupsTabControl.SelectedIndex++;
+                    else
+                        groupsTabControl.SelectedIndex = 0;
+                    break;
+
+                case Keys.Control | Keys.Tab:
+                    // Naviga all'indietro tra i tab
+                    if (groupsTabControl.SelectedIndex > 0)
+                        groupsTabControl.SelectedIndex--;
+                    else
+                        groupsTabControl.SelectedIndex = groupsTabControl.TabCount - 1;
+                    break;
             }
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            foreach (var message in _pendingMessages)
+            {
+                logTextBox.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}\r\n");
+            }
+            logTextBox.ScrollToCaret();
+            _pendingMessages.Clear();
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
@@ -282,13 +444,36 @@ namespace VAICOM.KneeboardReceiver
             _manager.LogMessageReceived -= Manager_LogMessageReceived;
 
             // Cleanup
-            if (pictureBox.Image != null)
+            if (kneeboardPictureBox.Image != null)
             {
-                pictureBox.Image.Dispose();
-                pictureBox.Image = null;
+                kneeboardPictureBox.Image.Dispose();
+                kneeboardPictureBox.Image = null;
             }
 
             base.OnFormClosed(e);
+        }
+
+        private void UpdatePageInfo()
+        {
+            if (_manager.TotalPages > 0)
+            {
+                //lblPageInfo.Text = $"Page: {_manager.CurrentPageIndex + 1}/{_manager.TotalPages}";
+
+                // Mostra l'immagine della pagina corrente
+                var currentPage = _manager.GetCurrentPage();
+                if (currentPage != null && File.Exists(currentPage.FilePath))
+                {
+                    try
+                    {
+                        kneeboardPictureBox.Image = Image.FromFile(currentPage.FilePath);
+                        kneeboardPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    catch (Exception ex)
+                    {
+                        LogMessage($"Error loading image: {ex.Message}");
+                    }
+                }
+            }
         }
     }
 }

@@ -7,6 +7,8 @@ public interface IKneeboardDisplay
     void ShowCurrentPage();
     void LogMessage(string message);
     void Clear();
+    //void DisplayPage(KneeboardPage page);
+    //void UpdateStatus(string message);
 }
 
 public class ConsoleDisplay : IKneeboardDisplay

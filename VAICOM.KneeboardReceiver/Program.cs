@@ -65,6 +65,8 @@ namespace VAICOM.KneeboardReceiver
         static void RunReceiverMode()
         {
             var mainForm = new MainForm();
+            var formsDisplay = new FormsDisplay(mainForm);
+            Program.KneeboardManager.SetDisplay(formsDisplay);
 
             // Avvia il server TCP in background
             Task.Run(() => StartTcpServer());
@@ -120,7 +122,7 @@ namespace VAICOM.KneeboardReceiver
 
                     switch (messageType)
                     {
-                        case 0x01: // File (protocollo esistente)
+                        case 0x01: // Init
                             KneeboardManager.LogMessage("Handling initialization message");
                             HandleInitMessage(ns);
                             break;
@@ -130,7 +132,7 @@ namespace VAICOM.KneeboardReceiver
                             HandleJsonMessage(ns);
                             break;
 
-                        case 0x03: // LOG (Nuovo tipo per i messaggi di log)
+                        case 0x03: // Messaggi di log
                             KneeboardManager.LogMessage("Handling log message");
                             HandleLogMessage(ns);
                             break;
@@ -149,6 +151,10 @@ namespace VAICOM.KneeboardReceiver
             catch (Exception ex)
             {
                 KneeboardManager.LogMessage($"Error handling client: {ex.Message}");
+            }
+            finally
+            {
+                client?.Close();
             }
         }
 

@@ -123,6 +123,9 @@ namespace VAICOM.KneeboardReceiver
        
         private static string CreateTestEnvironment()
         {
+            return Path.Combine(Path.GetTempPath(), "DCS_Test_Kneeboard"); 
+
+
             string testPath = Path.Combine(Path.GetTempPath(), "DCS_Test_Kneeboard");
 
             try
