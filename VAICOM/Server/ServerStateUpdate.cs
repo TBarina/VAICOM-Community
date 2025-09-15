@@ -30,7 +30,7 @@ namespace VAICOM
                 Log.Reset();
                 string state = JsonConvert.SerializeObject(State.currentstate, Formatting.Indented).ToString();
                 //Log.Write("STATE: " + state, Colors.Critical);
-                Extensions.Kneeboard.Logger.RemoteLogger.Write("STATE: " + state);
+                Extensions.Kneeboard.Logger.RemoteLogger.Write("STATE: " + state, Colors.Critical);
             }
 
             public static int chunkcount = 12;

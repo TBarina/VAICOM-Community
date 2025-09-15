@@ -10,21 +10,21 @@ namespace VAICOM.Extensions.Kneeboard.Logger
 {
     public static class RemoteLogger
     {
-        public static void Write(string message)
+        public static void Write(string message, string color = "black")    //Colors.Text)
         {
-            Log.Write(message, Colors.Text);
+            Log.Write(message, color);
             SendToRemoteReceiver(message, "INFO");
         }
 
-        public static void WriteWarning(string message)
+        public static void WriteWarning(string message, string color = "orange")    //Colors.Warning)
         {
-            Log.Write(message, Colors.Warning);
+            Log.Write(message, color);
             SendToRemoteReceiver(message, "WARNING");
         }
 
-        public static void WriteError(string message)
+        public static void WriteError(string message, string color = "red")    //Colors.Warning)
         {
-            Log.Write(message, Colors.Critical);
+            Log.Write(message, color);
             SendToRemoteReceiver(message, "ERROR");
         }
 

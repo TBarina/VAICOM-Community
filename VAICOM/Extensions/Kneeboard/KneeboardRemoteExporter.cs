@@ -78,7 +78,6 @@ namespace VAICOM.Extensions.Kneeboard
             }
         }
 
-        // In KneeboardRemoteExporter.cs (VAICOM)
         public async Task SendInitializationData()
         {
             try
