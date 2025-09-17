@@ -47,7 +47,7 @@ namespace VAICOM.KneeboardReceiver
             if (args.Length > 1 && args[1] == "--interactive")
             {
                 // Modalità console interattiva (se ancora la vuoi)
-                KneeboardTester.InteractiveTest();
+                //KneeboardTester.InteractiveTest();
             }
             else
             {

@@ -410,54 +410,102 @@ namespace VAICOM.KneeboardReceiver
         }
         private PageInfo ParseFileName(string fileName)
         {
+            string prefix;
+            string groupPart;
+            string pageNumber;
+
             try
             {
                 LogMessage($"Parsing filename: {fileName}"); // DEBUG
 
-                // Pattern corretto: deve accettare underscore nel nome del gruppo
-                // Vecchio pattern: @"^(\d+)-([^-]+)-(\d+)$" ← NON accetta underscore
-                // Nuovo pattern: @"^(\d+)-([A-Za-z_]+)-(\d+)$" ← Accetta lettere e underscore
-                var match = Regex.Match(fileName, @"^(\d+)-([A-Za-z_]+)-(\d+)$");
+                var match = Regex.Match(fileName, @"^(\d+)-([A-Za-z0-9_\-;]+)-(\d+)$"); // Accetta lettere, numeri, underscores e semi-colon. Es.: 007-CheckList;001_Night-001
 
                 if (!match.Success)
                 {
+                    // SECONDO TENTATIVO: pattern alternativo per formati diversi
+                    match = Regex.Match(fileName, @"^([A-Za-z0-9_\-;]+)-(\d+)$");   // Accetta lettere, numeri, underscores e semi-colon.
+                    if (match.Success)
+                    {
+                        // Gestione formato alternativo senza prefix
+                        groupPart = match.Groups[1].Value;
+                        pageNumber = match.Groups[2].Value;
+
+                        return CreatePageInfo(groupPart, pageNumber, "0");
+                    }
+
                     LogMessage($"Regex failed for: {fileName}");
                     return null;
                 }
+                
 
-                string prefix = match.Groups[1].Value;
-                string groupPart = match.Groups[2].Value; // Ora può contenere underscore
-                string pageNumber = match.Groups[3].Value;
+                prefix     = match.Groups[1].Value;
+                groupPart  = match.Groups[2].Value; // Può contenere underscore e semi-colon. Es.: 007-CheckList;001_Night-001
+                pageNumber = match.Groups[3].Value;
 
-                LogMessage($"Groups: {prefix}, {groupPart}, {pageNumber}"); // DEBUG
-
-                bool isNight = groupPart.Contains("_Night");
+/*              bool isNight = groupPart.EndsWith("_Night");
                 string cleanGroup = isNight ? groupPart.Replace("_Night", "") : groupPart;
-
+                string[] groupPartParts = cleanGroup.Split(';');
+                cleanGroup = groupPartParts[0];
                 // Separa gruppo e sottogruppo
                 string[] groupParts = cleanGroup.Split('_');
                 string groupName = groupParts[0];
-
                 // Il sottogruppo è tutto ciò che viene dopo il primo underscore
                 string subGroup = groupParts.Length > 1 ? string.Join("_", groupParts.Skip(1)) : null;
-
-                LogMessage($"Parsed: Group={groupName}, SubGroup={subGroup ?? "(null)"}, Night={isNight}"); // DEBUG
-
-                return new PageInfo
-                {
-                    GroupName = groupName,
-                    SubGroup = subGroup,
-                    IsNightVersion = isNight,
-                    IsDayVersion = !isNight,
-                    FullName = groupPart,
-                    PageNumber = int.Parse(pageNumber)
-                };
+*/
+                return CreatePageInfo(groupPart, pageNumber, prefix);
             }
             catch (Exception ex)
             {
                 LogMessage($"Error parsing filename '{fileName}': {ex.Message}");
                 return null;
             }
+        }
+        private PageInfo CreatePageInfo(string groupPart, string pageNumber, string prefix)
+        {
+
+            bool isNight = groupPart.EndsWith("_Night");
+            string cleanGroup = isNight ? groupPart.Replace("_Night", "") : groupPart;
+            // Separa l'eventuale id
+            string[] groupPartParts = cleanGroup.Split(';');
+            cleanGroup = groupPartParts[0];
+            
+            // Separa gruppo e sottogruppo
+            //string[] groupParts = cleanGroup.Split('_');
+            //string groupName = groupParts[0];
+            //// Il sottogruppo è tutto ciò che viene dopo il primo underscore
+            //string subGroup = groupParts.Length > 1 ? string.Join("_", groupParts.Skip(1)) : null;
+
+
+            // LOGICA MIGLIORATA per sottogruppi
+            string groupName = cleanGroup;
+            string subGroup = null;
+
+            // Cerca l'ultimo underscore per separare gruppo/sottogruppo
+            int lastUnderscore = cleanGroup.LastIndexOf('_');
+            if (lastUnderscore > 0)
+            {
+                groupName = cleanGroup.Substring(0, lastUnderscore);
+                subGroup = cleanGroup.Substring(lastUnderscore + 1);
+
+                // Se il sottogruppo è numerico, potrebbe essere parte del gruppo
+                //if (int.TryParse(subGroup, out _))
+                //{
+                //    groupName = cleanGroup;
+                //    subGroup = null;
+                //}
+            }
+
+            LogMessage($"Parsed: Group={groupName}, SubGroup={subGroup ?? "(null)"}, Night={isNight}"); // DEBUG
+
+            return new PageInfo
+            {
+                GroupName = groupName,
+                SubGroup = subGroup,
+                IsNightVersion = isNight,
+                IsDayVersion = !isNight,
+                FullName = groupPart,
+                PageNumber = int.Parse(pageNumber)
+            };
         }
 
         private bool IsEraAppropriate(string groupName)
